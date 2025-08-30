@@ -85,10 +85,10 @@ export const OurWorkPage: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
             <a
-              href="tel:(301)450-9487"
+              href="tel:(346)374-9083"
               className="px-8 py-4 bg-gradient-to-r from-[#FF0000] to-[#C20F1F] text-white rounded-xl hover:shadow-lg hover:shadow-[#FF0000]/25 transition-all duration-300 font-semibold text-lg transform hover:scale-105"
             >
-              Call (301) 450-9487
+              Call (346) 374-9083
             </a>
             <p className="text-gray-400">
               Free 10-minute inspection • No obligation
