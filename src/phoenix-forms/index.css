@@ -74,6 +74,114 @@ button:focus-visible {
   }
 }
 
+/* Tiny red dot to bring header back (screen-only; never prints) */
+.show-header-dot {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: red;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+/* In doc-only mode, hide any element marked as non-print UI (header, toolbars, etc.) */
+.doc-only [data-nonprint] {
+  display: none !important;
+}
+
+/* Optional: consistent page shell for each document page (screen + print) */
+.page {
+  width: 8.5in;
+  min-height: 11in;
+  /* optional internal padding; adjust to taste */
+  /* padding: 0.5in; */
+  background: #fff;
+}
+
+/* Make colors/logos accurate in print */
+* {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Printer page setup */
+@page {
+  size: letter;
+  margin: 0.5in;
+}
+
+/* Print isolation + fix single-sheet-with-scrollbar issue */
+@media print {
+  /* Hide everything by default */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Show ONLY the document subtree */
+  #print-root, #print-root * {
+    visibility: visible !important;
+  }
+
+  /* Never print UI elements or the red dot */
+  [data-nonprint],
+  .fullscreen-header,
+  .show-header-dot {
+    display: none !important;
+  }
+
+  /* Remove any heights/overflows that cause clipping */
+  html, body, #root {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .fullscreen-root,
+  .fullscreen-content,
+  .screen-scroll {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Remove any transforms/scales used for on-screen preview */
+  #print-root,
+  #print-root * {
+    transform: none !important;
+    zoom: 1 !important;
+  }
+
+  /* Clean printable block */
+  #print-root {
+    position: static !important;
+    inset: auto !important;
+    margin: 0 auto !important;
+    background: #fff !important;
+    box-shadow: none !important;
+  }
+
+  /* True multipage breaks */
+  .page {
+    break-after: page;
+    page-break-after: always;
+  }
+  .page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+  .avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* Ensure the red dot never prints (belt & suspenders) */
+@media print {
+  .show-header-dot { display: none !important; }
+}
+
 #cert { 
   page-break-after: avoid; 
 }
