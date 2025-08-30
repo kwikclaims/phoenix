@@ -46,7 +46,7 @@ export default function WarrantyDocument({ type, data, signatureDataURL }: Warra
       }}
     >
       <img 
-        src={`${window.location.origin}/phoenix-logo.svg`}
+        src={`${window.location.origin}/images/black-phoenix-logo-transparent.png`}
         alt="Phoenix Logo" 
         style={{ 
           display: 'block',
