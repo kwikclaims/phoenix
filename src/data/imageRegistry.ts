@@ -2,35 +2,35 @@
 // Do not edit by hand; change routes in project.routes.json and re-run the script.
 
 export const threeTabImages = [
-  '/images/3TABS3.png',
-  '/images/3TABS2.png',
-  '/images/3TABS1.png',
-  '/images/3TABVSARCHITECTURAL.png',
+  '/images/Architectural/3TABVSARCHITECTURAL.png',
+  '/images/3tab1.png',
+  '/images/3tab2.png',
+  '/images/3tab3.png',
 ];
 
 export const architecturalImages = [
-  '/images/Architectural 6.png',
-  '/images/Architectural 5.png',
-  '/images/Architectural 4.png',
-  '/images/Architectural 3.png',
-  '/images/Architectural 2.png',
-  '/images/Architectural 1.png',
+  '/images/Architectural/Architectural 1.png',
+  '/images/Architectural/Architectural 2.png',
+  '/images/Architectural/Architectural 3.jpg',
+  '/images/Architectural/Architectural 4.png',
+  '/images/Architectural/Architectural 5.png',
+  '/images/Architectural/Architectural 6.png',
 ];
 
 export const damageImages = [
-  '/images/Damage 5.png',
-  '/images/Damage 4.png',
-  '/images/Damage 3.png',
-  '/images/Damage 2.png',
-  '/images/Damage 1.png',
+  '/images/damages/Damage 1.png',
+  '/images/damages/Damage 2.png',
+  '/images/damages/Damage 3.png',
+  '/images/damages/Damage 4.png',
+  '/images/damages/Damage 5.png',
 ];
 
 export const collateralDamageImages = [
-  '/images/Collateral Damage 5.png',
-  '/images/Collateral Damage 4.png',
-  '/images/Collateral Damage 3.png',
-  '/images/Collateral Damage 2.png',
-  '/images/Collateral Damage 1.png',
+  '/images/damages/Collateral Damage 1.png',
+  '/images/damages/Collateral Damage 2.png',
+  '/images/damages/Collateral Damage 3.png',
+  '/images/damages/Collateral Damage 4.png',
+  '/images/damages/Collateral Damage 5.png',
 ];
 
 export const projectImages = {
