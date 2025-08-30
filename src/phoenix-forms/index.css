@@ -274,3 +274,92 @@ button:focus-visible {
 
 /* tiny red dot already defined; ensure it's above content */
 .show-header-dot { z-index: 1002; }
+
+/* Host that truly covers the screen (portal at body level) */
+.fs-host {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: #0b0b0b; /* dark canvas behind doc */
+  display: flex;
+  flex-direction: column;
+}
+
+/* If element is in native fullscreen, keep identical look */
+:fullscreen .fs-host, .fs-host:fullscreen {
+  background: #0b0b0b;
+}
+
+/* Header that can be hidden with docOnly */
+.fs-header {
+  position: sticky;
+  top: 0;
+  background: #111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  z-index: 10001;
+}
+
+/* Scroll area for the document when needed ON SCREEN ONLY */
+.fs-doc {
+  flex: 1 1 auto;
+  overflow: auto;      /* ON SCREEN scroll is okay */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px;
+}
+
+/* Hide header/any non-print UI in doc-only mode */
+.doc-only [data-nonprint] { display: none !important; }
+
+/* Provide a consistent page shell (screen + print) */
+.page {
+  width: 8.5in;
+  min-height: 11in;
+  background: #fff;
+  /* optional internal padding for on-screen look:
+  padding: 0.5in;
+  */
+  box-shadow: 0 2px 8px rgba(0,0,0,.15); /* screen only visual */
+}
+
+/* --- PRINT FIXES: isolate doc, remove clip/scroll/transform --- */
+@media print {
+  /* Hide everything by default */
+  body * { visibility: hidden !important; }
+
+  /* Show ONLY the document subtree */
+  #print-root, #print-root * { visibility: visible !important; }
+
+  /* Never print UI elements or the red dot */
+  [data-nonprint], .fs-header, .show-header-dot { display: none !important; }
+
+  /* Remove any heights/overflows that cause clipping in the chain */
+  html, body, #root { height: auto !important; overflow: visible !important; }
+  .fs-host, .fs-doc {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;  /* <-- key to kill the scrollbar in print */
+  }
+
+  /* Remove transforms/scales (if any) */
+  #print-root, #print-root * { transform: none !important; zoom: 1 !important; }
+
+  /* Clean block for the document */
+  #print-root {
+    position: static !important;
+    inset: auto !important;
+    margin: 0 auto !important;
+    background: #fff !important;
+    box-shadow: none !important;
+  }
+
+  /* Real multi-page breaks */
+  .page { break-after: page; page-break-after: always; }
+  .page:last-child { break-after: auto; page-break-after: auto; }
+  .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+}

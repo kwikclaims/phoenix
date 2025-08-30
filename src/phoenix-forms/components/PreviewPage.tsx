@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import ReactDOM from 'react-dom';
 import { motion } from 'framer-motion';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
@@ -28,6 +29,7 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   const { formData, signatureDataURL, clearFormData } = useFormContext();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [docOnly, setDocOnly] = useState(false);
+  const fsHostRef = useRef<HTMLDivElement | null>(null);
 
   // Redirect if no form data
   useEffect(() => {
@@ -37,6 +39,34 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     }
   }, [formData, signatureDataURL, navigate]);
   
+  const enterFullscreen = async () => {
+    setDocOnly(false);
+    setIsFullscreen(true);
+    await Promise.resolve();
+    if (fsHostRef.current && !document.fullscreenElement) {
+      try { await fsHostRef.current.requestFullscreen(); } catch {}
+    }
+  };
+
+  const exitFullscreen = async () => {
+    if (document.fullscreenElement) {
+      try { await document.exitFullscreen(); } catch {}
+    }
+    setIsFullscreen(false);
+    setDocOnly(false);
+  };
+
+  useEffect(() => {
+    const onFsChange = () => {
+      if (!document.fullscreenElement) {
+        setIsFullscreen(false);
+        setDocOnly(false);
+      }
+    };
+    document.addEventListener("fullscreenchange", onFsChange);
+    return () => document.removeEventListener("fullscreenchange", onFsChange);
+  }, []);
+
   if (!type || !(type in LABELS)) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
@@ -250,6 +280,9 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
                 <button type="button" onClick={() => { setIsFullscreen(true); setDocOnly(false); }} data-nonprint className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors">
                   Fullscreen
                 </button>
+                <button type="button" onClick={enterFullscreen} data-nonprint className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors">
+                  Fullscreen
+                </button>
                 <Button 
                   variant="outline" 
                   onClick={handleHome}
@@ -267,6 +300,60 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
         <div className="hidden">
           {renderCertificate()}
         </div>
+
+        {/* Fullscreen overlay via portal */}
+        {isFullscreen &&
+          ReactDOM.createPortal(
+            <div
+              ref={fsHostRef}
+              className={`fs-host ${docOnly ? "doc-only" : ""}`}
+              role="dialog"
+              aria-modal="true"
+            >
+              {!docOnly && (
+                <header className="fs-header" data-nonprint>
+                  <div>
+                    <h1 className="text-2xl font-bold text-white">{LABELS[formType]}</h1>
+                    <p className="text-gray-300">{SUBS[formType]}</p>
+                  </div>
+                  <div className="fs-actions flex space-x-2" data-nonprint>
+                    <button type="button" onClick={() => window.print()} data-nonprint className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-md transition-colors">
+                      Print Page
+                    </button>
+                    <button type="button" onClick={handleDownloadPDF} data-nonprint className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors">
+                      Download PDF
+                    </button>
+                    <button type="button" onClick={() => setDocOnly(true)} data-nonprint className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors">
+                      Hide Header
+                    </button>
+                    <button type="button" onClick={exitFullscreen} data-nonprint className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-md transition-colors">
+                      Close
+                    </button>
+                  </div>
+                </header>
+              )}
+
+              {docOnly && (
+                <button
+                  type="button"
+                  className="show-header-dot"
+                  data-nonprint
+                  aria-label="Show header"
+                  onClick={() => setDocOnly(false)}
+                />
+              )}
+
+              <div className="fs-doc">
+                <div id="print-root">
+                  <div className="page">
+                    {renderCertificate()}
+                  </div>
+                </div>
+              </div>
+            </div>,
+            document.body
+          )
+        }
 
         {/* IMPORTANT: Keep fullscreen intact. The Hide Header toggle only affects fullscreen UI chrome. */}
         {isFullscreen && (
