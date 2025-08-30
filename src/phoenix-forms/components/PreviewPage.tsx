@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
@@ -26,7 +26,6 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   const { type } = useParams<{ type: string }>();
   const navigate = useNavigate();
   const { formData, signatureDataURL, clearFormData } = useFormContext();
-  const [docOnly, setDocOnly] = useState(false);
 
   // Redirect if no form data
   useEffect(() => {
