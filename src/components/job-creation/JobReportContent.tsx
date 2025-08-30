@@ -97,7 +97,7 @@ export const JobReportContent: React.FC<JobReportContentProps> = ({ jobData }) =
     <div id="job-report" style={Print.root}>
       <header style={Print.header}>
         <img 
-          src="/phoenix-logo.svg"
+          src={`${window.location.origin}/phoenix-logo.svg`}
           alt="Phoenix Logo" 
           style={{ display: 'block', margin: '0 auto 12px auto', maxHeight: 64 }}
         />
