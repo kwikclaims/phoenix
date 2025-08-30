@@ -110,18 +110,6 @@ type Props = {
 export default function InsurancePaymentAuthDocument({ formData }: Props) {
   return (
     <div id="cert" style={styles.page}>
-      <img 
-        src="/images/black-phoenix-logo-transparent.png"
-        alt="Phoenix Logo" 
-        style={{ 
-          display: 'block',
-          margin: '0 auto 16px auto',
-          width: '120px',
-          height: 'auto',
-          objectFit: 'contain'
-        }}
-      />
-      
       <div style={styles.headerBlock}>
         <div style={styles.title}>Insurance Claim Payment & Representation Authorization</div>
         <div style={styles.subtitle}>Phoenix Restorations and Construction Solutions LLC</div>

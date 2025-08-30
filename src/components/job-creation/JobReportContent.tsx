@@ -96,11 +96,6 @@ export const JobReportContent: React.FC<JobReportContentProps> = ({ jobData }) =
   return (
     <div id="job-report" style={Print.root}>
       <header style={Print.header}>
-        <img 
-          src="/images/black-phoenix-logo-transparent.png"
-          alt="Phoenix Logo" 
-          style={{ display: 'block', margin: '0 auto 12px auto', maxHeight: 64 }}
-        />
         <h1 style={Print.titleH1}>PHOENIX ROOFING & CONSTRUCTION SOLUTIONS</h1>
         <p style={Print.headerLine}>10334 Vista Meadow Way, Lanham, MD 20706</p>
         <p style={Print.headerLine}>Phone: (301) 450-9487 | MHIC #164678</p>
