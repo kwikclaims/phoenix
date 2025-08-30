@@ -1,10 +1,10 @@
 import { useParams, Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import { ArrowLeft, Eye, Edit, Download, Home, EyeOff } from 'lucide-react';
+import { ArrowLeft, Eye, Edit, Download, Home } from 'lucide-react';
 import { LABELS, SUBS } from '../lib/constants';
 import { useFormContext } from '../contexts/FormContext';
 import HtmlCertificate from './HtmlCertificate';
@@ -26,7 +26,6 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   const { type } = useParams<{ type: string }>();
   const navigate = useNavigate();
   const { formData, signatureDataURL, clearFormData } = useFormContext();
-  const [docOnly, setDocOnly] = useState(false);
 
   // Redirect if no form data
   useEffect(() => {
@@ -136,13 +135,15 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   };
   const handleDownloadPDF = async () => {
     try {
-      const element = document.getElementById('pdf-content')?.querySelector('#cert');
+      const element = document.getElementById('cert');
       if (!element) {
         toast.error('Certificate not found');
         return;
       }
 
       toast.info('Generating PDF...');
+      
+      const cert = document.getElementById('cert')!;
       
       const opt = {
         margin: [10, 10, 10, 10],
@@ -155,7 +156,7 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
 
       html2pdf()
         .set(opt)
-        .from(element)
+        .from(cert)
         .save();
       toast.success('PDF downloaded successfully!');
     } catch (error) {
@@ -178,48 +179,35 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   };
 
   return (
-    <div className={`min-h-screen bg-black ${docOnly ? 'doc-only' : ''}`}>
-      {/* Red dot to show header when in doc-only mode */}
-      {docOnly && (
-        <button
-          onClick={() => setDocOnly(false)}
-          className="show-header-dot"
-          data-nonprint
-          aria-label="Show header"
-        />
-      )}
-      
+    <div className="min-h-screen bg-black">
       <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Header - only show when not in doc-only mode */}
-        {!docOnly && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-8"
-            data-nonprint
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-8"
+        >
+          <button 
+            onClick={handleEdit}
+            className="inline-flex items-center text-red-600 hover:text-red-500 mb-6 transition-colors"
           >
-            <button 
-              onClick={handleEdit}
-              className="inline-flex items-center text-red-600 hover:text-red-500 mb-6 transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5 mr-2" />
-              Back to Form Editor
-            </button>
-            
-            <div className="flex items-center gap-4 mb-4">
-              <Eye className="text-red-600 w-12 h-12" />
-              <div>
-                <h1 className="text-4xl font-bold text-white">
-                  Preview: {LABELS[formType]}
-                </h1>
-                <p className="text-gray-300 text-lg mt-2">
-                  {SUBS[formType]}
-                </p>
-              </div>
+            <ArrowLeft className="w-5 h-5 mr-2" />
+            Back to Form Editor
+          </button>
+          
+          <div className="flex items-center gap-4 mb-4">
+            <Eye className="text-red-600 w-12 h-12" />
+            <div>
+              <h1 className="text-4xl font-bold text-white">
+                Preview: {LABELS[formType]}
+              </h1>
+              <p className="text-gray-300 text-lg mt-2">
+                {SUBS[formType]}
+              </p>
             </div>
-          </motion.div>
-        )}
+          </div>
+        </motion.div>
 
         {/* Certificate Preview */}
         <motion.div
@@ -228,70 +216,50 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <Card className="bg-white border-red-500 border-2 mb-6">
-            {!docOnly && (
-              <CardHeader data-nonprint>
-                <CardTitle className="text-black text-2xl flex items-center gap-3">
-                  <Eye className="w-8 h-8" />
-                  Certificate Preview
-                </CardTitle>
-              </CardHeader>
-            )}
+            <CardHeader>
+              <CardTitle className="text-black text-2xl flex items-center gap-3">
+                <Eye className="w-8 h-8" />
+                Certificate Preview
+              </CardTitle>
+            </CardHeader>
             <CardContent>
-              {!docOnly && (
-                <div className="bg-gray-100 p-4 rounded-lg overflow-auto max-h-96" data-nonprint>
-                  <div className="transform scale-50 origin-top-left" style={{ width: '200%' }}>
-                    {renderCertificate()}
-                  </div>
-                </div>
-              )}
-              
-              {!docOnly && (
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6" data-nonprint>
-                  <Button 
-                    variant="outline" 
-                    onClick={handleEdit}
-                    className="border-red-600 text-red-600 hover:bg-red-50"
-                  >
-                    <Edit className="w-4 h-4 mr-2" />
-                    Edit Form
-                  </Button>
-                  <Button 
-                    onClick={handleDownloadPDF}
-                    className="bg-red-600 hover:bg-red-700 text-white"
-                  >
-                    <Download className="w-4 h-4 mr-2" />
-                    Download PDF
-                  </Button>
-                  <Button 
-                    onClick={() => setDocOnly(true)}
-                    className="bg-gray-600 hover:bg-gray-700 text-white"
-                  >
-                    <EyeOff className="w-4 h-4 mr-2" />
-                    Hide Header
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    onClick={handleHome}
-                    className="border-gray-300 text-gray-700 hover:bg-gray-50"
-                  >
-                    <Home className="w-4 h-4 mr-2" />
-                    Home
-                  </Button>
-                </div>
-              )}
-              
-              {/* Full-size document for doc-only mode and printing */}
-              <div id="print-root" className={docOnly ? 'block' : 'hidden'}>
+              <div className="bg-gray-100 p-4 rounded-lg overflow-auto max-h-96">
                 <div className="transform scale-50 origin-top-left" style={{ width: '200%' }}>
                   {renderCertificate()}
                 </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                <Button 
+                  variant="outline" 
+                  onClick={handleEdit}
+                  className="border-red-600 text-red-600 hover:bg-red-50"
+                >
+                  <Edit className="w-4 h-4 mr-2" />
+                  Edit Form
+                </Button>
+                <Button 
+                  onClick={handleDownloadPDF}
+                  className="bg-red-600 hover:bg-red-700 text-white"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Download PDF
+                </Button>
+                <Button 
+                  variant="outline" 
+                  onClick={handleHome}
+                  className="border-gray-300 text-gray-700 hover:bg-gray-50"
+                >
+                  <Home className="w-4 h-4 mr-2" />
+                  Home
+                </Button>
               </div>
             </CardContent>
           </Card>
         </motion.div>
 
         {/* Hidden full-size certificate for PDF generation */}
-        <div className="hidden" id="pdf-content">
+        <div className="hidden">
           {renderCertificate()}
         </div>
       </div>
