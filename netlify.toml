@@ -1,0 +1,21 @@
+[build]
+  # Build command for your React app
+  command = "npm run build"
+  # Directory where the built files are located
+  publish = "dist"
+
+[functions]
+  # Directory where your Netlify Functions are located
+  directory = "netlify/functions"
+
+# Redirect rule to map /api/zap to your Netlify Function
+[[redirects]]
+  from = "/api/zap"
+  to = "/.netlify/functions/zap-proxy"
+  status = 200
+
+# Optional: Handle client-side routing for React Router
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

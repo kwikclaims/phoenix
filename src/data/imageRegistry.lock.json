@@ -1,0 +1,139 @@
+{
+  "threeTabImages": [
+    "/images/Architectural/3TABVSARCHITECTURAL.png",
+    "/images/3tab1.png",
+    "/images/3tab2.png",
+    "/images/3tab3.png"
+  ],
+  "architecturalImages": [
+    "/images/Architectural/Architectural 1.png",
+    "/images/Architectural/Architectural 2.png",
+    "/images/Architectural/Architectural 3.jpg",
+    "/images/Architectural/Architectural 4.png",
+    "/images/Architectural/Architectural 5.png",
+    "/images/Architectural/Architectural 6.png"
+  ],
+  "damageImages": [
+    "/images/damages/Damage 1.png",
+    "/images/damages/Damage 2.png",
+    "/images/damages/Damage 3.png",
+    "/images/damages/Damage 4.png",
+    "/images/damages/Damage 5.png"
+  ],
+  "collateralDamageImages": [
+    "/images/damages/Collateral Damage 1.png",
+    "/images/damages/Collateral Damage 2.png",
+    "/images/damages/Collateral Damage 3.png",
+    "/images/damages/Collateral Damage 4.png",
+    "/images/damages/Collateral Damage 5.png"
+  ],
+  "projectImages": {
+    "3105 May Green Ave, District Heights, MD 20747": [
+      "/images/projects/3105-May-Green-Ave-District-Heights-MD-20747/SnapInsta.to_503189712_17885974572282192_7286911066833312736_n.jpg",
+      "/images/projects/3105-May-Green-Ave-District-Heights-MD-20747/SnapInsta.to_503323475_17885974542282192_7031478435624072144_n (1).jpg",
+      "/images/projects/3105-May-Green-Ave-District-Heights-MD-20747/SnapInsta.to_503545461_17885974599282192_7031252280577802563_n (1).jpg",
+      "/images/projects/3105-May-Green-Ave-District-Heights-MD-20747/SnapInsta.to_504275980_17885974551282192_5371025775081805917_n.jpg",
+      "/images/projects/3105-May-Green-Ave-District-Heights-MD-20747/SnapInsta.to_504394977_17885974581282192_2336182554713659214_n.jpg",
+      "/images/projects/3105-May-Green-Ave-District-Heights-MD-20747/SnapInsta.to_504452813_17885974488282192_6322601057509822858_n.jpg",
+      "/images/projects/3105-May-Green-Ave-District-Heights-MD-20747/SnapInsta.to_504465919_17885974524282192_1002589573664417717_n.jpg",
+      "/images/projects/3105-May-Green-Ave-District-Heights-MD-20747/SnapInsta.to_504517057_17885974608282192_8159283913973834757_n (1).jpg"
+    ],
+    "5324 Kepler Rd, Temple Hills, MD 20748": [
+      "/images/projects/5324-Kepler-Rd-Temple-Hills-MD-20748/photo_1_2025-08-27_00-34-15.jpg",
+      "/images/projects/5324-Kepler-Rd-Temple-Hills-MD-20748/photo_2_2025-08-27_00-34-15.jpg",
+      "/images/projects/5324-Kepler-Rd-Temple-Hills-MD-20748/photo_3_2025-08-27_00-34-15.jpg",
+      "/images/projects/5324-Kepler-Rd-Temple-Hills-MD-20748/photo_4_2025-08-27_00-34-15.jpg",
+      "/images/projects/5324-Kepler-Rd-Temple-Hills-MD-20748/photo_5_2025-08-27_00-34-15.jpg",
+      "/images/projects/5324-Kepler-Rd-Temple-Hills-MD-20748/photo_6_2025-08-27_00-34-15.jpg",
+      "/images/projects/5324-Kepler-Rd-Temple-Hills-MD-20748/photo_7_2025-08-27_00-34-15.jpg",
+      "/images/projects/5324-Kepler-Rd-Temple-Hills-MD-20748/photo_8_2025-08-27_00-34-15.jpg",
+      "/images/projects/5324-Kepler-Rd-Temple-Hills-MD-20748/photo_9_2025-08-27_00-34-15.jpg",
+      "/images/projects/5324-Kepler-Rd-Temple-Hills-MD-20748/photo_10_2025-08-27_00-34-15.jpg"
+    ],
+    "7610 Martha St, District Heights, MD 20747": [
+      "/images/projects/7610-Martha-St-District-Heights-MD-20747/photo_1_2025-08-27_10-12-49.jpg",
+      "/images/projects/7610-Martha-St-District-Heights-MD-20747/photo_2_2025-08-27_10-12-49.jpg",
+      "/images/projects/7610-Martha-St-District-Heights-MD-20747/photo_3_2025-08-27_10-12-49.jpg",
+      "/images/projects/7610-Martha-St-District-Heights-MD-20747/photo_4_2025-08-27_10-12-49.jpg",
+      "/images/projects/7610-Martha-St-District-Heights-MD-20747/photo_5_2025-08-27_10-12-49.jpg",
+      "/images/projects/7610-Martha-St-District-Heights-MD-20747/photo_6_2025-08-27_10-12-49.jpg"
+    ],
+    "8137 Murray Hill Dr, Fort Washington, MD 20744": [
+      "/images/projects/8137-Murray-Hill-Dr-Fort-Washington-MD-20744/SnapInsta.to_503365766_17885973888282192_1145922153204289291_n.jpg",
+      "/images/projects/8137-Murray-Hill-Dr-Fort-Washington-MD-20744/SnapInsta.to_503419559_17885973792282192_8581030595624720935_n.jpg",
+      "/images/projects/8137-Murray-Hill-Dr-Fort-Washington-MD-20744/SnapInsta.to_503903323_17885973909282192_644569933208942934_n.jpg",
+      "/images/projects/8137-Murray-Hill-Dr-Fort-Washington-MD-20744/SnapInsta.to_504460985_17885973921282192_8587515272757148955_n.jpg",
+      "/images/projects/8137-Murray-Hill-Dr-Fort-Washington-MD-20744/SnapInsta.to_505464637_17885973750282192_2530264709546443741_n.jpg"
+    ],
+    "5911 Center Dr, Temple Hills, MD 20748": [
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_503202948_17885977794282192_3086059477859752779_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_503285820_17885977737282192_483934412482202390_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_503498018_17885977746282192_4554176372288094356_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_503936538_17885977785282192_6165421142506469450_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_503954872_17885977710282192_5664430865531804436_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_503972141_17885977755282192_2654150386616423149_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_504065293_17885977833282192_1063594985484969744_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_504223286_17885977719282192_1735330335656921233_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_504256811_17885977692282192_5077496721810342716_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_504323507_17885977728282192_290734542248004959_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_504375969_17885977803282192_1535556661833637271_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_504392835_17885977767282192_8332413579950957337_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_504494197_17885977821282192_7327016843287653997_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_504828801_17885977701282192_3131300563178741868_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_504996443_17885977776282192_6714522870948717935_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_505088083_17885977671282192_4283342335613094576_n.jpg",
+      "/images/projects/5911-Center-Dr-Temple-Hills-MD-20748/SnapInsta.to_505116058_17885977812282192_750560660073360059_n.jpg"
+    ],
+    "909 Shelby Dr, Oxon Hill, MD 20745": [
+      "/images/projects/909-Shelby-Dr-Oxon-Hill-MD-20745/SnapInsta.to_503330373_17885972799282192_1115027432147493028_n.jpg",
+      "/images/projects/909-Shelby-Dr-Oxon-Hill-MD-20745/SnapInsta.to_504172928_17885972943282192_3692332580869931339_n.jpg",
+      "/images/projects/909-Shelby-Dr-Oxon-Hill-MD-20745/SnapInsta.to_504568312_17885972964282192_62988992938403193_n.jpg",
+      "/images/projects/909-Shelby-Dr-Oxon-Hill-MD-20745/SnapInsta.to_503330373_17885972799282192_1115027432147493028_n.jpg",
+      "/images/projects/909-Shelby-Dr-Oxon-Hill-MD-20745/SnapInsta.to_504209297_17885972952282192_5298395633553919797_n.jpg"
+    ],
+    "13213 Old Chapel Rd, Bowie, MD 20720": [
+      "/images/projects/13213-Old-Chapel-Rd-Bowie-MD-20720/SnapInsta.to_516799824_17889743229282192_2309630533858432237_n.jpg",
+      "/images/projects/13213-Old-Chapel-Rd-Bowie-MD-20720/SnapInsta.to_517383707_17889743217282192_2951825376461731653_n.jpg",
+      "/images/projects/13213-Old-Chapel-Rd-Bowie-MD-20720/SnapInsta.to_517587182_17889743208282192_1648758224265357472_n.jpg",
+      "/images/projects/13213-Old-Chapel-Rd-Bowie-MD-20720/SnapInsta.to_517985169_17889743169282192_7383594667983451121_n.jpg",
+      "/images/projects/13213-Old-Chapel-Rd-Bowie-MD-20720/SnapInsta.to_519040581_17889743196282192_7750701653780942015_n.jpg"
+    ],
+    "8504 Denton Ct, Clinton, MD 20735": [
+      "/images/projects/8504-Denton-Ct-Clinton-MD-20735/SnapInsta.to_504127428_17886377691282192_9114348270236947874_n.jpg",
+      "/images/projects/8504-Denton-Ct-Clinton-MD-20735/SnapInsta.to_504132837_17886377721282192_8550879817991914377_n.jpg",
+      "/images/projects/8504-Denton-Ct-Clinton-MD-20735/SnapInsta.to_504494951_17886377787282192_4768492137302651803_n.jpg",
+      "/images/projects/8504-Denton-Ct-Clinton-MD-20735/SnapInsta.to_504513452_17886377742282192_4680149815992475225_n.jpg",
+      "/images/projects/8504-Denton-Ct-Clinton-MD-20735/SnapInsta.to_504611480_17886377769282192_358821017105702139_n.jpg",
+      "/images/projects/8504-Denton-Ct-Clinton-MD-20735/SnapInsta.to_504875736_17886377712282192_3716657266217284542_n.jpg",
+      "/images/projects/8504-Denton-Ct-Clinton-MD-20735/SnapInsta.to_505079268_17886377703282192_5091430289171610188_n.jpg",
+      "/images/projects/8504-Denton-Ct-Clinton-MD-20735/SnapInsta.to_505121969_17886377760282192_8141895468632196655_n.jpg",
+      "/images/projects/8504-Denton-Ct-Clinton-MD-20735/SnapInsta.to_505138865_17886377751282192_5738984187392900650_n.jpg",
+      "/images/projects/8504-Denton-Ct-Clinton-MD-20735/SnapInsta.to_505163718_17885972982282192_2599917038200645060_n.jpg",
+      "/images/projects/8504-Denton-Ct-Clinton-MD-20735/SnapInsta.to_505455295_17886377733282192_5090336036977433656_n.jpg",
+      "/images/projects/8504-Denton-Ct-Clinton-MD-20735/SnapInsta.to_505779594_17886377778282192_1439260878479991931_n.jpg"
+    ],
+    "5200 Varnum St, Bladensburg, MD 20710": [
+      "/images/projects/5200-Varnum-St-Bladensburg-MD-20710/SnapInsta.to_504008601_17888575098282192_848441602933332443_n.jpg",
+      "/images/projects/5200-Varnum-St-Bladensburg-MD-20710/SnapInsta.to_504013322_17888575146282192_701634457617811164_n.jpg",
+      "/images/projects/5200-Varnum-St-Bladensburg-MD-20710/SnapInsta.to_504286252_17888575125282192_2765016485175914621_n.jpg",
+      "/images/projects/5200-Varnum-St-Bladensburg-MD-20710/SnapInsta.to_509620723_17888575107282192_1177818654094090164_n.jpg",
+      "/images/projects/5200-Varnum-St-Bladensburg-MD-20710/SnapInsta.to_509708432_17888575164282192_2306008050062680467_n.jpg",
+      "/images/projects/5200-Varnum-St-Bladensburg-MD-20710/SnapInsta.to_510443852_17888575089282192_4771978114370292794_n.jpg",
+      "/images/projects/5200-Varnum-St-Bladensburg-MD-20710/SnapInsta.to_514586671_17888575137282192_5189638843221692429_n.jpg",
+      "/images/projects/5200-Varnum-St-Bladensburg-MD-20710/SnapInsta.to_514897097_17888575116282192_7267610609898357363_n.jpg",
+      "/images/projects/5200-Varnum-St-Bladensburg-MD-20710/SnapInsta.to_515105130_17888575155282192_8845450601682597659_n.jpg"
+    ],
+    "8027 Carey Branch Pl, Fort Washington, MD 20744": [
+      "/images/projects/8027-Carey-Branch-Pl-Fort-Washington-MD-20744/SnapInsta.to_516509386_17889739020282192_3012691842010767116_n.jpg",
+      "/images/projects/8027-Carey-Branch-Pl-Fort-Washington-MD-20744/SnapInsta.to_516745550_17889738993282192_6872952537679362945_n.jpg",
+      "/images/projects/8027-Carey-Branch-Pl-Fort-Washington-MD-20744/SnapInsta.to_516828703_17889738966282192_341560917862080202_n.jpg",
+      "/images/projects/8027-Carey-Branch-Pl-Fort-Washington-MD-20744/SnapInsta.to_516832842_17889739011282192_8880628903469262936_n.jpg",
+      "/images/projects/8027-Carey-Branch-Pl-Fort-Washington-MD-20744/SnapInsta.to_517346211_17889738984282192_8349243699163155426_n.jpg",
+      "/images/projects/8027-Carey-Branch-Pl-Fort-Washington-MD-20744/SnapInsta.to_517397629_17889738936282192_1907713123078482354_n.jpg",
+      "/images/projects/8027-Carey-Branch-Pl-Fort-Washington-MD-20744/SnapInsta.to_517541080_17889738948282192_1124430624110847069_n.jpg",
+      "/images/projects/8027-Carey-Branch-Pl-Fort-Washington-MD-20744/SnapInsta.to_517706436_17889738975282192_8535101867498951101_n.jpg",
+      "/images/projects/8027-Carey-Branch-Pl-Fort-Washington-MD-20744/SnapInsta.to_519420519_17889738957282192_4546948491722868815_n.jpg"
+    ]
+  },
+  "generatedAt": "2025-08-27T22:33:32.622Z"
+}
