@@ -36,6 +36,18 @@ export default function ClcJobTotalOnly({ type, data, signatureDataURL }: ClcJob
         fontFamily: 'Times, serif'
       }}
     >
+      <img 
+        src="/images/black-phoenix-logo-transparent.png"
+        alt="Phoenix Logo" 
+        style={{ 
+          display: 'block',
+          margin: '0 auto 24px auto',
+          width: '120px',
+          height: 'auto',
+          objectFit: 'contain'
+        }}
+      />
+      
       <h2 className="text-center text-xl font-bold my-4" style={{ fontSize: '20px', textAlign: 'center', fontWeight: 'bold', margin: '16px 0' }}>
         Certification of Work Completion
       </h2>

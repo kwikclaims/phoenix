@@ -253,7 +253,7 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
         </motion.div>
 
         {/* Hidden full-size certificate for PDF generation */}
-        <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
+        <div className="hidden">
           {renderCertificate()}
         </div>
       </div>

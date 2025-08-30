@@ -45,6 +45,18 @@ export default function WarrantyDocument({ type, data, signatureDataURL }: Warra
         fontFamily: 'Arial, Helvetica, sans-serif'
       }}
     >
+      <img 
+        src="/images/black-phoenix-logo-transparent.png"
+        alt="Phoenix Logo" 
+        style={{ 
+          display: 'block',
+          margin: '0 auto 24px auto',
+          width: '120px',
+          height: 'auto',
+          objectFit: 'contain'
+        }}
+      />
+      
       {/* Header */}
       <div style={{ marginBottom: '32px', textAlign: 'center' }}>
         <h1 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '16px', textAlign: 'center' }}>
