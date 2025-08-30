@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
@@ -16,7 +16,7 @@ import WarrantyDocument from './WarrantyDocument';
 import ReceiptDocument from './ReceiptDocument';
 import InsurancePaymentAuthDocument from './InsurancePaymentAuthDocument';
 import { toast } from 'sonner';
-import { generatePdfWithImagePreloadAndLogo } from '../../lib/pdfUtils';
+import { generatePdfWithImagePreload } from '../../lib/pdfUtils';
 
 interface PreviewPageProps {
   onNavigateToMainAppPage?: (page: string) => void;
@@ -139,14 +139,13 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     
     setIsGeneratingPdf(true);
     try {
-      await generatePdfWithImagePreloadAndLogo(
+      await generatePdfWithImagePreload(
         'cert',
         `${LABELS[formType] || "document"}.pdf`,
         {
           margin: [10, 10, 10, 10],
         },
-        (message) => toast.info(message),
-        '/images/black-phoenix-logo-transparent.png' // Add logo overlay
+        (message) => toast.info(message)
       );
       
       toast.success('PDF downloaded successfully!');

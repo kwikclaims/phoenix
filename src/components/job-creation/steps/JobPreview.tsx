@@ -553,13 +553,12 @@ export const JobPreview: React.FC<JobPreviewProps> = ({ jobData, onCreateJob }) 
         <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
           <button
             onClick={handlePrintReport}
-            disabled={isGeneratingPdf}
-            className={`group flex items-center space-x-3 px-12 py-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-2xl hover:shadow-2xl hover:shadow-blue-600/25 transition-all duration-300 font-bold text-xl transform hover:scale-105 ${isGeneratingPdf ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className="group flex items-center space-x-3 px-12 py-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-2xl hover:shadow-2xl hover:shadow-blue-600/25 transition-all duration-300 font-bold text-xl transform hover:scale-105"
           >
             <div className="w-10 h-10 bg-black/20 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
               <Printer className="w-5 h-5" />
             </div>
-            <span>{isGeneratingPdf ? 'Generating PDF...' : 'Print Report'}</span>
+            <span>Print Report</span>
           </button>
         </div>
         

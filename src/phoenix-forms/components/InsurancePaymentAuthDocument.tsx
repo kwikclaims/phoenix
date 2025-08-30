@@ -111,7 +111,7 @@ export default function InsurancePaymentAuthDocument({ formData }: Props) {
   return (
     <div id="cert" style={styles.page}>
       <img 
-        src="/images/black-phoenix-logo-transparent.png"
+        src={`${window.location.origin}/images/black-phoenix-logo-transparent.png`}
         alt="Phoenix Logo" 
         style={{ 
           display: 'block',
