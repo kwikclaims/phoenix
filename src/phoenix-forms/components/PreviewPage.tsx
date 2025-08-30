@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
@@ -26,6 +26,8 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   const { type } = useParams<{ type: string }>();
   const navigate = useNavigate();
   const { formData, signatureDataURL, clearFormData } = useFormContext();
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [docOnly, setDocOnly] = useState(false);
 
   // Redirect if no form data
   useEffect(() => {
@@ -245,6 +247,9 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
                   <Download className="w-4 h-4 mr-2" />
                   Download PDF
                 </Button>
+                <button type="button" onClick={() => { setIsFullscreen(true); setDocOnly(false); }} data-nonprint className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors">
+                  Fullscreen
+                </button>
                 <Button 
                   variant="outline" 
                   onClick={handleHome}
@@ -262,6 +267,52 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
         <div className="hidden">
           {renderCertificate()}
         </div>
+
+        {/* IMPORTANT: Keep fullscreen intact. The Hide Header toggle only affects fullscreen UI chrome. */}
+        {isFullscreen && (
+          <div className={`fullscreen-root ${docOnly ? "doc-only" : ""}`} role="dialog" aria-modal="true">
+            {!docOnly && (
+              <header className="fullscreen-header" data-nonprint>
+                <div className="flex items-center justify-between p-4 bg-white border-b">
+                  <div>
+                    <h1 className="text-2xl font-bold text-black">{LABELS[formType]}</h1>
+                    <p className="text-gray-600">{SUBS[formType]}</p>
+                  </div>
+                  <div className="actions flex space-x-2" data-nonprint>
+                    <button type="button" onClick={() => window.print()} data-nonprint className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-md transition-colors">
+                      Print Page
+                    </button>
+                    <button type="button" onClick={handleDownloadPDF} data-nonprint className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors">
+                      Download PDF
+                    </button>
+                    <button type="button" onClick={() => setDocOnly(true)} data-nonprint className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors">
+                      Hide Header
+                    </button>
+                    <button type="button" onClick={() => setIsFullscreen(false)} data-nonprint className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-md transition-colors">
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </header>
+            )}
+
+            {docOnly && (
+              <button
+                type="button"
+                className="show-header-dot"
+                data-nonprint
+                aria-label="Show header"
+                onClick={() => setDocOnly(false)}
+              />
+            )}
+
+            <div id="print-root">
+              <div className="page">
+                {renderCertificate()}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
