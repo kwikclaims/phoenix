@@ -16,7 +16,7 @@ import WarrantyDocument from './WarrantyDocument';
 import ReceiptDocument from './ReceiptDocument';
 import InsurancePaymentAuthDocument from './InsurancePaymentAuthDocument';
 import { toast } from 'sonner';
-import { generatePdfWithImagePreload } from '../../lib/pdfUtils';
+import { generatePdfWithImagePreloadAndLogo } from '../../lib/pdfUtils';
 
 interface PreviewPageProps {
   onNavigateToMainAppPage?: (page: string) => void;
@@ -139,13 +139,14 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     
     setIsGeneratingPdf(true);
     try {
-      await generatePdfWithImagePreload(
+      await generatePdfWithImagePreloadAndLogo(
         'cert',
         `${LABELS[formType] || "document"}.pdf`,
         {
           margin: [10, 10, 10, 10],
         },
-        (message) => toast.info(message)
+        (message) => toast.info(message),
+        '/images/black-phoenix-logo-transparent.png' // Add logo overlay
       );
       
       toast.success('PDF downloaded successfully!');
