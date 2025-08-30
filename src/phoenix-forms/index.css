@@ -78,6 +78,76 @@ button:focus-visible {
   page-break-after: avoid; 
 }
 
+/* Hide Header Toggle Styles */
+.show-header-dot {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: red;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+@media print {
+  .show-header-dot { 
+    display: none !important; 
+  }
+}
+
+/* Doc-only mode - hide non-print elements */
+.doc-only [data-nonprint] { 
+  display: none !important; 
+}
+
+/* Print Isolation Rules */
+@media print {
+  /* Hide everything by default */
+  body * {
+    visibility: hidden !important;
+  }
+  
+  /* Show only print content */
+  #print-root,
+  #print-root *,
+  #pdf-content,
+  #pdf-content * {
+    visibility: visible !important;
+  }
+  
+  /* Remove scrollbars and transforms */
+  body {
+    overflow: visible !important;
+  }
+  
+  #print-root {
+    position: static !important;
+    transform: none !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  
+  /* Page break rules */
+  .page {
+    break-after: page;
+    page-break-after: always;
+  }
+  
+  /* Hide non-print elements */
+  [data-nonprint] {
+    display: none !important;
+  }
+}
+
+/* Page setup */
+@page {
+  size: letter;
+  margin: 0.5in;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
