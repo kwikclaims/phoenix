@@ -219,10 +219,16 @@ export const generatePdfWithImagePreloadAndLogo = async (
     originalPdf.save(filename);
   } else {
     // Generate PDF normally without logo overlay
-    await html2pdf()
+    const pdfResult = await html2pdf()
       .set(finalOptions)
       .from(element)
-      .save();
+      .output('jspdf');
+    
+    if (!pdfResult) {
+      throw new Error('PDF generation failed - html2pdf returned null');
+    }
+    
+    pdfResult.save(filename);
   }
 
   return;
