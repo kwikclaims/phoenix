@@ -26,6 +26,7 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   const { type } = useParams<{ type: string }>();
   const navigate = useNavigate();
   const { formData, signatureDataURL, clearFormData } = useFormContext();
+  const [docOnly, setDocOnly] = useState(false);
 
   // Redirect if no form data
   useEffect(() => {
