@@ -37,7 +37,7 @@ export default function ClcJobTotalOnly({ type, data, signatureDataURL }: ClcJob
       }}
     >
       <img 
-        src={`${window.location.origin}/images/black-phoenix-logo-transparent.png`}
+        src="/phoenix-logo.svg"
         alt="Phoenix Logo" 
         style={{ 
           display: 'block',

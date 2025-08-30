@@ -52,7 +52,7 @@ export default function HtmlCertificate({ type, data, signatureDataURL }: HtmlCe
       }}
     >
       <img 
-        src={`${window.location.origin}/images/black-phoenix-logo-transparent.png`}
+        src="/phoenix-logo.svg"
         alt="Phoenix Logo" 
         style={{ 
           display: 'block',
