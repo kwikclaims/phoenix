@@ -15,8 +15,8 @@ import ContractsDocument from './ContractsDocument';
 import WarrantyDocument from './WarrantyDocument';
 import ReceiptDocument from './ReceiptDocument';
 import InsurancePaymentAuthDocument from './InsurancePaymentAuthDocument';
-import html2pdf from 'html2pdf.js';
 import { toast } from 'sonner';
+import { generatePdfWithImagePreload } from '../../lib/pdfUtils';
 
 interface PreviewPageProps {
   onNavigateToMainAppPage?: (page: string) => void;
@@ -26,6 +26,7 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   const { type } = useParams<{ type: string }>();
   const navigate = useNavigate();
   const { formData, signatureDataURL, clearFormData } = useFormContext();
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
   // Redirect if no form data
   useEffect(() => {
@@ -134,34 +135,25 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     );
   };
   const handleDownloadPDF = async () => {
+    if (isGeneratingPdf) return;
+    
+    setIsGeneratingPdf(true);
     try {
-      const element = document.getElementById('cert');
-      if (!element) {
-        toast.error('Certificate not found');
-        return;
-      }
-
-      toast.info('Generating PDF...');
+      await generatePdfWithImagePreload(
+        'cert',
+        `${LABELS[formType] || "document"}.pdf`,
+        {
+          margin: [10, 10, 10, 10],
+        },
+        (message) => toast.info(message)
+      );
       
-      const cert = document.getElementById('cert')!;
-      
-      const opt = {
-        margin: [10, 10, 10, 10],
-        filename: `${LABELS[formType] || "document"}.pdf`,
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: "mm", format: "letter", orientation: "portrait" },
-        pagebreak: { mode: ["css", "legacy"] },
-      };
-
-      html2pdf()
-        .set(opt)
-        .from(cert)
-        .save();
       toast.success('PDF downloaded successfully!');
     } catch (error) {
       console.error('PDF generation error:', error);
       toast.error('Failed to generate PDF. Please try again.');
+    } finally {
+      setIsGeneratingPdf(false);
     }
   };
 
@@ -240,10 +232,11 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
                 </Button>
                 <Button 
                   onClick={handleDownloadPDF}
-                  className="bg-red-600 hover:bg-red-700 text-white"
+                  disabled={isGeneratingPdf}
+                  className={`bg-red-600 hover:bg-red-700 text-white ${isGeneratingPdf ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
                   <Download className="w-4 h-4 mr-2" />
-                  Download PDF
+                  {isGeneratingPdf ? 'Generating PDF...' : 'Download PDF'}
                 </Button>
                 <Button 
                   variant="outline" 
