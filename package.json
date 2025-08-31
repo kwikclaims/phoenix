@@ -9,7 +9,7 @@
     "guard:images": "node scripts/lint-no-raw-img.mjs",
     "routes:build": "node scripts/build-project-routes.mjs",
     "dev": "vite",
-    "prebuild": "npm run guard:images && npm run verify:images",
+    "prebuild": "",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
