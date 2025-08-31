@@ -28,7 +28,7 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   const { formData, signatureDataURL, clearFormData } = useFormContext();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [docOnly, setDocOnly] = useState(false);
-  const fsHostRef = useRef<HTMLDivElement>(null);
+  const printRootRef = useRef<HTMLDivElement>(null);
 
   // Redirect if no form data
   useEffect(() => {
@@ -73,23 +73,12 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   const formType = type as keyof typeof LABELS;
 
   const enterFullscreen = async () => {
-    if (fsHostRef.current) {
+    if (printRootRef.current) {
       try {
-        await fsHostRef.current.requestFullscreen();
+        await printRootRef.current.requestFullscreen();
         setIsFullscreen(true);
       } catch (error) {
         console.error('Failed to enter fullscreen:', error);
-      }
-    }
-  };
-
-  const exitFullscreen = async () => {
-    if (document.fullscreenElement) {
-      try {
-        await document.exitFullscreen();
-        setIsFullscreen(false);
-      } catch (error) {
-        console.error('Failed to exit fullscreen:', error);
       }
     }
   };
@@ -221,22 +210,6 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     }
   };
 
-  // If in fullscreen mode, render only the document
-  if (isFullscreen) {
-    return (
-      <div 
-        ref={fsHostRef}
-        className={`fs-host ${docOnly ? 'doc-only' : ''}`}
-      >
-        <div className="fs-doc">
-          <div id="print-root">
-            {renderCertificate()}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className={`min-h-screen bg-black ${docOnly ? 'doc-only' : ''}`}>
       <div className="max-w-4xl mx-auto px-4 py-8">
@@ -327,13 +300,14 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
         </motion.div>
 
         {/* Hidden full-size certificate for PDF generation */}
-        <div id="print-root" className="hidden">
+        <div 
+          id="print-root" 
+          ref={printRootRef}
+          className={`${isFullscreen ? 'is-fullscreen-active' : 'hidden'}`}
+        >
           {renderCertificate()}
         </div>
       </div>
-      
-      {/* Fullscreen host reference */}
-      <div ref={fsHostRef} style={{ display: 'none' }}></div>
     </div>
   );
 }
