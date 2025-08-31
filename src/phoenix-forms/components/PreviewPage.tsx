@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../../components/ui/button';
@@ -25,10 +25,14 @@ interface PreviewPageProps {
 export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProps) {
   const { type } = useParams<{ type: string }>();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { formData, signatureDataURL, clearFormData } = useFormContext();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [docOnly, setDocOnly] = useState(false);
   const printRootRef = useRef<HTMLDivElement>(null);
+  
+  // Check if we're in document-only mode
+  const isDocumentOnlyMode = searchParams.get('mode') === 'document-only';
 
   // Redirect if no form data
   useEffect(() => {
@@ -213,97 +217,101 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   return (
     <div className={`min-h-screen bg-black ${docOnly ? 'doc-only' : ''}`}>
       <div className="max-w-4xl mx-auto px-4 py-8">
-        {/* Header */}
-        <motion.div
-          data-nonprint
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-8"
-        >
-          <button 
-            onClick={handleEdit}
-            className="inline-flex items-center text-red-600 hover:text-red-500 mb-6 transition-colors"
+        {/* Header - only show if not in document-only mode */}
+        {!isDocumentOnlyMode && (
+          <motion.div
+            data-nonprint
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-8"
           >
-            <ArrowLeft className="w-5 h-5 mr-2" />
-            Back to Form Editor
-          </button>
-          
-          <div className="flex items-center gap-4 mb-4">
-            <Eye className="text-red-600 w-12 h-12" />
-            <div>
-              <h1 className="text-4xl font-bold text-white">
-                Preview: {LABELS[formType]}
-              </h1>
-              <p className="text-gray-300 text-lg mt-2">
-                {SUBS[formType]}
-              </p>
+            <button 
+              onClick={handleEdit}
+              className="inline-flex items-center text-red-600 hover:text-red-500 mb-6 transition-colors"
+            >
+              <ArrowLeft className="w-5 h-5 mr-2" />
+              Back to Form Editor
+            </button>
+            
+            <div className="flex items-center gap-4 mb-4">
+              <Eye className="text-red-600 w-12 h-12" />
+              <div>
+                <h1 className="text-4xl font-bold text-white">
+                  Preview: {LABELS[formType]}
+                </h1>
+                <p className="text-gray-300 text-lg mt-2">
+                  {SUBS[formType]}
+                </p>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        )}
 
-        {/* Certificate Preview */}
-        <motion.div
-          data-nonprint
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <Card className="bg-white border-red-500 border-2 mb-6">
-            <CardHeader>
-              <CardTitle className="text-black text-2xl flex items-center gap-3">
-                <Eye className="w-8 h-8" />
-                Certificate Preview
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="bg-gray-100 p-4 rounded-lg overflow-auto max-h-96">
-                <div className="transform scale-50 origin-top-left" style={{ width: '200%' }} data-nonprint>
-                  {renderCertificate()}
+        {/* Certificate Preview - only show if not in document-only mode */}
+        {!isDocumentOnlyMode && (
+          <motion.div
+            data-nonprint
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <Card className="bg-white border-red-500 border-2 mb-6">
+              <CardHeader>
+                <CardTitle className="text-black text-2xl flex items-center gap-3">
+                  <Eye className="w-8 h-8" />
+                  Certificate Preview
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-gray-100 p-4 rounded-lg overflow-auto max-h-96">
+                  <div className="transform scale-50 origin-top-left" style={{ width: '200%' }} data-nonprint>
+                    {renderCertificate()}
+                  </div>
                 </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6" data-nonprint>
-                <Button 
-                  variant="outline" 
-                  onClick={handleEdit}
-                  className="border-red-600 text-red-600 hover:bg-red-50"
-                >
-                  <Edit className="w-4 h-4 mr-2" />
-                  Edit Form
-                </Button>
-                <Button 
-                  onClick={enterFullscreen}
-                  className="bg-blue-600 hover:bg-blue-700 text-white"
-                >
-                  <Maximize className="w-4 h-4 mr-2" />
-                  Fullscreen
-                </Button>
-                <Button 
-                  onClick={handlePrint}
-                  className="bg-red-600 hover:bg-red-700 text-white"
-                >
-                  <Printer className="w-4 h-4 mr-2" />
-                  Print
-                </Button>
-                <Button 
-                  variant="outline" 
-                  onClick={handleHome}
-                  className="border-gray-300 text-gray-700 hover:bg-gray-50"
-                >
-                  <Home className="w-4 h-4 mr-2" />
-                  Home
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6" data-nonprint>
+                  <Button 
+                    variant="outline" 
+                    onClick={handleEdit}
+                    className="border-red-600 text-red-600 hover:bg-red-50"
+                  >
+                    <Edit className="w-4 h-4 mr-2" />
+                    Edit Form
+                  </Button>
+                  <Button 
+                    onClick={enterFullscreen}
+                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                  >
+                    <Maximize className="w-4 h-4 mr-2" />
+                    Fullscreen
+                  </Button>
+                  <Button 
+                    onClick={handlePrint}
+                    className="bg-red-600 hover:bg-red-700 text-white"
+                  >
+                    <Printer className="w-4 h-4 mr-2" />
+                    Print
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    onClick={handleHome}
+                    className="border-gray-300 text-gray-700 hover:bg-gray-50"
+                  >
+                    <Home className="w-4 h-4 mr-2" />
+                    Home
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
 
-        {/* Hidden full-size certificate for PDF generation */}
+        {/* Full-size certificate - always rendered */}
         <div 
           id="print-root" 
           ref={printRootRef}
-          className={`${isFullscreen ? 'is-fullscreen-active' : 'hidden'}`}
+          className={`${isFullscreen ? 'is-fullscreen-active' : ''} ${isDocumentOnlyMode ? 'document-only-mode' : 'hidden'}`}
         >
           {renderCertificate()}
         </div>

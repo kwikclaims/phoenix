@@ -162,7 +162,8 @@ button:focus-visible {
 }
 
 /* Fullscreen document view - shows only the document */
-#print-root.is-fullscreen-active {
+#print-root.is-fullscreen-active,
+#print-root.document-only-mode {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
@@ -178,13 +179,15 @@ button:focus-visible {
   box-sizing: border-box !important;
 }
 
-/* Hide all non-document elements when in fullscreen */
-#print-root.is-fullscreen-active ~ * {
+/* Hide all non-document elements when in fullscreen or document-only mode */
+#print-root.is-fullscreen-active ~ *,
+#print-root.document-only-mode ~ * {
   display: none !important;
 }
 
-/* Ensure document content is properly sized in fullscreen */
-#print-root.is-fullscreen-active > * {
+/* Ensure document content is properly sized in fullscreen or document-only mode */
+#print-root.is-fullscreen-active > *,
+#print-root.document-only-mode > * {
   max-width: 100% !important;
   height: auto !important;
 }

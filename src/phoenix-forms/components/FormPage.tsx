@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
@@ -59,7 +59,7 @@ export default function FormPage() {
     localStorage.removeItem(`phoenix-forms-draft-${type}`);
     
     toast.success('Form validated successfully!');
-    navigate(`../preview/${type}`);
+    navigate(`../preview/${type}?mode=document-only`);
   };
 
   return (
