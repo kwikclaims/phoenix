@@ -12,7 +12,6 @@ export default function EstimateDocument({ type, data }: EstimateDocumentProps) 
       className="relative bg-white p-8 mx-auto"
       style={{ 
         width: '8.5in', 
-        minHeight: '11in',
         fontSize: '14px',
         lineHeight: '1.6',
         color: '#000000',

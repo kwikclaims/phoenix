@@ -61,7 +61,17 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     if (type === 'depreciation') {
       const depData = formData as any;
       return (
-        <div className="page">
+        <div className="page" style={{ 
+          width: '8.5in', 
+          margin: '0 auto',
+          padding: '1in',
+          boxSizing: 'border-box',
+          background: '#fff',
+          color: '#000',
+          fontFamily: 'Arial, Helvetica, sans-serif',
+          fontSize: '12px',
+          lineHeight: 1.4
+        }}>
           <img 
             src="/phoenix-logo.svg"
             alt="Phoenix Logo" 
@@ -143,7 +153,17 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     if (type === 'job-cost-dep') {
       const jobData = formData as any;
       return (
-        <div className="page">
+        <div className="page" style={{ 
+          width: '8.5in', 
+          margin: '0 auto',
+          padding: '1in',
+          boxSizing: 'border-box',
+          background: '#fff',
+          color: '#000',
+          fontFamily: 'Arial, Helvetica, sans-serif',
+          fontSize: '12px',
+          lineHeight: 1.4
+        }}>
           <img 
             src="/phoenix-logo.svg"
             alt="Phoenix Logo" 
@@ -225,7 +245,17 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     if (type === 'job-total-only') {
       const jobData = formData as any;
       return (
-        <div className="page">
+        <div className="page" style={{ 
+          width: '8.5in', 
+          margin: '0 auto',
+          padding: '1in',
+          boxSizing: 'border-box',
+          background: '#fff',
+          color: '#000',
+          fontFamily: 'Arial, Helvetica, sans-serif',
+          fontSize: '12px',
+          lineHeight: 1.4
+        }}>
           <img 
             src="/phoenix-logo.svg"
             alt="Phoenix Logo" 
@@ -307,7 +337,17 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     if (type === 'standard') {
       const stdData = formData as any;
       return (
-        <div className="page">
+        <div className="page" style={{ 
+          width: '8.5in', 
+          margin: '0 auto',
+          padding: '1in',
+          boxSizing: 'border-box',
+          background: '#fff',
+          color: '#000',
+          fontFamily: 'Arial, Helvetica, sans-serif',
+          fontSize: '12px',
+          lineHeight: 1.4
+        }}>
           <img 
             src="/phoenix-logo.svg"
             alt="Phoenix Logo" 
@@ -388,7 +428,17 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     if (type === 'warranty') {
       const warData = formData as any;
       return (
-        <div className="page">
+        <div className="page" style={{ 
+          width: '8.5in', 
+          margin: '0 auto',
+          padding: '1in',
+          boxSizing: 'border-box',
+          background: '#fff',
+          color: '#000',
+          fontFamily: 'Arial, Helvetica, sans-serif',
+          fontSize: '12px',
+          lineHeight: 1.4
+        }}>
           <img 
             src="/phoenix-logo.svg"
             alt="Phoenix Logo" 
@@ -780,7 +830,17 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     if (type === 'receipt') {
       const recData = formData as any;
       return (
-        <div className="page">
+        <div className="page" style={{ 
+          width: '8.5in', 
+          margin: '0 auto',
+          padding: '1in',
+          boxSizing: 'border-box',
+          background: '#fff',
+          color: '#000',
+          fontFamily: 'Arial, Helvetica, sans-serif',
+          fontSize: '12px',
+          lineHeight: 1.4
+        }}>
           <img 
             src="/phoenix-logo.svg"
             alt="Phoenix Logo" 
@@ -1074,7 +1134,17 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
 
     // Default fallback for other form types
     return (
-      <div className="page">
+      <div className="page" style={{ 
+        width: '8.5in', 
+        margin: '0 auto',
+        padding: '1in',
+        boxSizing: 'border-box',
+        background: '#fff',
+        color: '#000',
+        fontFamily: 'Arial, Helvetica, sans-serif',
+        fontSize: '12px',
+        lineHeight: 1.4
+      }}>
         <img 
           src="/phoenix-logo.svg"
           alt="Phoenix Logo" 
@@ -1126,7 +1196,6 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     <div className="min-h-screen bg-white" style={{ 
       width: '8.5in', 
       margin: '0 auto',
-      padding: '1in',
       boxSizing: 'border-box',
       background: '#fff',
       color: '#000',
