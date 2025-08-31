@@ -1123,17 +1123,7 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   };
 
   return (
-    <div className="min-h-screen bg-white" style={{ 
-      width: '8.5in', 
-      margin: '0 auto',
-      padding: '1in',
-      boxSizing: 'border-box',
-      background: '#fff',
-      color: '#000',
-      fontFamily: 'Arial, Helvetica, sans-serif',
-      fontSize: '12px',
-      lineHeight: 1.4
-    }}>
+    <div>
       <div id="print-root">
         {renderContent()}
       </div>
