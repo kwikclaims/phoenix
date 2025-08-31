@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prebuild": "npm run lock:images && npm run verify:images && npm run guard:images && npm run routes:build",
     "lock:images": "node scripts/lock-images.mjs",
     "verify:images": "node scripts/verify-images.mjs",
     "guard:images": "node scripts/lint-no-raw-img.mjs",
