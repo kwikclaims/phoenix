@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
 import { LABELS, SUBS } from '../lib/constants';
@@ -11,6 +11,7 @@ interface PreviewPageProps {
 
 export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProps) {
   const { type } = useParams<{ type: string }>();
+  const navigate = useNavigate();
   const { formData, signatureDataURL, clearFormData } = useFormContext();
 
   // Redirect if no form data
