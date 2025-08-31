@@ -59,7 +59,7 @@ export default function FormPage() {
     localStorage.removeItem(`phoenix-forms-draft-${type}`);
     
     toast.success('Form validated successfully!');
-    navigate(`../preview/${type}?mode=document-only`);
+    navigate(`../preview/${type}`);
   };
 
   return (
