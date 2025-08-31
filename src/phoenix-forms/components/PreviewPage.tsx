@@ -1,10 +1,10 @@
 import { useParams, Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import { ArrowLeft, Eye, Edit, Download, Home } from 'lucide-react';
+import { ArrowLeft, Eye, Edit, Download, Home, Maximize, Printer } from 'lucide-react';
 import { LABELS, SUBS } from '../lib/constants';
 import { useFormContext } from '../contexts/FormContext';
 import HtmlCertificate from './HtmlCertificate';
@@ -26,6 +26,9 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   const { type } = useParams<{ type: string }>();
   const navigate = useNavigate();
   const { formData, signatureDataURL, clearFormData } = useFormContext();
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [docOnly, setDocOnly] = useState(false);
+  const fsHostRef = useRef<HTMLDivElement>(null);
 
   // Redirect if no form data
   useEffect(() => {
@@ -34,6 +37,16 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
       navigate('/');
     }
   }, [formData, signatureDataURL, navigate]);
+
+  // Listen for fullscreen changes
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
   
   if (!type || !(type in LABELS)) {
     return (
@@ -58,6 +71,36 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   }
 
   const formType = type as keyof typeof LABELS;
+
+  const enterFullscreen = async () => {
+    if (fsHostRef.current) {
+      try {
+        await fsHostRef.current.requestFullscreen();
+        setIsFullscreen(true);
+      } catch (error) {
+        console.error('Failed to enter fullscreen:', error);
+      }
+    }
+  };
+
+  const exitFullscreen = async () => {
+    if (document.fullscreenElement) {
+      try {
+        await document.exitFullscreen();
+        setIsFullscreen(false);
+      } catch (error) {
+        console.error('Failed to exit fullscreen:', error);
+      }
+    }
+  };
+
+  const handlePrint = () => {
+    setDocOnly(true);
+    setTimeout(() => {
+      window.print();
+      setTimeout(() => setDocOnly(false), 100);
+    }, 100);
+  };
 
   const renderCertificate = () => {
     if (type === 'job-total-only') {
@@ -178,11 +221,28 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     }
   };
 
+  // If in fullscreen mode, render only the document
+  if (isFullscreen) {
+    return (
+      <div 
+        ref={fsHostRef}
+        className={`fs-host ${docOnly ? 'doc-only' : ''}`}
+      >
+        <div className="fs-doc">
+          <div id="print-root">
+            {renderCertificate()}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-black">
+    <div className={`min-h-screen bg-black ${docOnly ? 'doc-only' : ''}`}>
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
+          data-nonprint
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -211,6 +271,7 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
 
         {/* Certificate Preview */}
         <motion.div
+          data-nonprint
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -224,12 +285,12 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
             </CardHeader>
             <CardContent>
               <div className="bg-gray-100 p-4 rounded-lg overflow-auto max-h-96">
-                <div className="transform scale-50 origin-top-left" style={{ width: '200%' }}>
+                <div className="transform scale-50 origin-top-left" style={{ width: '200%' }} data-nonprint>
                   {renderCertificate()}
                 </div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6" data-nonprint>
                 <Button 
                   variant="outline" 
                   onClick={handleEdit}
@@ -239,11 +300,18 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
                   Edit Form
                 </Button>
                 <Button 
-                  onClick={handleDownloadPDF}
+                  onClick={enterFullscreen}
+                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                >
+                  <Maximize className="w-4 h-4 mr-2" />
+                  Fullscreen
+                </Button>
+                <Button 
+                  onClick={handlePrint}
                   className="bg-red-600 hover:bg-red-700 text-white"
                 >
-                  <Download className="w-4 h-4 mr-2" />
-                  Download PDF
+                  <Printer className="w-4 h-4 mr-2" />
+                  Print
                 </Button>
                 <Button 
                   variant="outline" 
@@ -259,10 +327,13 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
         </motion.div>
 
         {/* Hidden full-size certificate for PDF generation */}
-        <div className="hidden">
+        <div id="print-root" className="hidden">
           {renderCertificate()}
         </div>
       </div>
+      
+      {/* Fullscreen host reference */}
+      <div ref={fsHostRef} style={{ display: 'none' }}></div>
     </div>
   );
 }

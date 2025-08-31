@@ -251,115 +251,104 @@ button:focus-visible {
   .show-header-dot { display: none !important; }
 }
 
-.fullscreen-root {
-  position: fixed;
-  inset: 0;
-  background: #0b0b0bcc; /* subtle dark backdrop */
-  backdrop-filter: blur(2px);
-  overflow: auto; /* screen scroll only */
-  z-index: 1000;
-}
-
-.fullscreen-header {
-  position: sticky;
-  top: 0;
-  background: #111; /* or your brand color */
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 12px;
-  z-index: 1001;
-}
-
-/* tiny red dot already defined; ensure it's above content */
-.show-header-dot { z-index: 1002; }
-
-/* Host that truly covers the screen (portal at body level) */
+/* Fullscreen host that covers the entire screen */
 .fs-host {
   position: fixed;
   inset: 0;
-  z-index: 10000;
-  background: #0b0b0b; /* dark canvas behind doc */
+  z-index: 9999;
+  background: #fff;
   display: flex;
-  flex-direction: column;
-}
-
-/* If element is in native fullscreen, keep identical look */
-:fullscreen .fs-host, .fs-host:fullscreen {
-  background: #0b0b0b;
-}
-
-/* Header that can be hidden with docOnly */
-.fs-header {
-  position: sticky;
-  top: 0;
-  background: #111;
-  color: #fff;
-  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  padding: 8px 12px;
-  z-index: 10001;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-/* Scroll area for the document when needed ON SCREEN ONLY */
+/* Document container in fullscreen */
 .fs-doc {
-  flex: 1 1 auto;
-  overflow: auto;      /* ON SCREEN scroll is okay */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 16px;
 }
 
-/* Hide header/any non-print UI in doc-only mode */
-.doc-only [data-nonprint] { display: none !important; }
+/* Hide non-document UI in doc-only mode */
+.doc-only [data-nonprint] {
+  display: none !important;
+}
 
-/* Provide a consistent page shell (screen + print) */
+/* Ensure document is visible in doc-only mode */
+.doc-only #print-root {
+  display: block !important;
+}
+
+/* Page styling for consistent appearance */
 .page {
   width: 8.5in;
   min-height: 11in;
   background: #fff;
-  /* optional internal padding for on-screen look:
-  padding: 0.5in;
-  */
-  box-shadow: 0 2px 8px rgba(0,0,0,.15); /* screen only visual */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-/* --- PRINT FIXES: isolate doc, remove clip/scroll/transform --- */
+/* Print media queries - only show the document */
 @media print {
   /* Hide everything by default */
-  body * { visibility: hidden !important; }
+  body * {
+    visibility: hidden !important;
+  }
 
   /* Show ONLY the document subtree */
-  #print-root, #print-root * { visibility: visible !important; }
+  #print-root, #print-root * {
+    visibility: visible !important;
+  }
 
-  /* Never print UI elements or the red dot */
-  [data-nonprint], .fs-header, .show-header-dot { display: none !important; }
+  /* Never print UI elements */
+  [data-nonprint] {
+    display: none !important;
+  }
 
-  /* Remove any heights/overflows that cause clipping in the chain */
-  html, body, #root { height: auto !important; overflow: visible !important; }
+  /* Remove layout constraints for printing */
+  html, body, #root {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
   .fs-host, .fs-doc {
+    position: static !important;
     height: auto !important;
     max-height: none !important;
-    overflow: visible !important;  /* <-- key to kill the scrollbar in print */
+    overflow: visible !important;
+    padding: 0 !important;
   }
 
-  /* Remove transforms/scales (if any) */
-  #print-root, #print-root * { transform: none !important; zoom: 1 !important; }
-
-  /* Clean block for the document */
+  /* Clean document positioning for print */
   #print-root {
     position: static !important;
-    inset: auto !important;
-    margin: 0 auto !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
     background: #fff !important;
     box-shadow: none !important;
+    transform: none !important;
+    zoom: 1 !important;
   }
 
-  /* Real multi-page breaks */
-  .page { break-after: page; page-break-after: always; }
-  .page:last-child { break-after: auto; page-break-after: auto; }
-  .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+  /* Page break handling */
+  .page {
+    break-after: page;
+    page-break-after: always;
+    box-shadow: none !important;
+  }
+  
+  .page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+  
+  .avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 }
