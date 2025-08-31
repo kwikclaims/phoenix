@@ -1,6 +1,9 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
+import EstimateDocument from './EstimateDocument';
+import InvoiceDocument from './InvoiceDocument';
+import InsurancePaymentAuthDocument from './InsurancePaymentAuthDocument';
 import { LABELS, SUBS } from '../lib/constants';
 import { useFormContext } from '../contexts/FormContext';
 import { toast } from 'sonner';
@@ -60,53 +63,16 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   const renderContent = () => {
     if (type === 'depreciation') {
       const depData = formData as any;
-      return (
-        <div className="page" style={{ 
-          width: '8.5in', 
-          margin: '0 auto',
-          padding: '1in',
-          boxSizing: 'border-box',
-          background: '#fff',
-          color: '#000',
-          fontFamily: 'Arial, Helvetica, sans-serif',
-          fontSize: '12px',
-          lineHeight: 1.4
-        }}>
-          <img 
-            src="/phoenix-logo.svg"
-            alt="Phoenix Logo" 
-            style={{ 
-              display: 'block',
-              margin: '0 auto 24px auto',
-              width: '120px',
-              height: 'auto',
-              objectFit: 'contain'
-            }}
-          />
-          
-          <h2 className="text-center text-xl font-bold my-4" style={{ fontSize: '20px', textAlign: 'center', fontWeight: 'bold', margin: '16px 0' }}>
-            Certification of Work Completion
-          </h2>
-
-          <p style={{ marginBottom: '16px' }}>
-            This is to certify that the work performed at the above-referenced property has been
-            completed in accordance with generally accepted trade standards
-            <strong> for {formatMoney(depData.recoverableDep)} in recoverable depreciation</strong>.
-          </p>
-
-          <p style={{ marginBottom: '16px' }}>
-            The contractor certifies that all work has been performed in a workmanlike manner and in
-            compliance with applicable building codes and industry standards.
-          </p>
-
-          <p style={{ marginBottom: '16px' }}>
-            This certificate is issued in good faith and represents the contractor's professional
-            assessment of the completed work. All materials used meet or exceed industry standards
-            and manufacturer specifications.
-          </p>
-
-          <p style={{ marginBottom: '16px' }}>
-            The undersigned contractor hereby certifies that the above statements are true and
+    if (type === 'estimate') {
+      return <EstimateDocument type={type} data={formData as any} />;
+    }
+    
+    if (type === 'invoice') {
+      return <InvoiceDocument type={type} data={formData as any} />;
+    }
+    
+    if (type === 'contracts') {
+      return <ContractsDocument type={type} data={formData as any} />;
             accurate to the best of their knowledge and belief.
           </p>
 
@@ -1003,50 +969,7 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     }
 
     if (type === 'insurancePaymentAuth') {
-      const authData = formData as any;
-      return (
-        <div className="page">
-          <img 
-            src="/phoenix-logo.svg"
-            alt="Phoenix Logo" 
-            style={{ 
-              display: 'block',
-              margin: '0 auto 16px auto',
-              width: '120px',
-              height: 'auto',
-              objectFit: 'contain'
-            }}
-          />
-          
-          <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-            <div style={{ fontSize: '18px', fontWeight: 700, marginBottom: '8px' }}>Insurance Claim Payment & Representation Authorization</div>
-            <div style={{ fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>Phoenix Restorations and Construction Solutions LLC</div>
-            <div>10334 Vista Meadow Way, Lanham, MD 20706</div>
-            <div>Phone: (301) 450-9487 | MHIC #164678</div>
-          </div>
-
-          <hr style={{ margin: "16px 0", border: "none", borderTop: "1px solid #000" }} />
-
-          <div style={{ fontWeight: 700, fontSize: 13, marginTop: 8, marginBottom: 4 }}>1. PARTIES</div>
-          <div>Homeowner(s):</div>
-          <div style={{ marginBottom: 4 }}>
-            <span style={{ fontWeight: 600, display: 'inline', marginRight: 4 }}>Name(s):</span>
-            <span style={{ display: 'inline' }}>{authData.homeownerNames}</span>
-          </div>
-          <div style={{ marginBottom: 4 }}>
-            <span style={{ fontWeight: 600, display: 'inline', marginRight: 4 }}>Property Address:</span>
-            <span style={{ display: 'inline' }}>{authData.propertyAddress}</span>
-          </div>
-          <div style={{ marginBottom: 4 }}>
-            <span style={{ fontWeight: 600, display: 'inline', marginRight: 4 }}>City:</span>
-            <span style={{ display: 'inline', marginRight: 10 }}>{authData.city}</span>
-            <span style={{ fontWeight: 600, display: 'inline', marginRight: 4 }}>State:</span>
-            <span style={{ display: 'inline', marginRight: 10 }}>{authData.state}</span>
-            <span style={{ fontWeight: 600, display: 'inline', marginRight: 4 }}>ZIP:</span>
-            <span style={{ display: 'inline' }}>{authData.zip}</span>
-          </div>
-          <div style={{ marginBottom: 4 }}>
-            <span style={{ fontWeight: 600, display: 'inline', marginRight: 4 }}>Phone:</span>
+      return <InsurancePaymentAuthDocument formData={formData as any} />;
             <span style={{ display: 'inline', marginRight: 10 }}>{authData.phone}</span>
             <span style={{ fontWeight: 600, display: 'inline', marginRight: 4 }}>Email:</span>
             <span style={{ display: 'inline' }}>{authData.email}</span>
