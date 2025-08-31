@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useParams, useNavigate } from 'react-router-dom';
+import { Routes, Route, useParams, useNavigate, useLocation } from 'react-router-dom';
 import PhoenixFormsApp from './phoenix-forms/App';
 import { useAuth } from './hooks/useAuth';
 import { LoginForm } from './components/auth/LoginForm';
@@ -19,6 +19,10 @@ import { InspectionReportPage } from './components/InspectionReportPage';
 function App() {
   const { isAuthenticated, loading, login, logout } = useAuth();
   const [currentPage, setCurrentPage] = React.useState('projects');
+  const location = useLocation();
+  
+  // Check if we're on a preview page
+  const isPreviewPage = location.pathname.includes('/preview/');
 
   if (loading) {
     return (
@@ -68,14 +72,16 @@ function App() {
         <Route path="/jobs/:id" element={<JobDetailRoute />} />
         <Route path="/*" element={
           <>
-            <Header
-              title={getPageTitle()}
-              user={{ id: 'default-user', firstName: 'Phoenix', lastName: 'User', email: '', phoneNumber: '', createdAt: '' }}
-              onLogout={logout}
-              onNavigate={setCurrentPage}
-              currentPage={currentPage}
-              onUserUpdate={() => {}}
-            />
+            {!isPreviewPage && (
+              <Header
+                title={getPageTitle()}
+                user={{ id: 'default-user', firstName: 'Phoenix', lastName: 'User', email: '', phoneNumber: '', createdAt: '' }}
+                onLogout={logout}
+                onNavigate={setCurrentPage}
+                currentPage={currentPage}
+                onUserUpdate={() => {}}
+              />
+            )}
 
             {currentPage === 'projects' && <ProjectsPage />}
             {currentPage === 'how-it-works' && <HowItWorksPage />}
