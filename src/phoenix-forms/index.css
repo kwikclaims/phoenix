@@ -281,3 +281,103 @@ button:focus-visible {
 @media print {
   .show-header-dot { display: none !important; }
 }
+
+/* Fullscreen host (covers the viewport) */
+.fs-host {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: #0b0b0b;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fullscreen header (hidden by default because docOnly=true) */
+.fs-header {
+  position: sticky;
+  top: 0;
+  background: #111;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  z-index: 10001;
+}
+
+/* Screen scroll area for the doc (scrollbars allowed on screen, but NEVER in print) */
+.fs-doc {
+  flex: 1 1 auto;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px;
+}
+
+/* Hide all non-print chrome in doc-only mode */
+.doc-only [data-nonprint] { display: none !important; }
+
+/* Tiny red dot to restore header (screen only; never prints) */
+.show-header-dot {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: red;
+  cursor: pointer;
+  z-index: 10002;
+}
+
+/* Page shell (both screen + print) */
+.page {
+  width: 8.5in;
+  min-height: 11in;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+
+/* Accurate colors on paper */
+* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+/* Printer page setup */
+@page { size: letter; margin: 0.5in; }
+
+/* PRINT: isolate doc & force multi-page, no scrollbars */
+@media print {
+  /* Hide everything by default */
+  body * { visibility: hidden !important; }
+
+  /* Show ONLY the document subtree */
+  #print-root, #print-root * { visibility: visible !important; }
+
+  /* Never print UI elements or the red dot */
+  [data-nonprint], .fs-header, .show-header-dot { display: none !important; }
+
+  /* Remove heights/overflows so content flows to MULTIPLE PAGES */
+  html, body, #root { height: auto !important; overflow: visible !important; }
+  .fs-host, .fs-doc {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Remove any transforms/scales that could cause one-page squish */
+  #print-root, #print-root * { transform: none !important; zoom: 1 !important; }
+
+  /* Clean printable block */
+  #print-root {
+    position: static !important;
+    inset: auto !important;
+    margin: 0 auto !important;
+    background: #fff !important;
+    box-shadow: none !important;
+  }
+
+  /* True multi-page breaks */
+  .page { break-after: page; page-break-after: always; }
+  .page:last-child { break-after: auto; page-break-after: auto; }
+  .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+}

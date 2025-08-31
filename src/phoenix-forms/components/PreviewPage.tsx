@@ -28,7 +28,7 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
   const [searchParams] = useSearchParams();
   const { formData, signatureDataURL, clearFormData } = useFormContext();
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [docOnly, setDocOnly] = useState(false);
+  const [docOnly, setDocOnly] = useState(true);
   const printRootRef = useRef<HTMLDivElement>(null);
   
   // Check if we're in document-only mode
@@ -80,19 +80,20 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     if (printRootRef.current) {
       try {
         await printRootRef.current.requestFullscreen();
-        setIsFullscreen(true);
       } catch (error) {
         console.error('Failed to enter fullscreen:', error);
       }
     }
   };
 
+  const onCloseFullscreen = () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    }
+  };
+
   const handlePrint = () => {
-    setDocOnly(true);
-    setTimeout(() => {
-      window.print();
-      setTimeout(() => setDocOnly(false), 100);
-    }, 100);
+    window.print();
   };
 
   const renderCertificate = () => {
@@ -308,12 +309,51 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
         )}
 
         {/* Full-size certificate - always rendered */}
+        {isFullscreen && (
+          <div className={`fs-host ${docOnly ? "doc-only" : ""}`} role="dialog" aria-modal="true">
+            {!docOnly && (
+              <header className="fs-header" data-nonprint>
+                <div>
+                  <h1 className="text-xl font-bold">{LABELS[formType]}</h1>
+                  <p className="text-sm text-gray-400">{SUBS[formType]}</p>
+                </div>
+                <div className="fs-actions" data-nonprint>
+                  <button type="button" onClick={handlePrint} data-nonprint className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Print Page</button>
+                  <button type="button" onClick={handleDownloadPDF} data-nonprint className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Download PDF</button>
+                  <button type="button" onClick={() => setDocOnly(true)} data-nonprint className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">Hide Header</button>
+                  <button type="button" onClick={onCloseFullscreen} data-nonprint className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">Close</button>
+                </div>
+              </header>
+            )}
+            
+            {docOnly && (
+              <button
+                type="button"
+                className="show-header-dot"
+                data-nonprint
+                aria-label="Show header"
+                onClick={() => setDocOnly(false)}
+              />
+            )}
+            
+            <div className="fs-doc">
+              <div id="print-root" ref={printRootRef}>
+                <div className="page">
+                  {renderCertificate()}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        
         <div 
           id="print-root" 
-          ref={printRootRef}
-          className={`${isFullscreen ? 'is-fullscreen-active' : ''} ${isDocumentOnlyMode ? 'document-only-mode' : 'hidden'}`}
+          ref={!isFullscreen ? printRootRef : undefined}
+          className={`${isDocumentOnlyMode ? 'document-only-mode' : 'hidden'}`}
         >
-          {renderCertificate()}
+          <div className="page">
+            {renderCertificate()}
+          </div>
         </div>
       </div>
     </div>
