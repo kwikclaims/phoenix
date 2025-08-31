@@ -9,7 +9,6 @@
     "guard:images": "node scripts/lint-no-raw-img.mjs",
     "routes:build": "node scripts/build-project-routes.mjs",
     "dev": "vite",
-    "prebuild": "",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
