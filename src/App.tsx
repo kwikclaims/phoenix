@@ -15,6 +15,7 @@ import { JobDetailPage } from './components/JobDetailPage';
 import { SheetsDebugPage } from './components/SheetsDebugPage';
 import { OurWorkPage } from './components/OurWorkPage';
 import { InspectionReportPage } from './components/InspectionReportPage';
+import { FollowUpsPage } from './components/FollowUpsPage';
 
 function App() {
   const { isAuthenticated, loading, login, logout } = useAuth();
@@ -61,6 +62,8 @@ function App() {
         return 'Sheets Debug';
       case 'inspection':
         return 'Inspection Report';
+      case 'follow-ups':
+        return 'Follow-Ups';
       default:
         return 'Phoenix';
     }
@@ -93,6 +96,7 @@ function App() {
             {currentPage === 'todos' && <TodoPage />}
             {currentPage === 'debug' && <SheetsDebugPage />}
             {currentPage === 'inspection' && <InspectionReportPage />}
+            {currentPage === 'follow-ups' && <FollowUpsPage />}
           </>
         } />
       </Routes>

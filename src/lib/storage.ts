@@ -23,3 +23,25 @@ export function loadUpdates(): UpdateItem[] {
 export function saveUpdates(items: UpdateItem[]) {
   localStorage.setItem(UPDATES_KEY, JSON.stringify(items));
 }
+
+// Follow-ups storage functionality
+const FOLLOW_UPS_KEY = "follow-ups:v1";
+
+export type FollowUpItem = {
+  id: string;         // unique
+  description: string;
+  createdAt: number;  // epoch ms
+};
+
+export function loadFollowUps(): FollowUpItem[] {
+  try {
+    const raw = localStorage.getItem(FOLLOW_UPS_KEY);
+    return raw ? (JSON.parse(raw) as FollowUpItem[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+export function saveFollowUps(items: FollowUpItem[]) {
+  localStorage.setItem(FOLLOW_UPS_KEY, JSON.stringify(items));
+}
