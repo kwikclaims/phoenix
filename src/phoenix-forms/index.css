@@ -350,34 +350,39 @@ button:focus-visible {
   /* Hide everything by default */
   body * { visibility: hidden !important; }
 
-  /* Show ONLY the document subtree */
+  /* Show only the document content */
   #print-root, #print-root * { visibility: visible !important; }
 
   /* Never print UI elements or the red dot */
   [data-nonprint], .fs-header, .show-header-dot { display: none !important; }
 
-  /* Remove heights/overflows so content flows to MULTIPLE PAGES */
+  /* REMOVE scrollbars: make containers expand naturally */
   html, body, #root { height: auto !important; overflow: visible !important; }
   .fs-host, .fs-doc {
+    position: static !important;
     height: auto !important;
     max-height: none !important;
-    overflow: visible !important;
+    overflow: visible !important;   /* <- critical change */
+    display: block !important;      /* force normal block flow */
   }
 
-  /* Remove any transforms/scales that could cause one-page squish */
-  #print-root, #print-root * { transform: none !important; zoom: 1 !important; }
-
-  /* Clean printable block */
+  /* Ensure the document prints as multiple pages */
   #print-root {
     position: static !important;
     inset: auto !important;
     margin: 0 auto !important;
     background: #fff !important;
     box-shadow: none !important;
+    width: auto !important;
   }
 
-  /* True multi-page breaks */
-  .page { break-after: page; page-break-after: always; }
+  /* Page break rules */
+  .page { 
+    break-after: page; 
+    page-break-after: always;
+    width: 8.5in;
+    min-height: 11in;
+  }
   .page:last-child { break-after: auto; page-break-after: auto; }
   .avoid-break { break-inside: avoid; page-break-inside: avoid; }
 }
