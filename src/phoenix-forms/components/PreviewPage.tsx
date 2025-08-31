@@ -1096,10 +1096,8 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
         </div>
         <div style={{ color: '#000' }}>
           <p>Form data preview for {LABELS[formType]} will be displayed here.</p>
-          </div>
-        </div>
-      </div>
-      </div>
+         </div>
+       </div>
     );
   };
 
