@@ -6,11 +6,13 @@ import { getSchemaForType, FormData } from '../lib/formSchemas';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
 import { Button } from '../../components/ui/button';
+import { FileText, ExternalLink } from 'lucide-react';
 
 export function useCertForm(type: string) {
   const schema = getSchemaForType(type);
   const signatureRef = useRef<SignatureCanvas>(null);
   const [signatureDataURL, setSignatureDataURL] = useState<string>('');
+  const [showPdfViewer, setShowPdfViewer] = useState(false);
   
   const methods = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -764,6 +766,60 @@ export function useCertForm(type: string) {
               </div>
             </div>
           </div>
+
+          {/* View ICPRA Document Button */}
+          <div className="mt-8 pt-6 border-t border-gray-300">
+            <div className="flex flex-col items-center space-y-4">
+              <button
+                type="button"
+                onClick={() => setShowPdfViewer(true)}
+                className="flex items-center space-x-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+              >
+                <FileText className="w-5 h-5" />
+                <span>View ICPRA Document</span>
+                <ExternalLink className="w-4 h-4" />
+              </button>
+              <p className="text-sm text-gray-600 text-center">
+                Click to view the complete Insurance Claim Payment & Representation Authorization document
+              </p>
+            </div>
+          </div>
+
+          {/* PDF Viewer Modal */}
+          {showPdfViewer && (
+            <div className="fixed inset-0 z-50 bg-black bg-opacity-75 flex items-center justify-center p-4">
+              <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-hidden">
+                <div className="flex items-center justify-between p-4 border-b">
+                  <h3 className="text-lg font-semibold">ICPRA Document</h3>
+                  <button
+                    onClick={() => setShowPdfViewer(false)}
+                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+                <div className="p-4 h-[calc(90vh-120px)]">
+                  <iframe
+                    src="/docs/icpra.pdf"
+                    className="w-full h-full border border-gray-300 rounded"
+                    title="ICPRA Document"
+                  />
+                </div>
+                <div className="flex justify-center p-4 border-t bg-gray-50">
+                  <a
+                    href="/docs/icpra.pdf"
+                    download="ICPRA.pdf"
+                    className="flex items-center space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                  >
+                    <FileText className="w-4 h-4" />
+                    <span>Download PDF</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       );
     }
