@@ -101,6 +101,7 @@ function App() {
             {currentPage === 'inspection' && <InspectionReportPage />}
             {currentPage === 'follow-ups' && <FollowUpsPage />}
             {currentPage === 'date-of-loss' && <DateOfLossPage />}
+            {currentPage === 'date-of-loss' && <DateOfLossPage />}
           </>
         } />
       </Routes>
