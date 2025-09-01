@@ -33,7 +33,6 @@ export const Header: React.FC<HeaderProps> = ({
   const menuItems = [
     { id: 'projects', label: 'Projects', emoji: '🏠' },
     { id: 'todos', label: 'To-Do List', emoji: '✅' },
-    { id: 'date-of-loss', label: 'Date of Loss', emoji: '📅' },
     { id: 'inspection', label: 'Inspection Report', emoji: '📋' },
     { id: 'follow-ups', label: 'Follow-Ups', emoji: '📞' },
     { id: 'updates', label: 'Updates', emoji: '📢' },
