@@ -43,6 +43,7 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'process', label: 'Process', emoji: '📋' },
     { id: 'debug', label: 'Sheets Debug', emoji: '🐛' },
     { id: 'badge', label: 'Badge', emoji: '🏆' },
+    { id: 'loss-date', label: 'Loss Date', emoji: '📅' },
     { id: 'account-settings', label: 'Account Settings', emoji: '⚙️' },
   ];
 

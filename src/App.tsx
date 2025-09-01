@@ -17,6 +17,7 @@ import { OurWorkPage } from './components/OurWorkPage';
 import { InspectionReportPage } from './components/InspectionReportPage';
 import { FollowUpsPage } from './components/FollowUpsPage';
 import { BadgePage } from './components/BadgePage';
+import { LossDatePage } from './components/LossDatePage';
 
 function App() {
   const { isAuthenticated, loading, login, logout } = useAuth();
@@ -67,6 +68,8 @@ function App() {
         return 'Follow-Ups';
       case 'badge':
         return 'Badge';
+      case 'loss-date':
+        return 'Loss Date';
       default:
         return 'Phoenix';
     }
@@ -101,6 +104,7 @@ function App() {
             {currentPage === 'inspection' && <InspectionReportPage />}
             {currentPage === 'follow-ups' && <FollowUpsPage />}
             {currentPage === 'badge' && <BadgePage />}
+            {currentPage === 'loss-date' && <LossDatePage />}
           </>
         } />
       </Routes>
