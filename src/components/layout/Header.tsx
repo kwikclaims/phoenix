@@ -35,7 +35,6 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'todos', label: 'To-Do List', emoji: '✅' },
     { id: 'inspection', label: 'Inspection Report', emoji: '📋' },
     { id: 'follow-ups', label: 'Follow-Ups', emoji: '📞' },
-    { id: 'date-of-loss', label: 'Date of Loss', emoji: '📅' },
     { id: 'updates', label: 'Updates', emoji: '📢' },
     { id: 'how-it-works', label: 'How It Works', emoji: '📖' },
     { id: 'our-work', label: 'Our Work', emoji: '🏗️' },
