@@ -16,6 +16,7 @@ import { SheetsDebugPage } from './components/SheetsDebugPage';
 import { OurWorkPage } from './components/OurWorkPage';
 import { InspectionReportPage } from './components/InspectionReportPage';
 import { FollowUpsPage } from './components/FollowUpsPage';
+import { BadgePage } from './components/BadgePage';
 
 function App() {
   const { isAuthenticated, loading, login, logout } = useAuth();
@@ -64,6 +65,8 @@ function App() {
         return 'Inspection Report';
       case 'follow-ups':
         return 'Follow-Ups';
+      case 'badge':
+        return 'Badge';
       default:
         return 'Phoenix';
     }
@@ -97,6 +100,7 @@ function App() {
             {currentPage === 'debug' && <SheetsDebugPage />}
             {currentPage === 'inspection' && <InspectionReportPage />}
             {currentPage === 'follow-ups' && <FollowUpsPage />}
+            {currentPage === 'badge' && <BadgePage />}
           </>
         } />
       </Routes>
