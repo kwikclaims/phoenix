@@ -5,22 +5,22 @@ import { useAuth } from './hooks/useAuth';
 import { LoginForm } from './components/auth/LoginForm';
 import { Header } from './components/layout/Header';
 import { Toaster } from './components/ui/toaster';
-import { FinancialPage } from './components/FinancialPage';
-import { ProcessPage } from './components/ProcessPage';
-import { TodoPage } from './components/TodoPage';
 import { ProjectsPage } from './components/ProjectsPage';
-import { UpdatesPage } from './components/UpdatesPage';
 import { HowItWorksPage } from './components/HowItWorksPage';
 import { JobDetailPage } from './components/JobDetailPage';
 import { OurWorkPage } from './components/OurWorkPage';
-import { InspectionReportPage } from './components/InspectionReportPage';
-import { FollowUpsPage } from './components/FollowUpsPage';
 import { BadgePage } from './components/BadgePage';
 import { LossDatePage } from './components/LossDatePage';
 import { PortalPage } from './components/PortalPage';
+import { FinancialPage } from './components/FinancialPage';
+import { ProcessPage } from './components/ProcessPage';
+import { TodoPage } from './components/TodoPage';
+import { UpdatesPage } from './components/UpdatesPage';
+import { InspectionReportPage } from './components/InspectionReportPage';
+import { FollowUpsPage } from './components/FollowUpsPage';
 
 function App() {
-  const { isAuthenticated, loading, login, logout } = useAuth();
+  const { loading } = useAuth();
   const [currentPage, setCurrentPage] = React.useState('projects');
   const location = useLocation();
   
@@ -36,10 +36,6 @@ function App() {
         </div>
       </div>
     );
-  }
-
-  if (!isAuthenticated) {
-    return <LoginForm onLogin={login} />;
   }
 
   const getPageTitle = () => {
@@ -64,8 +60,8 @@ function App() {
         return 'Inspection Report';
       case 'follow-ups':
         return 'Follow-Ups';
-      case 'badge':
-        return 'Badge';
+      case 'about-me':
+        return 'About Me';
       case 'recent-storms':
         return 'Recent Storms';
       case 'portal':
@@ -85,7 +81,7 @@ function App() {
               <Header
                 title={getPageTitle()}
                 user={{ id: 'default-user', firstName: 'Phoenix', lastName: 'User', email: '', phoneNumber: '', createdAt: '' }}
-                onLogout={logout}
+                onLogout={() => {}}
                 onNavigate={setCurrentPage}
                 currentPage={currentPage}
                 onUserUpdate={() => {}}
@@ -102,7 +98,7 @@ function App() {
             {currentPage === 'todos' && <TodoPage />}
             {currentPage === 'inspection' && <InspectionReportPage />}
             {currentPage === 'follow-ups' && <FollowUpsPage />}
-            {currentPage === 'badge' && <BadgePage />}
+            {currentPage === 'about-me' && <BadgePage />}
             {currentPage === 'recent-storms' && <LossDatePage />}
             {currentPage === 'portal' && <PortalPage onNavigate={setCurrentPage} />}
           </>

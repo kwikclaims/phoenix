@@ -1,12 +1,85 @@
-import React from 'react';
-import { Grid3X3, ClipboardCheck, CheckSquare, Phone, Bell, FileText, DollarSign } from 'lucide-react';
+import React, { useState } from 'react';
+import { Grid3X3, ClipboardCheck, CheckSquare, Phone, Bell, FileText, DollarSign, FolderOpen, Lock } from 'lucide-react';
 
 interface PortalPageProps {
   onNavigate: (page: string) => void;
 }
 
 export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (password === '1209') {
+      setIsAuthenticated(true);
+      setError('');
+    } else {
+      setError('Incorrect password');
+      setPassword('');
+    }
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="bg-black/80 backdrop-blur-xl rounded-3xl shadow-2xl max-w-md w-full p-8 border border-[#FF0000]/20">
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <Lock className="w-8 h-8 text-[#FF0000]" />
+            </div>
+            <h1 className="text-2xl font-bold text-white mb-2">Portal Access</h1>
+            <p className="text-gray-400">Enter password to access portal tools</p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-[#FF0000] mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError('');
+                }}
+                className={`w-full px-4 py-3 bg-gray-900/50 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF0000] transition-all duration-300 text-white placeholder-gray-500 ${
+                  error ? 'border-red-500' : 'border-gray-700 hover:border-[#FF0000]/50'
+                }`}
+                placeholder="Enter portal password"
+                autoFocus
+              />
+              {error && (
+                <p className="text-red-400 text-sm mt-2 animate-pulse">
+                  {error}
+                </p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-r from-[#FF0000] to-[#C20F1F] text-white py-3 rounded-xl hover:shadow-lg hover:shadow-[#FF0000]/25 transition-all duration-300 font-semibold transform hover:scale-105 active:scale-95"
+            >
+              Access Portal
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
   const portalItems = [
+    {
+      id: 'projects',
+      title: 'Projects',
+      description: 'View and manage all insurance claim projects and jobs',
+      icon: FolderOpen,
+      color: 'from-[#FF0000] to-[#C20F1F]',
+      hoverColor: 'hover:shadow-[#FF0000]/25',
+    },
     {
       id: 'inspection',
       title: 'Inspection Report',
