@@ -63,8 +63,6 @@ function App() {
         return 'Inspection Report';
       case 'follow-ups':
         return 'Follow-Ups';
-      case 'about-me':
-        return 'About Me';
       case 'recent-storms':
         return 'Recent Storms';
       case 'portal':
@@ -102,7 +100,6 @@ function App() {
             {currentPage === 'todos' && <TodoPage />}
             {currentPage === 'inspection' && <InspectionReportPage />}
             {currentPage === 'follow-ups' && <FollowUpsPage />}
-            {currentPage === 'about-me' && <BadgePage />}
             {currentPage === 'recent-storms' && <LossDatePage />}
             {currentPage === 'portal' && <PortalPage onNavigate={setCurrentPage} />}
           </>
