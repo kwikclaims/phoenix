@@ -331,27 +331,42 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* Founder Section */}
-      <section 
-        className="relative py-20 overflow-hidden"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url("https://images.pexels.com/photos/416405/pexels-photo-416405.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
-      >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="py-20" style={{ backgroundColor: '#363636' }}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="w-24 h-24 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-8">
-              <span className="text-4xl">👨‍💼</span>
-            </div>
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">Meet Zach Kwik</h2>
           </div>
 
-          <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20">
-            <blockquote className="text-xl sm:text-2xl text-gray-300 leading-relaxed text-center italic">
-              "I founded Kwik Claims to help property owners avoid the confusion and frustration that often comes with property insurance claims. I personally review every policy and prepare every report, so you can be confident that your claim is handled with care and attention to detail."
-            </blockquote>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Photo - Left Side */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative">
+                <img
+                  src="/images/photo_2025-09-15_19-01-00.jpg"
+                  alt="Zach Kwik"
+                  className="w-80 h-80 sm:w-96 sm:h-96 object-cover rounded-2xl border-4 border-black shadow-2xl"
+                />
+              </div>
+            </div>
+
+            {/* Text - Right Side */}
+            <div className="flex justify-center lg:justify-start">
+              <div className="max-w-lg">
+                <blockquote className="text-xl sm:text-2xl text-white leading-relaxed italic mb-8">
+                  "I founded Kwik Claims to help property owners avoid the confusion and frustration that often comes with property insurance claims. I personally review every policy and prepare every report, so you can be confident that your claim is handled with care and attention to detail."
+                </blockquote>
+                
+                <div className="text-center lg:text-left">
+                  <a
+                    href="tel:3463749083"
+                    className="inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-[#FF0000] to-[#C20F1F] text-white rounded-xl hover:shadow-lg hover:shadow-[#FF0000]/25 transition-all duration-300 font-semibold text-lg transform hover:scale-105"
+                  >
+                    <Phone className="w-6 h-6" />
+                    <span>Call Zach: (346) 374-9083</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
