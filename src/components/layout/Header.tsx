@@ -32,18 +32,12 @@ export const Header: React.FC<HeaderProps> = ({
 
   const menuItems = [
     { id: 'projects', label: 'Projects', emoji: '🏠' },
-    { id: 'todos', label: 'To-Do List', emoji: '✅' },
-    { id: 'inspection', label: 'Inspection Report', emoji: '📋' },
-    { id: 'follow-ups', label: 'Follow-Ups', emoji: '📞' },
-    { id: 'updates', label: 'Updates', emoji: '📢' },
+    { id: 'portal', label: 'Portal', emoji: '🌐' },
     { id: 'how-it-works', label: 'How It Works', emoji: '📖' },
     { id: 'our-work', label: 'Our Work', emoji: '🏗️' },
-    { id: 'documents', label: 'Documents', emoji: '📄' },
-    { id: 'financial', label: 'Financial', emoji: '💰' },
-    { id: 'process', label: 'Process', emoji: '📋' },
-    { id: 'debug', label: 'Sheets Debug', emoji: '🐛' },
+    { id: 'our-process', label: 'Our Process', emoji: '📋' },
     { id: 'badge', label: 'Badge', emoji: '🏆' },
-    { id: 'loss-date', label: 'Loss Date', emoji: '📅' },
+    { id: 'recent-storms', label: 'Recent Storms', emoji: '📅' },
     { id: 'account-settings', label: 'Account Settings', emoji: '⚙️' },
   ];
 

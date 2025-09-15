@@ -12,12 +12,12 @@ import { ProjectsPage } from './components/ProjectsPage';
 import { UpdatesPage } from './components/UpdatesPage';
 import { HowItWorksPage } from './components/HowItWorksPage';
 import { JobDetailPage } from './components/JobDetailPage';
-import { SheetsDebugPage } from './components/SheetsDebugPage';
 import { OurWorkPage } from './components/OurWorkPage';
 import { InspectionReportPage } from './components/InspectionReportPage';
 import { FollowUpsPage } from './components/FollowUpsPage';
 import { BadgePage } from './components/BadgePage';
 import { LossDatePage } from './components/LossDatePage';
+import { PortalPage } from './components/PortalPage';
 
 function App() {
   const { isAuthenticated, loading, login, logout } = useAuth();
@@ -56,20 +56,20 @@ function App() {
         return 'Our Work';
       case 'financial':
         return 'Financial';
-      case 'process':
-        return 'Process';
+      case 'our-process':
+        return 'Our Process';
       case 'todos':
         return 'To-Do List';
-      case 'debug':
-        return 'Sheets Debug';
       case 'inspection':
         return 'Inspection Report';
       case 'follow-ups':
         return 'Follow-Ups';
       case 'badge':
         return 'Badge';
-      case 'loss-date':
-        return 'Loss Date';
+      case 'recent-storms':
+        return 'Recent Storms';
+      case 'portal':
+        return 'Portal';
       default:
         return 'Phoenix';
     }
@@ -98,13 +98,13 @@ function App() {
             {currentPage === 'our-work' && <OurWorkPage />}
             {currentPage === 'documents' && <PhoenixFormsApp onNavigateToMainAppPage={setCurrentPage} />}
             {currentPage === 'financial' && <FinancialPage />}
-            {currentPage === 'process' && <ProcessPage />}
+            {currentPage === 'our-process' && <ProcessPage />}
             {currentPage === 'todos' && <TodoPage />}
-            {currentPage === 'debug' && <SheetsDebugPage />}
             {currentPage === 'inspection' && <InspectionReportPage />}
             {currentPage === 'follow-ups' && <FollowUpsPage />}
             {currentPage === 'badge' && <BadgePage />}
-            {currentPage === 'loss-date' && <LossDatePage />}
+            {currentPage === 'recent-storms' && <LossDatePage />}
+            {currentPage === 'portal' && <PortalPage onNavigate={setCurrentPage} />}
           </>
         } />
       </Routes>
