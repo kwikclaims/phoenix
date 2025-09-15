@@ -1,71 +1,7 @@
 import React from 'react';
-import { BookOpen, AlertTriangle, Wrench, Clock, Eye, ChevronLeft, ChevronRight, Phone, CheckCircle, FileText, Target, Users, Shield } from 'lucide-react';
-import SafeImg from './SafeImg';
-import { threeTabImages, architecturalImages, damageImages, collateralDamageImages } from '../data/imageRegistry';
-import { ImageDebugPanel } from './ImageDebugPanel';
+import { BookOpen, Phone, Target, Eye, Clock, Shield } from 'lucide-react';
 
 export const HowItWorksPage: React.FC = () => {
-  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
-  const [currentCollateralImageIndex, setCurrentCollateralImageIndex] = React.useState(0);
-  const [currentArchitecturalImageIndex, setCurrentArchitecturalImageIndex] = React.useState(0);
-  const [current3TabImageIndex, setCurrent3TabImageIndex] = React.useState(0);
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % damageImages.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + damageImages.length) % damageImages.length);
-  };
-
-  const goToImage = (index: number) => {
-    setCurrentImageIndex(index);
-  };
-
-  const nextCollateralImage = () => {
-    setCurrentCollateralImageIndex((prev) => (prev + 1) % collateralDamageImages.length);
-  };
-
-  const prevCollateralImage = () => {
-    setCurrentCollateralImageIndex((prev) => (prev - 1 + collateralDamageImages.length) % collateralDamageImages.length);
-  };
-
-  const goToCollateralImage = (index: number) => {
-    setCurrentCollateralImageIndex(index);
-  };
-
-  const nextArchitecturalImage = () => {
-    setCurrentArchitecturalImageIndex((prev) => (prev + 1) % architecturalImages.length);
-  };
-
-  const prevArchitecturalImage = () => {
-    setCurrentArchitecturalImageIndex((prev) => (prev - 1 + architecturalImages.length) % architecturalImages.length);
-  };
-
-  const goToArchitecturalImage = (index: number) => {
-    setCurrentArchitecturalImageIndex(index);
-  };
-
-  const next3TabImage = () => {
-    setCurrent3TabImageIndex((prev) => (prev + 1) % threeTabImages.length);
-  };
-
-  const prev3TabImage = () => {
-    setCurrent3TabImageIndex((prev) => (prev - 1 + threeTabImages.length) % threeTabImages.length);
-  };
-
-  const goTo3TabImage = (index: number) => {
-    setCurrent3TabImageIndex(index);
-  };
-
-  // Collect all image paths for debugging
-  const allImagePaths = [
-    ...damageImages,
-    ...collateralDamageImages,
-    ...architecturalImages,
-    ...threeTabImages
-  ];
-
   const stages = [
     {
       id: 1,
@@ -136,6 +72,156 @@ export const HowItWorksPage: React.FC = () => {
       description: 'Once every detail is closed out, you have a fully restored property and peace of mind knowing nothing was missed.',
       icon: '✅',
       color: 'from-indigo-500 to-indigo-600'
+    }
+  ];
+
+  const damageTypes = [
+    {
+      emoji: '🌪️',
+      title: 'Wind & Storm Damage',
+      items: [
+        'Missing, lifted, or creased shingles',
+        'Broken seals / shingle tabs',
+        'Loose or detached ridge caps',
+        'Detached flashing',
+        'Damaged roof vents',
+        'Bent or detached gutters & downspouts',
+        'Detached siding, soffit, fascia',
+        'Fence blowdowns',
+        'Tree impact damage (roof, walls, vehicles)',
+        'Detached exterior fixtures (awnings, shutters, etc.)'
+      ]
+    },
+    {
+      emoji: '🧊',
+      title: 'Hail Damage',
+      items: [
+        'Circular impact marks on shingles or siding',
+        'Granule loss exposing asphalt mat',
+        'Cracked shingles or fractured fiberglass mats',
+        'Dents on gutters, downspouts, siding, AC units',
+        'Broken skylights',
+        'Damaged window screens',
+        'Soft spots and bruising on roofing'
+      ]
+    },
+    {
+      emoji: '💧',
+      title: 'Water Damage',
+      items: [
+        'Roof or siding leaks',
+        'Ceiling stains, bubbling paint',
+        'Swollen drywall or baseboards',
+        'Flooring buckling, warping, or staining',
+        'Wet insulation in attic or crawl space',
+        'Mold growth or musty odor',
+        'Foundation seepage',
+        'Appliance leaks (water heaters, dishwashers)'
+      ]
+    },
+    {
+      emoji: '🔥',
+      title: 'Fire & Smoke Damage',
+      items: [
+        'Structural fire loss (partial or total)',
+        'Smoke damage to walls, ceilings, contents',
+        'Soot contamination (HVAC, ductwork, appliances)',
+        'Water damage from firefighting efforts',
+        'Odor removal / deodorization needs'
+      ]
+    },
+    {
+      emoji: '⚡',
+      title: 'Lightning & Electrical Surge',
+      items: [
+        'Damaged wiring or breaker panels',
+        'Destroyed electronics or appliances',
+        'HVAC control board failures',
+        'Fire ignition from strike'
+      ]
+    },
+    {
+      emoji: '❄️',
+      title: 'Snow, Ice & Freeze Damage',
+      items: [
+        'Ice damming on roofs leading to interior leaks',
+        'Frozen / burst pipes',
+        'Gutter separation from ice weight',
+        'Roof structure stress from heavy snow loads'
+      ]
+    },
+    {
+      emoji: '🌊',
+      title: 'Flood / Groundwater Intrusion',
+      items: [
+        'Basement water damage',
+        'Foundation cracks or hydrostatic pressure issues',
+        'Contaminated contents',
+        'Flooring, drywall, and insulation replacement needs'
+      ]
+    },
+    {
+      emoji: '🪟',
+      title: 'Windows, Doors & Openings',
+      items: [
+        'Broken or cracked glass',
+        'Frame warping or impact cracks',
+        'Seal failures causing fogging',
+        'Weatherstripping or hardware damage'
+      ]
+    },
+    {
+      emoji: '🏠',
+      title: 'Exterior Building Envelope',
+      items: [
+        'Siding cracks, holes, or warping',
+        'Stucco delamination',
+        'Masonry cracks from impact',
+        'Damaged exterior paint or coatings'
+      ]
+    },
+    {
+      emoji: '🧰',
+      title: 'Mechanical & Systems',
+      items: [
+        'HVAC condenser coil or fan damage',
+        'Unit displacement',
+        'Broken ductwork or registers',
+        'Water heater, boiler, or furnace damage',
+        'Electrical panel surges'
+      ]
+    },
+    {
+      emoji: '🪑',
+      title: 'Interior Finishes & Contents',
+      items: [
+        'Cabinets, countertops, vanities (water or smoke damage)',
+        'Drywall & trim replacement',
+        'Carpet, hardwood, LVP flooring damage',
+        'Furniture or personal property inventory losses'
+      ]
+    },
+    {
+      emoji: '🏢',
+      title: 'Commercial-Specific Damages',
+      items: [
+        'Flat roof membrane tears, punctures, seam failures',
+        'Damaged rooftop HVAC / mechanical units',
+        'Business interruption impacts (loss of revenue)',
+        'Equipment damage (industrial machinery, POS systems)',
+        'Tenant improvements (TIs) damage'
+      ]
+    },
+    {
+      emoji: '🪨',
+      title: 'Other / Miscellaneous Perils',
+      items: [
+        'Vehicle impact to structure',
+        'Vandalism / theft damage',
+        'Collapse from hidden decay',
+        'Construction defects discovered during claim',
+        'Ordinance or law upgrades (code-required repairs)'
+      ]
     }
   ];
 
@@ -300,6 +386,47 @@ export const HowItWorksPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Types of Damages We Document */}
+      <section className="bg-gradient-to-br from-gray-900 to-black py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <span className="text-3xl">📋</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Types of Damages We Document</h2>
+            <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+              Common damage patterns we identify and document during comprehensive property inspections
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {damageTypes.map((damageType, index) => (
+              <div
+                key={index}
+                className="bg-black/60 backdrop-blur-xl rounded-2xl p-6 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300"
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                  animation: 'slideInUp 0.6s ease-out forwards'
+                }}
+              >
+                <div className="w-12 h-12 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-xl flex items-center justify-center mb-4">
+                  <span className="text-2xl">{damageType.emoji}</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-4">{damageType.title}</h3>
+                <ul className="space-y-2 text-gray-300">
+                  {damageType.items.map((item, itemIndex) => (
+                    <li key={itemIndex} className="flex items-start space-x-2">
+                      <span className="text-[#FF0000] mt-1 flex-shrink-0">•</span>
+                      <span className="text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Call to Action */}
       <section className="bg-gradient-to-br from-[#FF0000] to-[#C20F1F] py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -323,260 +450,18 @@ export const HowItWorksPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Original Sections - Damage Examples */}
-      <section className="bg-gradient-to-br from-gray-900 to-black py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <span className="text-3xl">⚠️</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Types of Damages We Document</h2>
-            <p className="text-gray-400 text-lg max-w-3xl mx-auto">
-              Common damage patterns we identify and document during comprehensive property inspections
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-6 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-xl flex items-center justify-center mb-4">
-                <span className="text-2xl">🌪️</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Wind Damage</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li>• Lifted or missing shingles</li>
-                <li>• Exposed nail heads</li>
-                <li>• Creased or folded materials</li>
-                <li>• Granule loss along edges</li>
-              </ul>
-            </div>
-
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-6 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-xl flex items-center justify-center mb-4">
-                <span className="text-2xl">🧊</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Hail Damage</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li>• Circular impact marks</li>
-                <li>• Granule displacement</li>
-                <li>• Exposed asphalt mat</li>
-                <li>• Bruising or soft spots</li>
-              </ul>
-            </div>
-
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-6 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-xl flex items-center justify-center mb-4">
-                <span className="text-2xl">💧</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Water Damage</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li>• Interior staining</li>
-                <li>• Ceiling damage</li>
-                <li>• Flooring issues</li>
-                <li>• Mold or moisture problems</li>
-              </ul>
-            </div>
-
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-6 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-xl flex items-center justify-center mb-4">
-                <span className="text-2xl">🏠</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Siding & Gutters</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li>• Impact dents and cracks</li>
-                <li>• Gutter separation</li>
-                <li>• Downspout damage</li>
-                <li>• Trim and fascia issues</li>
-              </ul>
-            </div>
-
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-6 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-xl flex items-center justify-center mb-4">
-                <span className="text-2xl">🪟</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Windows & Doors</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li>• Broken or cracked glass</li>
-                <li>• Frame damage</li>
-                <li>• Screen tears</li>
-                <li>• Seal failures</li>
-              </ul>
-            </div>
-
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-6 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-xl flex items-center justify-center mb-4">
-                <span className="text-2xl">❄️</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">HVAC Systems</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li>• Condenser coil damage</li>
-                <li>• Unit displacement</li>
-                <li>• Ductwork issues</li>
-                <li>• Equipment malfunction</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Damage Examples Slider */}
-          <div className="mt-16 bg-black/60 backdrop-blur-xl rounded-2xl border border-[#FF0000]/20 overflow-hidden">
-            <div className="bg-black/40 border-b border-[#FF0000]/20 p-6">
-              <h3 className="text-2xl font-bold text-white text-center">Damage Documentation Examples</h3>
-              <p className="text-gray-400 text-center mt-2">Real examples of storm damage we document and report</p>
-            </div>
-            
-            <div className="p-6">
-              {/* Main Image Display */}
-              <div className="relative bg-gray-900/50 rounded-xl overflow-hidden mb-6">
-                <div className="aspect-video relative">
-                  <SafeImg
-                    srcPath={damageImages[currentImageIndex]}
-                    alt={`Damage Example ${currentImageIndex + 1}`}
-                    className="w-full h-full object-contain"
-                  />
-                  
-                  {/* Navigation Arrows */}
-                  <button
-                    onClick={prevImage}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-black/90 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  
-                  <button
-                    onClick={nextImage}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-black/90 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-                  
-                  {/* Image Counter */}
-                  <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium">
-                    {currentImageIndex + 1} / {damageImages.length}
-                  </div>
-                </div>
-              </div>
-              
-              {/* Thumbnail Navigation */}
-              <div className="flex justify-center space-x-3 mb-4">
-                {damageImages.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToImage(index)}
-                    className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
-                      index === currentImageIndex
-                        ? 'border-[#FF0000] scale-110'
-                        : 'border-gray-600 hover:border-[#FF0000]/50 hover:scale-105'
-                    }`}
-                  >
-                    <SafeImg
-                      srcPath={image}
-                      alt={`Damage Thumbnail ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-              
-              {/* Dot Indicators */}
-              <div className="flex justify-center space-x-2">
-                {damageImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToImage(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentImageIndex
-                        ? 'bg-[#FF0000] scale-125'
-                        : 'bg-gray-600 hover:bg-[#FF0000]/50'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Collateral Damage Examples Slider */}
-          <div className="mt-16 bg-black/60 backdrop-blur-xl rounded-2xl border border-[#FF0000]/20 overflow-hidden">
-            <div className="bg-black/40 border-b border-[#FF0000]/20 p-6">
-              <h3 className="text-2xl font-bold text-white text-center">Collateral Damage Examples</h3>
-              <p className="text-gray-400 text-center mt-2">Additional storm damage to gutters, siding, and other property components</p>
-            </div>
-            
-            <div className="p-6">
-              {/* Main Image Display */}
-              <div className="relative bg-gray-900/50 rounded-xl overflow-hidden mb-6">
-                <div className="aspect-video relative">
-                  <SafeImg
-                    srcPath={collateralDamageImages[currentCollateralImageIndex]}
-                    alt={`Collateral Damage Example ${currentCollateralImageIndex + 1}`}
-                    className="w-full h-full object-contain"
-                  />
-                  
-                  {/* Navigation Arrows */}
-                  <button
-                    onClick={prevCollateralImage}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-black/90 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  
-                  <button
-                    onClick={nextCollateralImage}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/70 hover:bg-black/90 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-                  
-                  {/* Image Counter */}
-                  <div className="absolute top-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-sm font-medium">
-                    {currentCollateralImageIndex + 1} / {collateralDamageImages.length}
-                  </div>
-                </div>
-              </div>
-              
-              {/* Thumbnail Navigation */}
-              <div className="flex justify-center space-x-3 mb-4">
-                {collateralDamageImages.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToCollateralImage(index)}
-                    className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
-                      index === currentCollateralImageIndex
-                        ? 'border-[#FF0000] scale-110'
-                        : 'border-gray-600 hover:border-[#FF0000]/50 hover:scale-105'
-                    }`}
-                  >
-                    <SafeImg
-                      srcPath={image}
-                      alt={`Collateral Damage Thumbnail ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-              
-              {/* Dot Indicators */}
-              <div className="flex justify-center space-x-2">
-                {collateralDamageImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToCollateralImage(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentCollateralImageIndex
-                        ? 'bg-[#FF0000] scale-125'
-                        : 'bg-gray-600 hover:bg-[#FF0000]/50'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Debug Panel */}
-      <ImageDebugPanel 
-        imagePaths={allImagePaths}
-        title="How It Works Images"
-      />
+      <style jsx>{`
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 };

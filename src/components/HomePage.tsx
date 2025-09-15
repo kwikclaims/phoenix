@@ -5,8 +5,16 @@ export const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-gray-900 to-black px-4 sm:px-6 lg:px-8 py-20">
-        <div className="max-w-4xl mx-auto text-center">
+      <section 
+        className="relative bg-gradient-to-br from-gray-900 to-black px-4 sm:px-6 lg:px-8 py-20 overflow-hidden"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url("https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        <div className="max-w-4xl mx-auto text-center relative z-10">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
             Your Secret Weapon When the Insurance Company Plays Hardball
           </h1>
@@ -19,7 +27,7 @@ export const HomePage: React.FC = () => {
             className="inline-flex items-center space-x-3 px-12 py-6 bg-gradient-to-r from-[#FF0000] to-[#C20F1F] text-white rounded-2xl hover:shadow-2xl hover:shadow-[#FF0000]/25 transition-all duration-300 font-bold text-xl transform hover:scale-105"
           >
             <Phone className="w-8 h-8" />
-            <span>Call Now: (346) 374-9083</span>
+            <span>Call for Consultation: (346) 374-9083</span>
           </a>
         </div>
       </section>
@@ -37,7 +45,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
                 <span className="text-2xl">📋</span>
               </div>
@@ -45,7 +53,7 @@ export const HomePage: React.FC = () => {
               <p className="text-gray-700">You shouldn't need a law degree to understand what's covered.</p>
             </div>
 
-            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
                 <span className="text-2xl">💰</span>
               </div>
@@ -53,7 +61,7 @@ export const HomePage: React.FC = () => {
               <p className="text-gray-700">Most first offers aren't anywhere near what repairs really cost.</p>
             </div>
 
-            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
                 <span className="text-2xl">🔨</span>
               </div>
@@ -61,7 +69,7 @@ export const HomePage: React.FC = () => {
               <p className="text-gray-700">Some contractors inflate costs or take advantage of desperate homeowners.</p>
             </div>
 
-            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
                 <span className="text-2xl">⏰</span>
               </div>
@@ -69,7 +77,7 @@ export const HomePage: React.FC = () => {
               <p className="text-gray-700">Without perfect documentation, claims can drag on for months.</p>
             </div>
 
-            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 md:col-span-2">
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 md:col-span-2 hover:shadow-lg transition-all duration-300">
               <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
                 <span className="text-2xl">😞</span>
               </div>
@@ -87,8 +95,16 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* What I Do Section */}
-      <section className="bg-gradient-to-br from-gray-900 to-black py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section 
+        className="relative py-20 overflow-hidden"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url("https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
               I'm Here to Level the Playing Field.
@@ -96,7 +112,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20">
+            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300">
               <div className="w-12 h-12 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-xl flex items-center justify-center mb-4">
                 <FileText className="w-6 h-6 text-[#FF0000]" />
               </div>
@@ -104,7 +120,7 @@ export const HomePage: React.FC = () => {
               <p className="text-gray-300">I translate the fine print into plain English.</p>
             </div>
 
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20">
+            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300">
               <div className="w-12 h-12 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-xl flex items-center justify-center mb-4">
                 <span className="text-2xl">📸</span>
               </div>
@@ -112,7 +128,7 @@ export const HomePage: React.FC = () => {
               <p className="text-gray-300">Professional photo reports that insurers respect.</p>
             </div>
 
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20">
+            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300">
               <div className="w-12 h-12 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-xl flex items-center justify-center mb-4">
                 <span className="text-2xl">💯</span>
               </div>
@@ -120,7 +136,7 @@ export const HomePage: React.FC = () => {
               <p className="text-gray-300">Know the real cost before you accept any offer.</p>
             </div>
 
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20">
+            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300">
               <div className="w-12 h-12 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-xl flex items-center justify-center mb-4">
                 <Target className="w-6 h-6 text-[#FF0000]" />
               </div>
@@ -128,7 +144,7 @@ export const HomePage: React.FC = () => {
               <p className="text-gray-300">I arm you with the right words and approach.</p>
             </div>
 
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20 md:col-span-2">
+            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20 md:col-span-2 hover:border-[#FF0000]/40 transition-all duration-300">
               <div className="w-12 h-12 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-xl flex items-center justify-center mb-4">
                 <Users className="w-6 h-6 text-[#FF0000]" />
               </div>
@@ -208,9 +224,123 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* Who I Work With Section */}
+      <section className="bg-gray-50 py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+              Residential & Commercial Property Owners
+            </h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+              From single-family homes to multi-unit buildings and commercial properties, I help property owners get organized, document damages, and move through the claims process with clarity and confidence.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div 
+              className="relative rounded-2xl overflow-hidden shadow-2xl h-80"
+              style={{
+                backgroundImage: 'url("https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div className="absolute bottom-6 left-6">
+                <h3 className="text-2xl font-bold text-white mb-2">Residential Properties</h3>
+                <p className="text-white/90">Single-family homes, condos, townhomes</p>
+              </div>
+            </div>
+
+            <div 
+              className="relative rounded-2xl overflow-hidden shadow-2xl h-80"
+              style={{
+                backgroundImage: 'url("https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div className="absolute bottom-6 left-6">
+                <h3 className="text-2xl font-bold text-white mb-2">Commercial Properties</h3>
+                <p className="text-white/90">Office buildings, retail spaces, warehouses</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Process Preview Section */}
+      <section className="bg-white py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+              A Proven, Organized Approach
+            </h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+              My seven-stage process covers everything from the first inspection to the final payment.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🔍</span>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Inspection & Documentation</h3>
+              <p className="text-gray-600 text-sm">Comprehensive property assessment</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📋</span>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Report Preparation & Submission</h3>
+              <p className="text-gray-600 text-sm">Professional claim package</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">⏳</span>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Claim Review & Approval</h3>
+              <p className="text-gray-600 text-sm">Insurance review process</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">💰</span>
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Project Completion & Final Payment</h3>
+              <p className="text-gray-600 text-sm">Full restoration and settlement</p>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <a
+              href="/how-it-works"
+              className="inline-flex items-center space-x-2 px-8 py-4 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-all duration-300 font-semibold text-lg transform hover:scale-105"
+            >
+              <span>See Full Process</span>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Founder Section */}
-      <section className="bg-gradient-to-br from-gray-900 to-black py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section 
+        className="relative py-20 overflow-hidden"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url("https://images.pexels.com/photos/416405/pexels-photo-416405.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed'
+        }}
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <div className="w-24 h-24 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-8">
               <span className="text-4xl">👨‍💼</span>
@@ -220,9 +350,7 @@ export const HomePage: React.FC = () => {
 
           <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20">
             <blockquote className="text-xl sm:text-2xl text-gray-300 leading-relaxed text-center italic">
-              "I built Kwik Claims because I watched too many good people get bullied by insurers and exploited by contractors after a loss.
-              <br /><br />
-              Today, I work with a handful of clients each month to protect their homes, businesses, and financial futures — and to make sure they're treated fairly."
+              "I founded Kwik Claims to help property owners avoid the confusion and frustration that often comes with property insurance claims. I personally review every policy and prepare every report, so you can be confident that your claim is handled with care and attention to detail."
             </blockquote>
           </div>
         </div>
@@ -264,6 +392,17 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </footer>
+
+      {/* Sticky Mobile CTA */}
+      <div className="fixed bottom-4 left-4 right-4 z-50 md:hidden">
+        <a
+          href="tel:3463749083"
+          className="flex items-center justify-center space-x-2 w-full py-4 bg-gradient-to-r from-[#FF0000] to-[#C20F1F] text-white rounded-xl shadow-2xl font-bold text-lg transform hover:scale-105 transition-all duration-300"
+        >
+          <Phone className="w-6 h-6" />
+          <span>Call Now: (346) 374-9083</span>
+        </a>
+      </div>
     </div>
   );
 };
