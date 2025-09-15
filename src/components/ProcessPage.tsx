@@ -216,6 +216,7 @@ export const ProcessPage: React.FC = () => {
             <ClipboardList className="w-10 h-10 text-[#FF0000]" />
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">Our Process</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">The Official Process</h1>
           <p className="text-gray-400 mb-4">Step-by-step guide from Google Sheets</p>
           <div className="flex items-center justify-center space-x-4">
             {lastUpdated && (

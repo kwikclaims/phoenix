@@ -29,7 +29,6 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'home', label: 'Home', emoji: '🏠' },
     { id: 'how-it-works', label: 'How It Works', emoji: '📖' },
     { id: 'my-work', label: 'My Work', emoji: '🏗️' },
-    { id: 'my-process', label: 'My Process', emoji: '📋' },
     { id: 'recent-storms', label: 'Recent Storms', emoji: '📅' },
     { id: 'portal', label: 'Portal', emoji: '🌐' },
   ];
