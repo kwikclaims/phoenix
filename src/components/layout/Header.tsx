@@ -26,9 +26,10 @@ export const Header: React.FC<HeaderProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
+    { id: 'home', label: 'Home', emoji: '🏠' },
     { id: 'how-it-works', label: 'How It Works', emoji: '📖' },
-    { id: 'our-work', label: 'Our Work', emoji: '🏗️' },
-    { id: 'our-process', label: 'Our Process', emoji: '📋' },
+    { id: 'my-work', label: 'My Work', emoji: '🏗️' },
+    { id: 'my-process', label: 'My Process', emoji: '📋' },
     { id: 'about-me', label: 'About Me', emoji: '🏆' },
     { id: 'recent-storms', label: 'Recent Storms', emoji: '📅' },
     { id: 'portal', label: 'Portal', emoji: '🌐' },

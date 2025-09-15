@@ -5,6 +5,7 @@ import { useAuth } from './hooks/useAuth';
 import { LoginForm } from './components/auth/LoginForm';
 import { Header } from './components/layout/Header';
 import { Toaster } from './components/ui/toaster';
+import { HomePage } from './components/HomePage';
 import { ProjectsPage } from './components/ProjectsPage';
 import { HowItWorksPage } from './components/HowItWorksPage';
 import { JobDetailPage } from './components/JobDetailPage';
@@ -21,7 +22,7 @@ import { FollowUpsPage } from './components/FollowUpsPage';
 
 function App() {
   const { loading } = useAuth();
-  const [currentPage, setCurrentPage] = React.useState('projects');
+  const [currentPage, setCurrentPage] = React.useState('home');
   const location = useLocation();
   
   // Check if we're on a preview page
@@ -40,6 +41,8 @@ function App() {
 
   const getPageTitle = () => {
     switch (currentPage) {
+      case 'home':
+        return 'Kwik Claims';
       case 'projects':
         return 'Projects';
       case 'updates':
@@ -48,12 +51,12 @@ function App() {
         return 'How It Works';
       case 'documents':
         return 'Documents';
-      case 'our-work':
-        return 'Our Work';
+      case 'my-work':
+        return 'My Work';
       case 'financial':
         return 'Financial';
-      case 'our-process':
-        return 'Our Process';
+      case 'my-process':
+        return 'My Process';
       case 'todos':
         return 'To-Do List';
       case 'inspection':
@@ -67,7 +70,7 @@ function App() {
       case 'portal':
         return 'Portal';
       default:
-        return 'Phoenix';
+        return 'Kwik Claims';
     }
   };
 
@@ -88,13 +91,14 @@ function App() {
               />
             )}
 
+            {currentPage === 'home' && <HomePage />}
             {currentPage === 'projects' && <ProjectsPage />}
             {currentPage === 'how-it-works' && <HowItWorksPage />}
             {currentPage === 'updates' && <UpdatesPage />}
-            {currentPage === 'our-work' && <OurWorkPage />}
+            {currentPage === 'my-work' && <OurWorkPage />}
             {currentPage === 'documents' && <PhoenixFormsApp onNavigateToMainAppPage={setCurrentPage} />}
             {currentPage === 'financial' && <FinancialPage />}
-            {currentPage === 'our-process' && <ProcessPage />}
+            {currentPage === 'my-process' && <ProcessPage />}
             {currentPage === 'todos' && <TodoPage />}
             {currentPage === 'inspection' && <InspectionReportPage />}
             {currentPage === 'follow-ups' && <FollowUpsPage />}

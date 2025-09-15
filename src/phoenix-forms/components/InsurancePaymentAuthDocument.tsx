@@ -126,7 +126,7 @@ export default function InsurancePaymentAuthDocument({ formData }: Props) {
         <div style={styles.title}>Insurance Claim Payment & Representation Authorization</div>
         <div style={styles.subtitle}>Phoenix Restorations and Construction Solutions LLC</div>
         <div>10334 Vista Meadow Way, Lanham, MD 20706</div>
-        <div>Phone: (301) 450-9487 | MHIC #164678</div>
+        <div>Phone: (346) 374-9083 | MHIC #164678</div>
       </div>
 
       <hr style={{ margin: "16px 0", border: "none", borderTop: "1px solid #000" }} />
@@ -169,7 +169,7 @@ export default function InsurancePaymentAuthDocument({ formData }: Props) {
 
         <div>Contractor:</div>
         <div>
-          Phoenix Restorations and Construction Solutions LLC ("Contractor")
+          Kwik Claims ("Contractor")
         </div>
       </Section>
 
