@@ -415,3 +415,5 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
     </div>
   );
 };
+  )
+}
