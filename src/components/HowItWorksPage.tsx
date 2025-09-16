@@ -23,7 +23,7 @@ export const HowItWorksPage: React.FC = () => {
     {
       id: 2,
       title: 'Report Submission',
-      description: 'Your entire claim package is submitted directly to your insurer, fully organized and ready for review — no sloppy photos, no missing info.',
+      description: 'We guide you through submitting your entire claim file directly to your insurer, fully organized and ready for review — no sloppy photos, no missing info.',
       icon: '📋',
       color: 'from-blue-500 to-blue-600'
     },
@@ -37,12 +37,12 @@ export const HowItWorksPage: React.FC = () => {
     {
       id: 4,
       title: 'Project Completion',
-      description: 'Once approved, we move fast to restore your property:',
+      description: 'Once approved, we help you select a trustworthy contractor so work can be done quickly:',
       details: [
-        'Finalize contract & deductible',
-        'Help you choose materials (roof shingles, siding colors, windows, interior finishes)',
+        'Finalize contract(s) with your contractor(s) & deductible',
+        'Help you choose and order materials (roof shingles, siding colors, windows, interior finishes)',
         'Order materials & schedule crews',
-        'Complete work and take post-completion photos',
+        'Your contractor(s) will complete work and take post-completion photos',
         'Prepare a supplement packet for any additional damage found during repairs'
       ],
       icon: '🔨',
@@ -60,8 +60,12 @@ export const HowItWorksPage: React.FC = () => {
       title: 'Final Payment',
       description: 'We follow up until your insurer releases the final payment, then we send:',
       details: [
-        'Your final receipt',
-        'Any material & labor warranties'
+        'You close out your balance with the contractor(s)',
+        'Pay your contractor to complete the supplemental work.',
+        'Contractor(s) complete supplemental work',
+        'We do a final inspection to make sure the work was completed to standards',
+        'Contractor Issues Warranty and Receipt of Work Completion',
+        'You pay the Consultation Fee for your project'
       ],
       icon: '💰',
       color: 'from-emerald-500 to-emerald-600'
