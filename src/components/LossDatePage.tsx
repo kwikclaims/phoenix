@@ -243,5 +243,3 @@ export const LossDatePage: React.FC = () => {
     </div>
   );
 };
-  )
-}
