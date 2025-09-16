@@ -9,9 +9,9 @@ const ACCEPT_CSV = "text/csv,text/plain,*/*";
 
 // Helper function to get the correct spreadsheet base URL
 const getSpreadsheetBase = (sheetName: string) => {
-  // Use PRCS Finances spreadsheet for financial data
-  if (sheetName === "PHOENIX DEALS") {
-    return `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET.PRCS_FINANCES_SPREADSHEET_ID}`;
+  // Use PRCS spreadsheet for PHOENIX DEALS and PRCS Finances sheets
+  if (sheetName === "PHOENIX DEALS" || sheetName === "PRCS Finances") {
+    return `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET.PRCS_SPREADSHEET_ID}`;
   }
   // Use default spreadsheet for all other sheets
   return `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET.SPREADSHEET_ID}`;

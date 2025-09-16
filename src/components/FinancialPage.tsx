@@ -138,9 +138,9 @@ export const FinancialPage: React.FC = () => {
     setError("");
 
     try {
-      const targetUrl = `https://docs.google.com/spreadsheets/d/1QN8cgRZwsRXgem9SGt948NK_sGYAsH8r9I09xv9PQbw/gviz/tq?tqx=out:csv&sheet=PRCS Finances&range=E1:F10`;
+      const targetUrl = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET.PRCS_SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=PRCS Finances&range=E1:F10`;
       console.log("[FinancialPage] Fetching data from exact URL:", targetUrl);
-      const rows = await loadRowsBySheetName(GOOGLE_SHEET.SHEET_NAMES.FINANCIALS, 'E1:F10');
+      const rows = await loadRowsBySheetName("PRCS Finances", 'E1:F10');
       console.log("[FinancialPage] ===== RAW CSV DATA DEBUG =====");
       console.log("[FinancialPage] Number of rows received:", rows.length);
       console.log("[FinancialPage] Raw rows from PRCS Finances sheet (E1:F10):", JSON.stringify(rows, null, 2));

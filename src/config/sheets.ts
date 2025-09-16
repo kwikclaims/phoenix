@@ -3,14 +3,14 @@ export const GOOGLE_SHEET = {
   // Kwik Claims spreadsheet ID (extracted from the pubhtml URL)
   SPREADSHEET_ID: "1QN8cgRZwsRXgem9SGt948NK_sGYAsH8r9I09xv9PQbw",
 
-  // PRCS Finances spreadsheet ID (extracted from the new pubhtml URL)
-  PRCS_FINANCES_SPREADSHEET_ID: "2PACX-1vSKwqARGG-Efbtgxgwx6rnVry4GtEgVenW7t4lzGkYRZZ6zi9N5FQwc2MDbcmV7Ppvyt8vKjYfKNw0Y",
+  // PRCS spreadsheet ID (extracted from the pubhtml URL)
+  PRCS_SPREADSHEET_ID: "1QN8cgRZwsRXgem9SGt948NK_sGYAsH8r9I09xv9PQbw",
 
   // Page -> Sheet name mapping (no GIDs needed)
   SHEET_NAMES: {
     PROJECTS_AND_JOBS: "Kwik Deals",
     PRCS_PROJECTS: "PHOENIX DEALS",
-    FINANCIALS: "PHOENIX DEALS", // This will use the PRCS_FINANCES_SPREADSHEET_ID
+    FINANCIALS: "PRCS Finances", // This will use the same spreadsheet but different sheet
     PROCESS: "PROCESS",
     TODO: "TODO",
     UPDATES: "UPDATES",
