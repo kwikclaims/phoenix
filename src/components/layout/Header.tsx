@@ -40,21 +40,21 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <div>
-      <header className="bg-black/90 backdrop-blur-xl border-b border-[#00C56F]/20 sticky top-0 z-40">
+      <header className="bg-black/90 backdrop-blur-xl border-b border-[#00C56F]/20 sticky top-0 z-40 animate-slide-in-down">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 animate-fade-in-left animate-delay-200">
               <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-br from-[#FF0000] to-[#C20F1F] rounded-lg flex items-center justify-center">
                 <Zap className="w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 text-black" />
               </div>
               <h1 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white truncate max-w-[120px] sm:max-w-[200px] md:max-w-none">{title}</h1>
             </div>
             
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 animate-fade-in-right animate-delay-300">
               {showDownload && onDownload && (
                 <button
                   onClick={onDownload}
-                  className="p-2 text-[#FF0000] hover:text-white hover:bg-[#FF0000]/20 rounded-lg transition-all duration-300 transform hover:scale-110"
+                  className="p-2 text-[#FF0000] hover:text-white hover:bg-[#FF0000]/20 rounded-lg transition-all duration-300 transform hover:scale-110 hover-lift"
                   title="Download Report"
                 >
                   <Download className="w-5 h-5" />
@@ -63,7 +63,7 @@ export const Header: React.FC<HeaderProps> = ({
               
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 text-[#FF0000] hover:text-white hover:bg-[#FF0000]/20 rounded-lg transition-all duration-300 transform hover:scale-110"
+                className="p-2 text-[#FF0000] hover:text-white hover:bg-[#FF0000]/20 rounded-lg transition-all duration-300 transform hover:scale-110 hover-lift"
               >
                 {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
@@ -73,18 +73,19 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="absolute top-16 right-0 left-0 bg-black/95 backdrop-blur-xl border-b border-[#FF0000]/20 shadow-2xl z-50 max-w-full max-h-[calc(100vh-4rem)] overflow-y-auto">
+          <div className="absolute top-16 right-0 left-0 bg-black/95 backdrop-blur-xl border-b border-[#FF0000]/20 shadow-2xl z-50 max-w-full max-h-[calc(100vh-4rem)] overflow-y-auto animate-slide-in-down">
             <div className="max-w-7xl mx-auto px-4 py-6">
               <nav className="space-y-3">
-                {menuItems.map((item) => (
+                {menuItems.map((item, index) => (
                   <button
                     key={item.id}
                     onClick={() => handleMenuItemClick(item.id)}
-                    className={`w-full text-left px-6 py-4 rounded-xl transition-all duration-300 flex items-center space-x-3 transform hover:scale-105 ${
+                    className={`w-full text-left px-6 py-4 rounded-xl transition-all duration-300 flex items-center space-x-3 transform hover:scale-105 animate-fade-in-left hover-lift ${
                       currentPage === item.id
                         ? 'bg-[#FF0000]/20 text-[#FF0000] border border-[#FF0000]/30'
                         : 'text-white hover:bg-[#FF0000]/10 hover:text-[#FF0000]'
                     }`}
+                    style={{ animationDelay: `${index * 100}ms` }}
                   >
                     <span className="text-lg sm:text-xl flex-shrink-0">{item.emoji}</span>
                     <span className="font-medium truncate">{item.label}</span>

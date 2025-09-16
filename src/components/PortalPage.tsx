@@ -142,12 +142,12 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
     <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="w-20 h-20 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+        <div className="text-center mb-12 animate-fade-in-up">
+          <div className="w-20 h-20 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 animate-scale-in animate-delay-200">
             <Grid3X3 className="w-10 h-10 text-[#FF0000]" />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">Portal</h1>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4 animate-fade-in-up animate-delay-300">Portal</h1>
+          <p className="text-gray-400 text-lg max-w-3xl mx-auto animate-fade-in-up animate-delay-400">
             Access all your tools and resources from this central hub
           </p>
         </div>
@@ -158,10 +158,9 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
             <button
               key={item.id}
               onClick={() => onNavigate(item.id)}
-              className={`group bg-black/60 backdrop-blur-xl rounded-2xl border border-[#FF0000]/20 p-8 hover:border-[#FF0000]/40 transition-all duration-300 text-left transform hover:scale-105 ${item.hoverColor}`}
+              className={`group bg-black/60 backdrop-blur-xl rounded-2xl border border-[#FF0000]/20 p-8 hover:border-[#FF0000]/40 transition-all duration-300 text-left transform hover:scale-105 animate-fade-in-up hover-lift ${item.hoverColor}`}
               style={{
                 animationDelay: `${index * 100}ms`,
-                animation: 'slideInUp 0.6s ease-out forwards'
               }}
             >
               <div className={`w-16 h-16 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
@@ -187,19 +186,19 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
         </div>
 
         {/* Quick Stats */}
-        <div className="mt-16 bg-black/60 backdrop-blur-xl rounded-2xl border border-[#FF0000]/20 p-8">
+        <div className="mt-16 bg-black/60 backdrop-blur-xl rounded-2xl border border-[#FF0000]/20 p-8 animate-scale-in animate-delay-800 hover-lift">
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-white mb-6">Portal Overview</h3>
+            <h3 className="text-2xl font-bold text-white mb-6 animate-fade-in-up animate-delay-300">Portal Overview</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gray-900/50 rounded-xl p-6">
+              <div className="bg-gray-900/50 rounded-xl p-6 animate-fade-in-up animate-delay-400 hover-lift">
                 <div className="text-3xl font-bold text-[#FF0000] mb-2">6</div>
                 <div className="text-gray-400">Available Tools</div>
               </div>
-              <div className="bg-gray-900/50 rounded-xl p-6">
+              <div className="bg-gray-900/50 rounded-xl p-6 animate-fade-in-up animate-delay-500 hover-lift">
                 <div className="text-3xl font-bold text-white mb-2">100%</div>
                 <div className="text-gray-400">System Uptime</div>
               </div>
-              <div className="bg-gray-900/50 rounded-xl p-6">
+              <div className="bg-gray-900/50 rounded-xl p-6 animate-fade-in-up animate-delay-600 hover-lift">
                 <div className="text-3xl font-bold text-green-400 mb-2">Live</div>
                 <div className="text-gray-400">Data Sync</div>
               </div>
@@ -208,18 +207,6 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </div>
   );
 };

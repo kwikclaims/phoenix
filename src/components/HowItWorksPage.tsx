@@ -232,17 +232,17 @@ export const HowItWorksPage: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <div className="px-4 sm:px-6 lg:px-8 py-16">
+      <div className="px-4 sm:px-6 lg:px-8 py-16 animate-fade-in">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="w-20 h-20 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <div className="w-20 h-20 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 animate-scale-in animate-delay-200">
             <BookOpen className="w-10 h-10 text-[#FF0000]" />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">How It Works</h1>
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#FF0000] mb-6">A Clear, Step-by-Step Path to a Fully Resolved Claim</h2>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
+          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4 animate-fade-in-up animate-delay-300">How It Works</h1>
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#FF0000] mb-6 animate-fade-in-up animate-delay-400">A Clear, Step-by-Step Path to a Fully Resolved Claim</h2>
+          <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed animate-fade-in-up animate-delay-500">
             Insurance claims are stressful — especially when you're dealing with storm damage, water leaks, or property-wide losses. Most people don't know what to document, what to say, or who to trust.
           </p>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed mt-4">
+          <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed mt-4 animate-fade-in-up animate-delay-600">
             That's why I follow a seven-stage, end-to-end process that covers every detail — from your first inspection through final payment — so nothing slips through the cracks and you stay in control.
           </p>
         </div>
@@ -255,21 +255,22 @@ export const HowItWorksPage: React.FC = () => {
             {stages.map((stage, index) => (
               <div
                 key={stage.id}
-                className={`${index % 2 === 0 ? 'bg-gradient-to-br from-gray-900 to-black' : 'bg-gradient-to-br from-[#FF0000] to-[#C20F1F]'} py-16 rounded-3xl`}
+                className={`${index % 2 === 0 ? 'bg-gradient-to-br from-gray-900 to-black' : 'bg-gradient-to-br from-[#FF0000] to-[#C20F1F]'} py-16 rounded-3xl animate-fade-in-up hover-lift`}
+                style={{ animationDelay: `${index * 200}ms` }}
               >
                 <div className="max-w-4xl mx-auto px-8">
                   <div className="text-center mb-12">
-                    <div className={`w-20 h-20 ${index % 2 === 0 ? 'bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20' : 'bg-black/20'} rounded-2xl flex items-center justify-center mx-auto mb-6`}>
+                    <div className={`w-20 h-20 ${index % 2 === 0 ? 'bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20' : 'bg-black/20'} rounded-2xl flex items-center justify-center mx-auto mb-6 animate-scale-in`}>
                       <span className="text-4xl">{stage.icon}</span>
                     </div>
-                    <div className={`text-lg font-semibold ${index % 2 === 0 ? 'text-[#FF0000]' : 'text-white/90'} mb-2`}>
+                    <div className={`text-lg font-semibold ${index % 2 === 0 ? 'text-[#FF0000]' : 'text-white/90'} mb-2 animate-fade-in-up animate-delay-200`}>
                       Stage {stage.id}
                     </div>
-                    <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                    <h3 className="text-3xl sm:text-4xl font-bold text-white mb-4 animate-fade-in-up animate-delay-300">
                       {stage.title}
                     </h3>
                     {stage.subtitle && (
-                      <p className={`text-lg ${index % 2 === 0 ? 'text-gray-400' : 'text-white/80'} mb-6`}>
+                      <p className={`text-lg ${index % 2 === 0 ? 'text-gray-400' : 'text-white/80'} mb-6 animate-fade-in-up animate-delay-400`}>
                         {stage.subtitle}
                       </p>
                     )}
@@ -277,14 +278,14 @@ export const HowItWorksPage: React.FC = () => {
 
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="space-y-6">
-                      <div className={`${index % 2 === 0 ? 'bg-black/60 backdrop-blur-xl border-[#FF0000]/20' : 'bg-black/20 backdrop-blur-xl border-white/10'} rounded-2xl p-6 border`}>
+                      <div className={`${index % 2 === 0 ? 'bg-black/60 backdrop-blur-xl border-[#FF0000]/20' : 'bg-black/20 backdrop-blur-xl border-white/10'} rounded-2xl p-6 border animate-fade-in-left animate-delay-500 hover-lift`}>
                         <p className={`${index % 2 === 0 ? 'text-gray-300' : 'text-white/90'} leading-relaxed text-lg`}>
                           {stage.description}
                         </p>
                       </div>
 
                       {stage.details && (
-                        <div className={`${index % 2 === 0 ? 'bg-black/60 backdrop-blur-xl border-[#FF0000]/20' : 'bg-black/20 backdrop-blur-xl border-white/10'} rounded-2xl p-6 border`}>
+                        <div className={`${index % 2 === 0 ? 'bg-black/60 backdrop-blur-xl border-[#FF0000]/20' : 'bg-black/20 backdrop-blur-xl border-white/10'} rounded-2xl p-6 border animate-fade-in-left animate-delay-600 hover-lift`}>
                           <h4 className={`text-xl font-bold ${index % 2 === 0 ? 'text-white' : 'text-white'} mb-4`}>
                             What Happens Here:
                           </h4>
@@ -300,7 +301,7 @@ export const HowItWorksPage: React.FC = () => {
                       )}
 
                       {stage.goal && (
-                        <div className={`${index % 2 === 0 ? 'bg-[#FF0000]/10 border-[#FF0000]/20' : 'bg-white/10 border-white/20'} rounded-2xl p-6 border`}>
+                        <div className={`${index % 2 === 0 ? 'bg-[#FF0000]/10 border-[#FF0000]/20' : 'bg-white/10 border-white/20'} rounded-2xl p-6 border animate-fade-in-left animate-delay-700 hover-lift`}>
                           <h4 className={`text-lg font-bold ${index % 2 === 0 ? 'text-[#FF0000]' : 'text-white'} mb-3`}>
                             Goal:
                           </h4>
@@ -312,7 +313,7 @@ export const HowItWorksPage: React.FC = () => {
                     </div>
 
                     <div className="space-y-6">
-                      <div className={`${index % 2 === 0 ? 'bg-black/60 backdrop-blur-xl border-[#FF0000]/20' : 'bg-black/20 backdrop-blur-xl border-white/10'} rounded-2xl p-6 border`}>
+                      <div className={`${index % 2 === 0 ? 'bg-black/60 backdrop-blur-xl border-[#FF0000]/20' : 'bg-black/20 backdrop-blur-xl border-white/10'} rounded-2xl p-6 border animate-fade-in-right animate-delay-500 hover-lift`}>
                         <div className={`w-16 h-16 bg-gradient-to-br ${stage.color} rounded-2xl flex items-center justify-center mx-auto mb-6`}>
                           <span className="text-3xl">{stage.icon}</span>
                         </div>
@@ -338,17 +339,17 @@ export const HowItWorksPage: React.FC = () => {
       <section className="bg-gradient-to-br from-gray-900 to-black py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 animate-scale-in animate-delay-200">
               <Target className="w-8 h-8 text-[#FF0000]" />
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Why This Works</h2>
-            <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 animate-fade-in-up animate-delay-300">Why This Works</h2>
+            <p className="text-gray-400 text-lg max-w-3xl mx-auto animate-fade-in-up animate-delay-400">
               This process removes the three biggest pain points in property claims:
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300">
+            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300 animate-fade-in-up animate-delay-500 hover-lift">
               <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <Eye className="w-8 h-8 text-[#FF0000]" />
               </div>
@@ -358,7 +359,7 @@ export const HowItWorksPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300">
+            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300 animate-fade-in-up animate-delay-600 hover-lift">
               <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <Clock className="w-8 h-8 text-[#FF0000]" />
               </div>
@@ -368,7 +369,7 @@ export const HowItWorksPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300">
+            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300 animate-fade-in-up animate-delay-700 hover-lift">
               <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <Shield className="w-8 h-8 text-[#FF0000]" />
               </div>
@@ -380,7 +381,7 @@ export const HowItWorksPage: React.FC = () => {
           </div>
 
           <div className="mt-12 text-center">
-            <div className="bg-[#FF0000]/10 border border-[#FF0000]/20 rounded-2xl p-8 max-w-3xl mx-auto">
+            <div className="bg-[#FF0000]/10 border border-[#FF0000]/20 rounded-2xl p-8 max-w-3xl mx-auto animate-scale-in animate-delay-800">
               <h3 className="text-2xl font-bold text-[#FF0000] mb-4">Result</h3>
               <p className="text-white text-lg leading-relaxed">
                 Faster approvals, full payments, and a stress-free experience for you.
@@ -394,11 +395,11 @@ export const HowItWorksPage: React.FC = () => {
       <section className="bg-gradient-to-br from-gray-900 to-black py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 animate-scale-in animate-delay-200">
               <span className="text-3xl">📋</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Types of Damages We Document</h2>
-            <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 animate-fade-in-up animate-delay-300">Types of Damages We Document</h2>
+            <p className="text-gray-400 text-lg max-w-3xl mx-auto animate-fade-in-up animate-delay-400">
               Common damage patterns we identify and document during comprehensive property inspections
             </p>
           </div>
@@ -407,10 +408,9 @@ export const HowItWorksPage: React.FC = () => {
             {damageTypes.map((damageType, index) => (
               <div
                 key={index}
-                className="bg-black/60 backdrop-blur-xl rounded-2xl p-6 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300"
+                className="bg-black/60 backdrop-blur-xl rounded-2xl p-6 border border-[#FF0000]/20 hover:border-[#FF0000]/40 transition-all duration-300 animate-fade-in-up hover-lift"
                 style={{
                   animationDelay: `${index * 100}ms`,
-                  animation: 'slideInUp 0.6s ease-out forwards'
                 }}
               >
                 <div className="w-12 h-12 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-xl flex items-center justify-center mb-4">
@@ -432,39 +432,30 @@ export const HowItWorksPage: React.FC = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-gradient-to-br from-[#FF0000] to-[#C20F1F] py-16">
+      <section className="bg-gradient-to-br from-[#FF0000] to-[#C20F1F] py-16 animate-fade-in-up">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="w-20 h-20 bg-black/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <div className="w-20 h-20 bg-black/20 rounded-2xl flex items-center justify-center mx-auto mb-6 animate-scale-in animate-delay-200">
             <Phone className="w-10 h-10 text-white" />
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Start Your Claim?</h2>
-          <p className="text-white/90 text-lg max-w-2xl mx-auto mb-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 animate-fade-in-up animate-delay-300">Ready to Start Your Claim?</h2>
+          <p className="text-white/90 text-lg max-w-2xl mx-auto mb-8 animate-fade-in-up animate-delay-400">
             Don't let the insurance company take advantage of you. Get the professional support you deserve.
           </p>
           <a
             href="tel:3463749083"
-            className="inline-flex items-center space-x-3 px-12 py-6 bg-black text-white rounded-2xl hover:bg-gray-900 transition-all duration-300 font-bold text-xl transform hover:scale-105"
+            className="inline-flex items-center space-x-3 px-12 py-6 bg-black text-white rounded-2xl hover:bg-gray-900 transition-all duration-300 font-bold text-xl transform hover:scale-105 animate-scale-in animate-delay-500 hover-glow"
           >
             <Phone className="w-8 h-8" />
             <span>Call to Start Your Claim: (346) 374-9083</span>
           </a>
-          <p className="text-white/80 mt-4">
+          <p className="text-white/80 mt-4 animate-fade-in-up animate-delay-600">
             Free consultation • No obligation • Direct access to Zach
           </p>
         </div>
       </section>
 
       <style jsx>{`
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
+        /* Additional page-specific animations can be added here if needed */
       `}</style>
     </div>
   );

@@ -36,19 +36,19 @@ export const OurWorkPage: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <div className="bg-gradient-to-br from-gray-900 to-black px-4 sm:px-6 lg:px-8 py-16">
+      <div className="bg-gradient-to-br from-gray-900 to-black px-4 sm:px-6 lg:px-8 py-16 animate-fade-in">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="w-20 h-20 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <div className="w-20 h-20 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 animate-scale-in animate-delay-200">
             <Wrench className="w-10 h-10 text-[#FF0000]" />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">My Work</h1>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4 animate-fade-in-up animate-delay-300">My Work</h1>
+          <p className="text-gray-400 text-lg max-w-3xl mx-auto mb-8 animate-fade-in-up animate-delay-400">
             Showcasing some of my recently completed restoration projects across Maryland. Each project represents my commitment to quality craftsmanship and customer satisfaction.
           </p>
           
           {/* Stats */}
           <div className="grid grid-cols-1 gap-6 max-w-xl mx-auto">
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-4 border border-[#FF0000]/20">
+            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-4 border border-[#FF0000]/20 animate-scale-in animate-delay-500 hover-lift">
               <div className="text-2xl font-bold text-[#FF0000]">100%</div>
               <div className="text-gray-400 text-sm">Customer Satisfaction</div>
             </div>
@@ -69,20 +69,20 @@ export const OurWorkPage: React.FC = () => {
       </div>
 
       {/* Footer Call to Action */}
-      <div className="bg-gradient-to-br from-gray-900 to-black py-16">
+      <div className="bg-gradient-to-br from-gray-900 to-black py-16 animate-fade-in-up">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="w-20 h-20 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <div className="w-20 h-20 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 animate-scale-in animate-delay-200">
             <Trophy className="w-10 h-10 text-[#FF0000]" />
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to Join Our Success Stories?</h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 animate-fade-in-up animate-delay-300">Ready to Join Our Success Stories?</h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8 animate-fade-in-up animate-delay-400">
             Let us help you navigate your insurance claim and upgrade your roof with the same quality and professionalism 
             shown in these completed projects.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 animate-fade-in-up animate-delay-500">
             <a
               href="tel:(346)374-9083"
-              className="px-8 py-4 bg-gradient-to-r from-[#FF0000] to-[#C20F1F] text-white rounded-xl hover:shadow-lg hover:shadow-[#FF0000]/25 transition-all duration-300 font-semibold text-lg transform hover:scale-105"
+              className="px-8 py-4 bg-gradient-to-r from-[#FF0000] to-[#C20F1F] text-white rounded-xl hover:shadow-lg hover:shadow-[#FF0000]/25 transition-all duration-300 font-semibold text-lg transform hover:scale-105 hover-glow"
             >
               Call (346) 374-9083
             </a>

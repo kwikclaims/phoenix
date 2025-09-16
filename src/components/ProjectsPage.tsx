@@ -243,14 +243,14 @@ export const ProjectsPage: React.FC = () => {
     );
   }
   return (
-    <div className="min-h-screen bg-[#0B0B0B] text-white">
+    <div className="min-h-screen bg-[#0B0B0B] text-white animate-fade-in">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Projects</h1>
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between mb-6 animate-fade-in-up animate-delay-200">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight animate-fade-in-left">Projects</h1>
+          <div className="flex items-center gap-3 animate-fade-in-right">
             <button
               onClick={handleNewProject}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#FF0000] to-[#C20F1F] text-white hover:shadow-lg hover:shadow-[#FF0000]/25 rounded-xl transition-all duration-300 font-semibold transform hover:scale-105"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#FF0000] to-[#C20F1F] text-white hover:shadow-lg hover:shadow-[#FF0000]/25 rounded-xl transition-all duration-300 font-semibold transform hover:scale-105 hover-glow"
             >
               <Plus className="w-4 h-4" />
               <span>New Project</span>
@@ -258,7 +258,7 @@ export const ProjectsPage: React.FC = () => {
             <button
               onClick={handleRefresh}
               disabled={isRefreshing}
-              className="inline-flex items-center gap-2 px-3 py-2 bg-gray-900/50 border border-gray-700 text-[#FF0000] hover:bg-[#FF0000]/10 hover:border-[#FF0000]/50 rounded-xl transition-colors disabled:opacity-50 text-sm"
+              className="inline-flex items-center gap-2 px-3 py-2 bg-gray-900/50 border border-gray-700 text-[#FF0000] hover:bg-[#FF0000]/10 hover:border-[#FF0000]/50 rounded-xl transition-colors disabled:opacity-50 text-sm hover-lift"
             >
               <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
               <span className="hidden sm:inline">Refresh</span>
@@ -268,7 +268,7 @@ export const ProjectsPage: React.FC = () => {
 
         {/* Search */}
         {projects.length > 0 && (
-          <div className="mb-6">
+          <div className="mb-6 animate-fade-in-up animate-delay-300">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -284,8 +284,8 @@ export const ProjectsPage: React.FC = () => {
 
         {/* Projects Table - Desktop */}
         {filteredProjects.length > 0 && (
-          <div className="hidden md:block">
-            <div className="overflow-x-auto rounded-2xl border border-[#FF0000]/20 bg-black/60 backdrop-blur-xl">
+          <div className="hidden md:block animate-fade-in-up animate-delay-400">
+            <div className="overflow-x-auto rounded-2xl border border-[#FF0000]/20 bg-black/60 backdrop-blur-xl hover-lift">
               <table className="min-w-full divide-y divide-gray-700/50">
                 <thead className="bg-black/40">
                   <tr>
@@ -305,7 +305,7 @@ export const ProjectsPage: React.FC = () => {
                       initial={{ opacity: 0, y: 12 }} 
                       animate={{ opacity: 1, y: 0 }} 
                       transition={{ delay: idx * 0.03 }} 
-                      className="hover:bg-[#FF0000]/5 cursor-pointer" 
+                      className="hover:bg-[#FF0000]/5 cursor-pointer hover-lift" 
                       onClick={() => navigate(`/jobs/${project.id}`)}
                     >
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -344,7 +344,7 @@ export const ProjectsPage: React.FC = () => {
                             e.stopPropagation(); 
                             navigate(`/jobs/${project.id}`); 
                           }} 
-                          className="inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-xl border border-white/10 hover:bg-white/5 transition-colors"
+                          className="inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-xl border border-white/10 hover:bg-white/5 transition-colors hover-scale"
                         >
                           <Eye className="w-4 h-4" />
                           View
@@ -360,14 +360,14 @@ export const ProjectsPage: React.FC = () => {
 
         {/* Projects Cards - Mobile */}
         {filteredProjects.length > 0 && (
-          <div className="md:hidden space-y-4">
+          <div className="md:hidden space-y-4 animate-fade-in-up animate-delay-400">
             {filteredProjects.map((project, idx) => (
               <motion.div 
                 key={project.id}
                 initial={{ opacity: 0, y: 12 }} 
                 animate={{ opacity: 1, y: 0 }} 
                 transition={{ delay: idx * 0.03 }} 
-                className="rounded-2xl border border-[#FF0000]/20 bg-black/60 backdrop-blur-xl p-4 hover:bg-black/80 hover:border-[#FF0000]/40 transform hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                className="rounded-2xl border border-[#FF0000]/20 bg-black/60 backdrop-blur-xl p-4 hover:bg-black/80 hover:border-[#FF0000]/40 transform hover:scale-[1.02] transition-all duration-300 cursor-pointer hover-lift"
                 onClick={() => navigate(`/jobs/${project.id}`)}
               >
                 <div className="flex items-start justify-between gap-3">
@@ -406,7 +406,7 @@ export const ProjectsPage: React.FC = () => {
 
         {/* Empty State */}
         {!loading && filteredProjects.length === 0 && projects.length === 0 && (
-          <div className="text-center py-24">
+          <div className="text-center py-24 animate-fade-in-up animate-delay-500">
             <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20">
               <FileText className="w-12 h-12 text-[#FF0000]" />
             </div>
@@ -416,7 +416,7 @@ export const ProjectsPage: React.FC = () => {
             </p>
             <button 
               onClick={handleRefresh}
-              className="px-6 py-3 bg-[#FF0000] text-white rounded-xl hover:bg-[#FF0000]/80 transition-colors"
+              className="px-6 py-3 bg-[#FF0000] text-white rounded-xl hover:bg-[#FF0000]/80 transition-colors hover-glow"
             >
               Retry Loading
             </button>
@@ -425,7 +425,7 @@ export const ProjectsPage: React.FC = () => {
 
         {/* No Search Results */}
         {!loading && filteredProjects.length === 0 && projects.length > 0 && (
-          <div className="text-center py-24">
+          <div className="text-center py-24 animate-fade-in-up animate-delay-500">
             <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-2xl bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20">
               <Search className="w-12 h-12 text-[#FF0000]" />
             </div>
@@ -433,7 +433,7 @@ export const ProjectsPage: React.FC = () => {
             <p className="text-gray-400 mb-8">Try adjusting your search criteria</p>
             <button 
               onClick={() => setSearchTerm("")}
-              className="px-6 py-3 bg-[#FF0000] text-white rounded-xl hover:bg-[#FF0000]/80 transition-colors"
+              className="px-6 py-3 bg-[#FF0000] text-white rounded-xl hover:bg-[#FF0000]/80 transition-colors hover-glow"
             >
               Clear Search
             </button>
