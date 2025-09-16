@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid3X3, ClipboardCheck, CheckSquare, Phone, Bell, FileText, DollarSign, FolderOpen, Lock } from 'lucide-react';
+import { Grid3X3, ClipboardCheck, ClipboardList, CheckSquare, Phone, Bell, FileText, DollarSign, FolderOpen, Lock } from 'lucide-react';
 
 interface PortalPageProps {
   onNavigate: (page: string) => void;
