@@ -11,8 +11,6 @@ interface FinancialMetrics {
   leoProfit: string;
   zachProfit: string;
   lossesZachAbsorbed: string;
-  repairabilityTests: string;
-  reimbursements: string;
   totalPaidOut: string;
   totalDue: string;
 }
@@ -36,8 +34,6 @@ export const FinancialPage: React.FC = () => {
         leoProfit: '',
         zachProfit: '',
         lossesZachAbsorbed: '',
-        repairabilityTests: '',
-        reimbursements: '',
         totalPaidOut: '',
         totalDue: ''
       };
@@ -65,8 +61,6 @@ export const FinancialPage: React.FC = () => {
       leoProfit: '',
       zachProfit: '',
       lossesZachAbsorbed: '',
-      repairabilityTests: '',
-      reimbursements: '',
       totalPaidOut: '',
       totalDue: ''
     };
@@ -103,12 +97,6 @@ export const FinancialPage: React.FC = () => {
       } else if (metricLower.includes('losses zach') && (metricLower.includes('absorbed') || metricLower.includes('asborbed')) || metricLower === 'losses zach absorbed:' || metricLower === 'losses zach asborbed:') {
         metrics.lossesZachAbsorbed = value;
         console.log(`[FinancialPage] Found Losses Zach Absorbed: "${value}"`);
-      } else if (metricLower.includes('repairability tests') || metricLower === 'repairability tests:') {
-        metrics.repairabilityTests = value;
-        console.log(`[FinancialPage] Found Repairability Tests: "${value}"`);
-      } else if (metricLower.includes('reimbursements') || metricLower === 'reimbursements:') {
-        metrics.reimbursements = value;
-        console.log(`[FinancialPage] Found Reimbursements: "${value}"`);
       } else if (metricLower.includes('total paid out') || metricLower === 'total paid out:') {
         metrics.totalPaidOut = value;
         console.log(`[FinancialPage] Found Total Paid Out: "${value}"`);
@@ -369,21 +357,11 @@ export const FinancialPage: React.FC = () => {
                 </div>
                 
                 <div className="p-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <MetricCard 
                       title="Losses Zach Absorbed" 
                       value={metrics.lossesZachAbsorbed}
                       colorClass="text-red-400"
-                    />
-                    <MetricCard 
-                      title="Repairability Tests" 
-                      value={metrics.repairabilityTests}
-                      colorClass="text-yellow-400"
-                    />
-                    <MetricCard 
-                      title="Reimbursements" 
-                      value={metrics.reimbursements}
-                      colorClass="text-orange-400"
                     />
                     <MetricCard 
                       title="Total Paid Out" 
