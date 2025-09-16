@@ -59,7 +59,7 @@ function App() {
       case 'my-work':
         return 'My Work';
       case 'financial':
-        return 'Financial';
+        return 'PRCS Finances';
       case 'my-process':
         return 'My Process';
       case 'todos':

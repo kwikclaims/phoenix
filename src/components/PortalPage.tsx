@@ -138,8 +138,8 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
     },
     {
       id: 'financial',
-      title: 'Financial',
-      description: 'Real-time financial metrics and dashboard',
+      title: 'PRCS Finances',
+      description: 'Real-time PRCS financial metrics and dashboard',
       icon: DollarSign,
       color: 'from-emerald-500 to-emerald-600',
       hoverColor: 'hover:shadow-emerald-500/25',

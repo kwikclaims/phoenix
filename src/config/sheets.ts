@@ -7,7 +7,7 @@ export const GOOGLE_SHEET = {
   SHEET_NAMES: {
     PROJECTS_AND_JOBS: "Kwik Deals",
     PRCS_PROJECTS: "PHOENIX DEALS",
-    FINANCIALS: "NUMBERS",
+    FINANCIALS: "PRCS Finances",
     PROCESS: "PROCESS",
     TODO: "TODO",
     UPDATES: "UPDATES",
