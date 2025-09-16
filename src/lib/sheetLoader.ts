@@ -7,6 +7,16 @@ export type Row = Record<string, string>;
 const BASE = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET.SPREADSHEET_ID}`;
 const ACCEPT_CSV = "text/csv,text/plain,*/*";
 
+// Helper function to get the correct spreadsheet base URL
+const getSpreadsheetBase = (sheetName: string) => {
+  // Use PRCS Finances spreadsheet for financial data
+  if (sheetName === "PHOENIX DEALS") {
+    return `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET.PRCS_FINANCES_SPREADSHEET_ID}`;
+  }
+  // Use default spreadsheet for all other sheets
+  return `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET.SPREADSHEET_ID}`;
+};
+
 // Utility
 const buster = (u: string) => {
   const url = new URL(u);
@@ -19,22 +29,24 @@ const isHtml = (t: string) => /^\s*</.test(t);
 // --- GViz CSV by sheet name (most reliable with "Anyone with link: Viewer") ---
 function gvizCsvUrl(sheetName: string, range?: string) {
   // GViz accepts sheet=<tab name> so we avoid GIDs entirely
+  const base = getSpreadsheetBase(sheetName);
   const params: Record<string, string> = { "tqx": "out:csv", "sheet": sheetName };
   if (range) {
     params.range = range;
   }
   const q = new URLSearchParams(params);
-  return `${BASE}/gviz/tq?${q.toString()}`;
+  return `${base}/gviz/tq?${q.toString()}`;
 }
 
 // Optional JSON (useful for debugging/headers, not required)
 function gvizJsonUrl(sheetName: string, range?: string) {
+  const base = getSpreadsheetBase(sheetName);
   const params: Record<string, string> = { "tqx": "out:json", "sheet": sheetName };
   if (range) {
     params.range = range;
   }
   const q = new URLSearchParams(params);
-  return `${BASE}/gviz/tq?${q.toString()}`;
+  return `${base}/gviz/tq?${q.toString()}`;
 }
 
 async function fetchText(url: string, accept?: string): Promise<string> {
