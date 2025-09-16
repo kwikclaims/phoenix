@@ -89,14 +89,6 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
       hoverColor: 'hover:shadow-indigo-500/25',
     },
     {
-      id: 'projects',
-      title: 'Projects',
-      description: 'View and manage all insurance claim projects and jobs',
-      icon: FolderOpen,
-      color: 'from-[#FF0000] to-[#C20F1F]',
-      hoverColor: 'hover:shadow-[#FF0000]/25',
-    },
-    {
       id: 'inspection',
       title: 'Inspection Report',
       description: 'Code-anchored roof & exterior damage inspection checklist',
