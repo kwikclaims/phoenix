@@ -10,7 +10,7 @@ export const GOOGLE_SHEET = {
   SHEET_NAMES: {
     PROJECTS_AND_JOBS: "Kwik Deals",
     PRCS_PROJECTS: "PHOENIX DEALS",
-    FINANCIALS: "PRCS Finances", // This will use the same spreadsheet but different sheet
+    FINANCIALS: "PHOENIX NUMBERS", // This will use the same spreadsheet but different sheet
     PROCESS: "PROCESS",
     TODO: "TODO",
     UPDATES: "UPDATES",

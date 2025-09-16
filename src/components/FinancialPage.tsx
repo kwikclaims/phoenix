@@ -138,15 +138,15 @@ export const FinancialPage: React.FC = () => {
     setError("");
 
     try {
-      const targetUrl = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET.PRCS_SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=PRCS Finances&range=E1:F10`;
+      const targetUrl = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET.PRCS_SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=PHOENIX NUMBERS&range=E1:F10`;
       console.log("[FinancialPage] Fetching data from exact URL:", targetUrl);
-      const rows = await loadRowsBySheetName("PRCS Finances", 'E1:F10');
+      const rows = await loadRowsBySheetName("PHOENIX NUMBERS", 'E1:F10');
       console.log("[FinancialPage] ===== RAW CSV DATA DEBUG =====");
       console.log("[FinancialPage] Number of rows received:", rows.length);
-      console.log("[FinancialPage] Raw rows from PRCS Finances sheet (E1:F10):", JSON.stringify(rows, null, 2));
+      console.log("[FinancialPage] Raw rows from PHOENIX NUMBERS sheet (E1:F10):", JSON.stringify(rows, null, 2));
       
       if (!rows.length) {
-        throw new Error("No data found in PRCS Finances sheet range E1:F10");
+        throw new Error("No data found in PHOENIX NUMBERS sheet range E1:F10");
       }
 
       // Enhanced DEBUG: Show exactly what we're getting from the sheet
@@ -179,7 +179,7 @@ export const FinancialPage: React.FC = () => {
     } catch (err: any) {
       console.error("[FinancialPage] Failed to load financial data:", err);
       setError(err.message || "Failed to load financial data");
-      toast.error("Failed to load financial data from PRCS Finances sheet range E1:F10");
+      toast.error("Failed to load financial data from PHOENIX NUMBERS sheet range E1:F10");
     } finally {
       setLoading(false);
     }
@@ -282,7 +282,7 @@ export const FinancialPage: React.FC = () => {
             <DollarSign className="w-10 h-10 text-[#FF0000]" />
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">Financial Dashboard</h1>
-          <p className="text-gray-400 mb-4">Real-time financial metrics from PRCS Finances sheet (E1:F10)</p>
+          <p className="text-gray-400 mb-4">Real-time financial metrics from PHOENIX NUMBERS sheet (E1:F10)</p>
           <div className="flex items-center justify-center space-x-4">
             {lastUpdated && (
               <p className="text-sm text-gray-500">
@@ -424,7 +424,7 @@ export const FinancialPage: React.FC = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="bg-gray-900/50 rounded-xl p-4">
                       <p className="text-gray-400 text-sm">Data Source</p>
-                      <p className="text-xl font-bold text-[#FF0000]">PRCS Finances Sheet</p>
+                      <p className="text-xl font-bold text-[#FF0000]">PHOENIX NUMBERS Sheet</p>
                       <p className="text-xs text-gray-500 mt-1">Range: E1:F10</p>
                     </div>
                     <div className="bg-gray-900/50 rounded-xl p-4">
@@ -452,7 +452,7 @@ export const FinancialPage: React.FC = () => {
             </div>
             <h2 className="text-2xl font-bold text-white mb-3">No financial data found</h2>
             <p className="text-gray-400 mb-8 max-w-md mx-auto">
-              Unable to load financial metrics from the PRCS Finances sheet range E1:F10.
+              Unable to load financial metrics from the PHOENIX NUMBERS sheet range E1:F10.
             </p>
             <button
               onClick={handleRefresh}
