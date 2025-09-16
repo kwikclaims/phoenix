@@ -36,6 +36,11 @@ export const AddressSection: React.FC<AddressSectionProps> = ({
 
   const fullAddress = `${address.street}, ${address.city}, ${address.state} ${address.zipCode}`;
 
+  // Helper function to get display title (just city name)
+  const getDisplayTitle = (address: ProjectAddress): string => {
+    return address.city;
+  };
+
   const bgClass = isRedBackground 
     ? 'bg-gradient-to-br from-[#FF0000] to-[#C20F1F]'
     : 'bg-gradient-to-br from-gray-900 to-black';
@@ -55,68 +60,8 @@ export const AddressSection: React.FC<AddressSectionProps> = ({
             <MapPin className={`w-8 h-8 ${isRedBackground ? 'text-white' : 'text-[#FF0000]'}`} />
           </div>
           <h2 className={`text-2xl sm:text-3xl font-bold ${textClass} mb-2`}>
-            {address.street}
+            {getDisplayTitle(address)}
           </h2>
-          <p className={`${accentClass} text-lg`}>
-            {address.city}, {address.state} {address.zipCode}
-          </p>
-        </div>
-
-        {/* Project Details */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
-          <div className="space-y-6">
-            <div className={`${cardBgClass} rounded-2xl p-6 border`}>
-              <h3 className={`text-xl font-bold ${textClass} mb-4`}>Project Details</h3>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <MapPin className={`w-5 h-5 ${isRedBackground ? 'text-white/70' : 'text-[#FF0000]'}`} />
-                  <span className={accentClass}>Complete Address: {fullAddress}</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <span className="text-2xl">✅</span>
-                  <span className={accentClass}>Project Status: Completed</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <span className="text-2xl">🏠</span>
-                  <span className={accentClass}>Service: Roof Replacement</span>
-                </div>
-              </div>
-            </div>
-
-            <div className={`${cardBgClass} rounded-2xl p-6 border`}>
-              <h3 className={`text-xl font-bold ${textClass} mb-4`}>Work Completed</h3>
-              <ul className={`space-y-2 ${accentClass}`}>
-                <li>• Complete roof replacement with architectural shingles</li>
-                <li>• Insurance claim processing and approval</li>
-                <li>• Professional installation and cleanup</li>
-                <li>• 50-year warranty coverage</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="space-y-6">
-            <div className={`${cardBgClass} rounded-2xl p-6 border`}>
-              <h3 className={`text-xl font-bold ${textClass} mb-4`}>Quality Assurance</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className={`${isRedBackground ? 'bg-black/30' : 'bg-gray-900/50'} rounded-xl p-3 text-center`}>
-                  <p className={`${textClass} font-semibold`}>Class H Wind</p>
-                  <p className={`${accentClass} text-sm`}>150 mph rating</p>
-                </div>
-                <div className={`${isRedBackground ? 'bg-black/30' : 'bg-gray-900/50'} rounded-xl p-3 text-center`}>
-                  <p className={`${textClass} font-semibold`}>Class 3 Impact</p>
-                  <p className={`${accentClass} text-sm`}>Hail protection</p>
-                </div>
-                <div className={`${isRedBackground ? 'bg-black/30' : 'bg-gray-900/50'} rounded-xl p-3 text-center`}>
-                  <p className={`${textClass} font-semibold`}>50-Year</p>
-                  <p className={`${accentClass} text-sm`}>Warranty</p>
-                </div>
-                <div className={`${isRedBackground ? 'bg-black/30' : 'bg-gray-900/50'} rounded-xl p-3 text-center`}>
-                  <p className={`${textClass} font-semibold`}>MHIC</p>
-                  <p className={`${accentClass} text-sm`}>#164678</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Photo Slider */}
