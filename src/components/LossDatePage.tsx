@@ -166,7 +166,7 @@ export const LossDatePage: React.FC = () => {
                 <FileText className="w-6 h-6 text-white" />
               </div>
               <h4 className="font-semibold text-gray-900 mb-2">Right to File</h4>
-              <p className="text-gray-700 text-sm">an Insurance Claim for April 18th Storm</p>
+              <p className="text-gray-700 text-sm">an Insurance Claim for April 19th Storm</p>
             </div>
             
             <div className="bg-purple-50 border border-purple-200 rounded-xl p-6 text-center">
@@ -206,10 +206,15 @@ export const LossDatePage: React.FC = () => {
               </div>
               <h4 className="font-semibold mb-2">Get Full</h4>
               <p className="text-white/90">Code-Compliant Repairs</p>
-            If you suspect storm damage from the April 19th event, don't wait. 
-            Early documentation is crucial for a successful insurance claim.
+            </div>
+          </div>
           
           <div className="text-center">
+            <p className="text-white/90 text-lg mb-6">
+              If you suspect storm damage from the April 19th event, don't wait. 
+              Early documentation is crucial for a successful insurance claim.
+            </p>
+            
             <a
               href="tel:3463749083"
               className="inline-flex items-center space-x-3 px-12 py-6 bg-black text-white rounded-2xl hover:bg-gray-900 transition-all duration-300 font-bold text-xl transform hover:scale-105"
@@ -234,7 +239,7 @@ export const LossDatePage: React.FC = () => {
           <div className="mt-8 bg-gray-50 rounded-xl p-6">
             <h4 className="text-lg font-semibold text-gray-900 mb-3 text-center">Emergency Storm Response</h4>
             <p className="text-gray-700 text-center">
-              If you suspect storm damage from the April 18th event, don't wait. 
+              If you suspect storm damage from the April 19th event, don't wait. 
               Early documentation is crucial for a successful insurance claim.
             </p>
           </div>
@@ -243,5 +248,3 @@ export const LossDatePage: React.FC = () => {
     </div>
   );
 };
-  )
-}
