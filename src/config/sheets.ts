@@ -1,6 +1,6 @@
 // src/config/sheets.ts
 export const GOOGLE_SHEET = {
-  // editor/shared URL uses this ID:
+  // Kwik Claims spreadsheet ID (extracted from the pubhtml URL)
   SPREADSHEET_ID: "1QN8cgRZwsRXgem9SGt948NK_sGYAsH8r9I09xv9PQbw",
 
   // Page -> Sheet name mapping (no GIDs needed)
