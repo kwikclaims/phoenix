@@ -81,6 +81,14 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
       hoverColor: 'hover:shadow-[#FF0000]/25',
     },
     {
+      id: 'prcs-projects',
+      title: 'PRCS Projects',
+      description: 'View and manage all PRCS projects from PHOENIX DEALS sheet',
+      icon: FolderOpen,
+      color: 'from-blue-500 to-blue-600',
+      hoverColor: 'hover:shadow-blue-500/25',
+    },
+    {
       id: 'my-process',
       title: 'Process Steps',
       description: 'The official step-by-step process guide from Google Sheets',

@@ -20,6 +20,9 @@ import { UpdatesPage } from './components/UpdatesPage';
 import { InspectionReportPage } from './components/InspectionReportPage';
 import { FollowUpsPage } from './components/FollowUpsPage';
 
+import { PRCSProjectsPage } from './components/PRCSProjectsPage';
+import { PRCSJobDetailPage } from './components/PRCSJobDetailPage';
+
 function App() {
   const { loading } = useAuth();
   const [currentPage, setCurrentPage] = React.useState('home');
@@ -45,6 +48,8 @@ function App() {
         return 'Kwik Claims';
       case 'projects':
         return 'Kwik Claims Projects';
+      case 'prcs-projects':
+        return 'PRCS Projects';
       case 'updates':
         return 'Updates';
       case 'how-it-works':
@@ -76,6 +81,7 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black">
       <Routes>
         <Route path="/jobs/:id" element={<JobDetailRoute />} />
+        <Route path="/prcs-jobs/:id" element={<PRCSJobDetailRoute />} />
         <Route path="/*" element={
           <>
             {!isPreviewPage && (
@@ -91,6 +97,7 @@ function App() {
 
             {currentPage === 'home' && <HomePage onNavigate={setCurrentPage} />}
             {currentPage === 'projects' && <ProjectsPage />}
+            {currentPage === 'prcs-projects' && <PRCSProjectsPage />}
             {currentPage === 'how-it-works' && <HowItWorksPage />}
             {currentPage === 'updates' && <UpdatesPage />}
             {currentPage === 'my-work' && <OurWorkPage />}
@@ -128,6 +135,28 @@ const JobDetailRoute: React.FC = () => {
       </div>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <JobDetailPage jobId={id!} />
+      </div>
+    </div>
+  );
+};
+
+// PRCS Job Detail Route Component
+const PRCSJobDetailRoute: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+
+  return (
+    <div className="min-h-screen bg-[#0B0B0B] text-white">
+      <div className="sticky top-0 z-40 bg-black/80 backdrop-blur border-b border-white/10">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+          <button onClick={() => navigate(-1)} className="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+            <span className="text-xl">←</span> <span className="hidden sm:inline">Back to PRCS Projects</span>
+          </button>
+          <div className="truncate text-sm text-gray-300">PRCS Project Detail</div>
+        </div>
+      </div>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <PRCSJobDetailPage jobId={id!} />
       </div>
     </div>
   );

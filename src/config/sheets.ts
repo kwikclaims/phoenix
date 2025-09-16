@@ -6,6 +6,7 @@ export const GOOGLE_SHEET = {
   // Page -> Sheet name mapping (no GIDs needed)
   SHEET_NAMES: {
     PROJECTS_AND_JOBS: "Kwik Deals",
+    PRCS_PROJECTS: "PHOENIX DEALS",
     FINANCIALS: "NUMBERS",
     PROCESS: "PROCESS",
     TODO: "TODO",
