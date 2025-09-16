@@ -231,8 +231,6 @@ export const LossDatePage: React.FC = () => {
           
           <div className="text-center space-y-2">
             <p className="text-xl font-bold text-gray-900">Kwik Claims</p>
-            <p className="text-gray-700">10334 Vista Meadow Way, Lanham, MD 20706</p>
-            <p className="text-gray-700">License: MHIC #164678</p>
             <p className="text-gray-700">Phone: (346) 374-9083</p>
           </div>
           
