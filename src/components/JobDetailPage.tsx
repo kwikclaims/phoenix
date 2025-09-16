@@ -379,6 +379,13 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
           </div>
         </section>
       </div>
+        {/* Expenses Report */}
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-6">Expenses Report</h2>
+          <div className="grid grid-cols-1 gap-4">
+            <Field label="Expenses Report" value={jobData["Expenses Report (Link)"]} />
+          </div>
+        </section>
     </div>
   );
 };
