@@ -28,7 +28,7 @@ export const LossDatePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-gray-50 rounded-xl p-6">
               <h4 className="text-lg font-semibold text-gray-900 mb-3">Storm Date</h4>
-              <p className="text-3xl font-bold text-red-600">April 18, 2025</p>
+              <p className="text-3xl font-bold text-red-600">April 19, 2025</p>
             </div>
             
             <div className="bg-gray-50 rounded-xl p-6">
@@ -206,8 +206,8 @@ export const LossDatePage: React.FC = () => {
               </div>
               <h4 className="font-semibold mb-2">Get Full</h4>
               <p className="text-white/90">Code-Compliant Repairs</p>
-            </div>
-          </div>
+            If you suspect storm damage from the April 19th event, don't wait. 
+            Early documentation is crucial for a successful insurance claim.
           
           <div className="text-center">
             <a
