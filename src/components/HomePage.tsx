@@ -347,7 +347,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <div className="flex justify-center lg:justify-end animate-fade-in-left animate-delay-300">
               <div className="relative">
                 <img
-                  src="/images/photo_2025-09-15_19-01-00.jpg"
+                  src="/images/photo_2025-09-16_15-29-43.jpg"
                   alt="Zach Kwik"
                   className="w-80 h-80 sm:w-96 sm:h-96 object-cover rounded-2xl border-4 border-black shadow-2xl"
                 />
