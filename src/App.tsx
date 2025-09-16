@@ -89,7 +89,7 @@ function App() {
               />
             )}
 
-            {currentPage === 'home' && <HomePage />}
+            {currentPage === 'home' && <HomePage onNavigate={setCurrentPage} />}
             {currentPage === 'projects' && <ProjectsPage />}
             {currentPage === 'how-it-works' && <HowItWorksPage />}
             {currentPage === 'updates' && <UpdatesPage />}

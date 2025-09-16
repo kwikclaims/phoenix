@@ -1,7 +1,11 @@
 import React from 'react';
 import { Phone, Shield, FileText, Users, Target, CheckCircle } from 'lucide-react';
 
-export const HomePage: React.FC = () => {
+interface HomePageProps {
+  onNavigate?: (page: string) => void;
+}
+
+export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -317,15 +321,15 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="text-center">
-            <a
-              href="/how-it-works"
+            <button
+              onClick={() => onNavigate('how-it-works')}
               className="inline-flex items-center space-x-2 px-8 py-4 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-all duration-300 font-semibold text-lg transform hover:scale-105"
             >
               <span>See Full Process</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </a>
+            </button>
           </div>
         </div>
       </section>
