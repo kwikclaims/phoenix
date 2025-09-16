@@ -21,7 +21,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
             Expert Claim Consulting for Residential & Commercial Properties
+          </h1>
+          <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
             I'm building Kwik Flow, A Claim Fighter app that will revolutionize how policyholders fight back — but right now, I'm still in the trenches with my clients, personally taking on cases.
+          </p>
           <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
             I personally review your policy, document your damage, and create a winning strategy so you can walk into the claims process with leverage — and keep more of your money.
           </p>
