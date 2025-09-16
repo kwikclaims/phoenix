@@ -47,14 +47,10 @@ export const OurWorkPage: React.FC = () => {
           </p>
           
           {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-xl mx-auto">
+          <div className="grid grid-cols-1 gap-6 max-w-xl mx-auto">
             <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-4 border border-[#FF0000]/20">
               <div className="text-2xl font-bold text-[#FF0000]">100%</div>
               <div className="text-gray-400 text-sm">Customer Satisfaction</div>
-            </div>
-            <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-4 border border-[#FF0000]/20">
-              <div className="text-2xl font-bold text-[#FF0000]">50 Year</div>
-              <div className="text-gray-400 text-sm">Warranty Coverage</div>
             </div>
           </div>
         </div>
