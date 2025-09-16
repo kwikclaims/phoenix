@@ -51,7 +51,7 @@ export const HowItWorksPage: React.FC = () => {
     {
       id: 5,
       title: 'Supplement Submission',
-      description: 'Any missed or hidden damage gets fully documented and submitted to the insurer so you\'re not stuck paying out of pocket.',
+      description: 'We fully document any missed or hidden damage in a final report and guide you through submitting it to the insurer so you\'re not stuck paying out of pocket.',
       icon: '📄',
       color: 'from-purple-500 to-purple-600'
     },
