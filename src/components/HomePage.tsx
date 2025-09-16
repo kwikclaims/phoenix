@@ -385,7 +385,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           
           <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 mb-12">
             <p className="text-xl text-gray-700 leading-relaxed">
-              I'm building Kwik Flow, A Claim Fighter app that will revolutionize how policyholders fight back — but right now, I'm still in the trenches with my clients, personally taking on cases.
+              I'm building Kwik Flow, a Claim Fighter app that will revolutionize how policyholders fight back — but right now, I'm still in the trenches with my clients, personally taking on cases.
               <br /><br />
               <strong>If you want my direct help, now is the time.</strong>
             </p>
