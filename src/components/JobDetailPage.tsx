@@ -257,29 +257,8 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
           <h2 className="text-2xl font-bold text-white mb-6">Claim History</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Field label="Previous Claims (Yes/No)" value={jobData["Have you ever called in a claim before?"]} />
-            <Field label="Out-of-Pocket Repairs (Yes/No)" value={jobData["Have you ever had to pay out-of-pocket for repairs?"]} />
-            <Field label="Interior Damage/Leaks (Yes/No)" value={jobData["Are there any Interior damage, leaks or water stains? And if so which rooms?"]} />
-            <Field label="Out-of-Pocket Details" value={jobData["Paid Out-of-Pocket Details"]} />
-            <Field label="Active Leaks/Water Stains (Yes/No)" value={jobData["Are there any Interior damage, leaks or water stains? And if so which rooms?"]} />
-            <Field label="Rooms with Leaks/Stains" value={jobData["Leak Rooms"]} />
-          </div>
-        </section>
-
-        {/* Contractor & Mortgage Info */}
-        <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Contractor & Mortgage Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Field label="Contractor Name" value={jobData["Contractor Name"]} />
-            <Field label="Mortgage Company" value={jobData["Mortgage Company"]} />
-          </div>
-        </section>
-
-        {/* Call Recording */}
-        <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Call Recording</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Field label="Call Recording Audio URL" value={jobData["Call Recording Audio URL"]} />
-            <Field label="Call Recording Transcription" value={jobData["Call Recording Transcription"]} />
+            <Field label="Out-of-Pocket Details" value={jobData["Have you ever had to pay out-of-pocket for repairs?"]} />
+            <Field label="Rooms with Leaks/Stains" value={jobData["Are there any Interior damage, leaks or water stains? And if so which rooms?"]} />
           </div>
         </section>
 
@@ -287,18 +266,9 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
         <section>
           <h2 className="text-2xl font-bold text-white mb-6">Damage Assessment</h2>
           <div className="grid grid-cols-1 gap-4">
-            <Field label="Window/Siding/Gutter Damage (Yes/No)" value={jobData["Is there Damage on the windows, Siding, Gutters?"]} />
-            <Field label="Tree Damage (Yes/No)" value={jobData["Any Tree Damage?"]} />
-            <Field label="HVAC Damage (Yes/No)" value={jobData["Any HVAC Damage?"]} />
-          </div>
-          <div className="mt-4">
-            <Field label="Additional Notes" value={jobData["Additional Notes"]} />
-            <Field label="Tree Damage Details" value={jobData["Tree Damage Details"]} />
-            <Field label="HVAC Damage (Yes/No)" value={jobData["Any HVAC Damage?"]} />
-            <Field label="HVAC Damage Details" value={jobData["HVAC Damage Details"]} />
-          </div>
-          <div className="mt-4">
-            <Field label="Additional Notes" value={jobData["Additional Notes"]} />
+            <Field label="Window/Siding/Gutter Damage" value={jobData["Is there Damage on the windows, Siding, Gutters?"]} />
+            <Field label="Tree Damage Details" value={jobData["Any Tree Damage?"]} />
+            <Field label="HVAC Damage Details" value={jobData["Any HVAC Damage?"]} />
           </div>
         </section>
 
@@ -307,6 +277,11 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
           <h2 className="text-2xl font-bold text-white mb-6">Representatives</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Field label="Representative Name" value={jobData["Representative Name"]} />
+            <Field label="Representative Phone" value={jobData["Representative Phone"]} />
+            <Field label="Representative Email" value={jobData["Representative Email"]} />
+          </div>
+          <div className="mt-4">
+            <Field label="Additional Notes" value={jobData["Additional Notes"]} />
           </div>
         </section>
 
@@ -332,6 +307,7 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
             <Field label="Ladder Assist Phone" value={jobData["Ladder Assist Phone Number"]} />
             <Field label="Insurance Email" value={jobData["Insurance Email"]} />
             <Field label="Insurance File Upload Portal Link" value={jobData["Insurance File Upload/Portal Link"]} />
+            <Field label="Cover Letter Notes" value={jobData["Cover Letter Notes"]} />
           </div>
         </section>
 
@@ -350,7 +326,6 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
         <section>
           <h2 className="text-2xl font-bold text-white mb-6">Documentation</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Field label="Cover Letter Notes" value={jobData["Cover Letter Notes"]} />
             <Field label="Photo Packet" value={jobData["Photo Packet (Link)"]} />
             <Field label="Repairability Test" value={jobData["Repairablity Test (Link)"]} />
             <Field label="Cover Letter" value={jobData["Cover Letter (Link)"]} />
@@ -362,24 +337,16 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
         {/* Material Tests */}
         <section>
           <h2 className="text-2xl font-bold text-white mb-6">Material Tests</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Field label="ITEL Test File Name" value={jobData["ITEL Test File Name"]} />
-            <Field label="ITEL Test File URL" value={jobData["ITEL Test File URL"]} />
-            <Field label="Material Test Link 1" value={jobData["Material Test Link 1 (Link)"]} />
-            <Field label="Material Test Link 2" value={jobData["Material Test Link 2 (Link)"]} />
-            <Field label="Material Test Link 3" value={jobData["Material Test Link 3 (Link)"]} />
-            <Field label="Material Test Link 4" value={jobData["Material Test Link 4 (Link)"]} />
+          <div className="grid grid-cols-1 gap-4">
+            <Field label="Material Test(s)" value={jobData["Material Test(s) (Link)"]} />
           </div>
         </section>
 
         {/* Measurements */}
         <section>
           <h2 className="text-2xl font-bold text-white mb-6">Measurements</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Field label="Measurement Upload 1" value={jobData["Measurement Upload 1 (Link)"]} />
-            <Field label="Measurement Upload 2" value={jobData["Measurement Upload 2 (Link)"]} />
-            <Field label="Measurement Upload 3" value={jobData["Measurement Upload 3 (Link)"]} />
-            <Field label="Measurement Upload 4" value={jobData["Measurement Upload 4 (Link)"]} />
+          <div className="grid grid-cols-1 gap-4">
+            <Field label="Measurement(s)" value={jobData["Measurement(s) (Link)"]} />
           </div>
         </section>
 
