@@ -144,6 +144,14 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
       color: 'from-emerald-500 to-emerald-600',
       hoverColor: 'hover:shadow-emerald-500/25',
     },
+    {
+      id: 'kwik-financial',
+      title: 'Kwik Claims Finances',
+      description: 'Real-time Kwik Claims financial metrics and dashboard',
+      icon: Zap,
+      color: 'from-[#FF0000] to-[#C20F1F]',
+      hoverColor: 'hover:shadow-[#FF0000]/25',
+    },
   ];
 
   return (

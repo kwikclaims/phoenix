@@ -19,6 +19,7 @@ import { TodoPage } from './components/TodoPage';
 import { UpdatesPage } from './components/UpdatesPage';
 import { InspectionReportPage } from './components/InspectionReportPage';
 import { FollowUpsPage } from './components/FollowUpsPage';
+import { KwikClaimsFinancialPage } from './components/KwikClaimsFinancialPage';
 
 import { PRCSProjectsPage } from './components/PRCSProjectsPage';
 import { PRCSJobDetailPage } from './components/PRCSJobDetailPage';
@@ -60,6 +61,8 @@ function App() {
         return 'My Work';
       case 'financial':
         return 'PRCS Finances';
+      case 'kwik-financial':
+        return 'Kwik Claims Finances';
       case 'my-process':
         return 'My Process';
       case 'todos':
@@ -109,6 +112,7 @@ function App() {
             {currentPage === 'follow-ups' && <FollowUpsPage />}
             {currentPage === 'recent-storms' && <LossDatePage />}
             {currentPage === 'portal' && <PortalPage onNavigate={setCurrentPage} />}
+            {currentPage === 'kwik-financial' && <KwikClaimsFinancialPage />}
           </>
         } />
       </Routes>

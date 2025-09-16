@@ -13,6 +13,10 @@ const getSpreadsheetBase = (sheetName: string) => {
   if (sheetName === "PHOENIX DEALS" || sheetName === "PHOENIX NUMBERS") {
     return `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET.PRCS_SPREADSHEET_ID}`;
   }
+  // Use PRCS spreadsheet for KWIK NUMBERS sheet as well
+  if (sheetName === "KWIK NUMBERS") {
+    return `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET.PRCS_SPREADSHEET_ID}`;
+  }
   // Use default spreadsheet for all other sheets
   return `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET.SPREADSHEET_ID}`;
 };
