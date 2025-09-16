@@ -74,8 +74,8 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
   const portalItems = [
     {
       id: 'projects',
-      title: 'Projects',
-      description: 'View and manage all insurance claim projects and jobs',
+      title: 'Kwik Claims Projects',
+      description: 'View and manage all Kwik Claims insurance projects and jobs',
       icon: FolderOpen,
       color: 'from-[#FF0000] to-[#C20F1F]',
       hoverColor: 'hover:shadow-[#FF0000]/25',

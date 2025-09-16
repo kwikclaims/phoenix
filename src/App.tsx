@@ -44,7 +44,7 @@ function App() {
       case 'home':
         return 'Kwik Claims';
       case 'projects':
-        return 'Projects';
+        return 'Kwik Claims Projects';
       case 'updates':
         return 'Updates';
       case 'how-it-works':
