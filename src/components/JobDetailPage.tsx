@@ -87,6 +87,14 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
       );
     }
 
+    // Check if it's a currency value (contains $ or is a number field with ($) in label)
+    if (stringValue.includes('$') || /^\d+\.?\d*$/.test(stringValue)) {
+      const numericValue = parseFloat(stringValue.replace(/[^0-9.-]/g, ''));
+      if (!isNaN(numericValue)) {
+        return <span className="text-green-400 font-medium">${numericValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>;
+      }
+    }
+
     return <span className="text-white font-medium break-words">{stringValue}</span>;
   };
 
@@ -234,7 +242,7 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
         {/* Roof Information */}
         <section>
           <h2 className="text-2xl font-bold text-white mb-6">Roof Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <Field label="Roof Age (years)" value={jobData["Roof Age"]} />
             <Field label="Last Roof Access" value={jobData["When was the last time you had someone on your roof?"]} />
             <Field label="Years with Insurer" value={jobData["How many years have you been with them?"]} />
@@ -249,8 +257,8 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
           <h2 className="text-2xl font-bold text-white mb-6">Claim History</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Field label="Previous Claims (Yes/No)" value={jobData["Have you ever called in a claim before?"]} />
-            <Field label="Previous Claims Details" value={jobData["Previous Claims Details"]} />
             <Field label="Out-of-Pocket Repairs (Yes/No)" value={jobData["Have you ever had to pay out-of-pocket for repairs?"]} />
+            <Field label="Interior Damage/Leaks (Yes/No)" value={jobData["Are there any Interior damage, leaks or water stains? And if so which rooms?"]} />
             <Field label="Out-of-Pocket Details" value={jobData["Paid Out-of-Pocket Details"]} />
             <Field label="Active Leaks/Water Stains (Yes/No)" value={jobData["Are there any Interior damage, leaks or water stains? And if so which rooms?"]} />
             <Field label="Rooms with Leaks/Stains" value={jobData["Leak Rooms"]} />
@@ -280,8 +288,11 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
           <h2 className="text-2xl font-bold text-white mb-6">Damage Assessment</h2>
           <div className="grid grid-cols-1 gap-4">
             <Field label="Window/Siding/Gutter Damage (Yes/No)" value={jobData["Is there Damage on the windows, Siding, Gutters?"]} />
-            <Field label="Hail Damage Details" value={jobData["Hail Damage Details"]} />
             <Field label="Tree Damage (Yes/No)" value={jobData["Any Tree Damage?"]} />
+            <Field label="HVAC Damage (Yes/No)" value={jobData["Any HVAC Damage?"]} />
+          </div>
+          <div className="mt-4">
+            <Field label="Additional Notes" value={jobData["Additional Notes"]} />
             <Field label="Tree Damage Details" value={jobData["Tree Damage Details"]} />
             <Field label="HVAC Damage (Yes/No)" value={jobData["Any HVAC Damage?"]} />
             <Field label="HVAC Damage Details" value={jobData["HVAC Damage Details"]} />
@@ -294,24 +305,8 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
         {/* Representatives */}
         <section>
           <h2 className="text-2xl font-bold text-white mb-6">Representatives</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="text-lg font-semibold text-[#FF0000] mb-4">Primary Representative</h3>
-              <div className="space-y-4">
-                <Field label="Name" value={jobData["Representative 1 Name"]} />
-                <Field label="Phone" value={jobData["Representative 1 Phone"]} />
-                <Field label="Email" value={jobData["Representative 1 Email"]} />
-              </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-[#FF0000] mb-4">Secondary Representative</h3>
-              <div className="space-y-4">
-                <Field label="Name" value={jobData["Representative 2 Name"]} />
-                <Field label="Phone" value={jobData["Representative 2 Phone"]} />
-                <Field label="Email" value={jobData["Representative 2 Email"]} />
-              </div>
-            </div>
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Field label="Representative Name" value={jobData["Representative Name"]} />
         </section>
 
         {/* Loss Information */}
@@ -326,7 +321,7 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
         {/* Claim Information */}
         <section>
           <h2 className="text-2xl font-bold text-white mb-6">Claim Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <Field label="Claim Number" value={jobData["Claim Number"]} />
             <Field label="Adjuster Meeting" value={jobData["Adjuster Meeting"]} />
             <Field label="Adjuster Name" value={jobData["Adjuster Name"]} />
@@ -335,18 +330,18 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
             <Field label="Adjuster Email" value={jobData["Adjuster Email"]} />
             <Field label="Ladder Assist Phone" value={jobData["Ladder Assist Phone Number"]} />
             <Field label="Insurance Email" value={jobData["Insurance Email"]} />
-          </div>
-          <div className="mt-4">
             <Field label="Insurance File Upload Portal Link" value={jobData["Insurance File Upload/Portal Link"]} />
           </div>
         </section>
 
-        {/* Signatures */}
+        {/* Consultation Information */}
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Signatures</h2>
+          <h2 className="text-2xl font-bold text-white mb-6">Consultation Information</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Field label="Representative Signature" value={jobData["Representative Signature"]} />
-            <Field label="Payment Signature" value={jobData["Payment Signature"]} />
+            <Field label="Consultant Contract" value={jobData["Consultant Contract (Link)"]} />
+            <Field label="Consultation Fee" value={jobData["Consultation Fee ($)"]} />
+            <Field label="Consultation Report Cost" value={jobData["Consultation Report Cost ($)"]} />
+            <Field label="Consultation Fee Receipt" value={jobData["Consultation Fee Receipt (Link)"]} />
           </div>
         </section>
 
@@ -355,9 +350,11 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
           <h2 className="text-2xl font-bold text-white mb-6">Documentation</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <Field label="Cover Letter Notes" value={jobData["Cover Letter Notes"]} />
-            <Field label="Photo Packet Link" value={jobData["Photo Packet Link"]} />
-            <Field label="Repairability Test Link" value={jobData["Repairablity Test Link"]} />
-            <Field label="Cover Letter" value={jobData["Cover Letter"]} />
+            <Field label="Photo Packet" value={jobData["Photo Packet (Link)"]} />
+            <Field label="Repairability Test" value={jobData["Repairablity Test (Link)"]} />
+            <Field label="Cover Letter" value={jobData["Cover Letter (Link)"]} />
+            <Field label="Supplement Photo Packet" value={jobData["Supplement Photo Packet (Link)"]} />
+            <Field label="CoC Packet" value={jobData["Coc Packet (Link)"]} />
           </div>
         </section>
 
@@ -367,11 +364,11 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <Field label="ITEL Test File Name" value={jobData["ITEL Test File Name"]} />
             <Field label="ITEL Test File URL" value={jobData["ITEL Test File URL"]} />
-            <Field label="Policy File Name" value={jobData["Policy File Name"]} />
-            <Field label="Material Test Link 1" value={jobData["Material Test Link 1"]} />
-            <Field label="Material Test Link 2" value={jobData["Material Test Link 2"]} />
-            <Field label="Material Test Link 3" value={jobData["Material Test Link 3"]} />
-            <Field label="Material Test Link 4" value={jobData["Material Test Link 4"]} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Field label="Material Test Link 1" value={jobData["Material Test Link 1 (Link)"]} />
+            <Field label="Material Test Link 2" value={jobData["Material Test Link 2 (Link)"]} />
+            <Field label="Material Test Link 3" value={jobData["Material Test Link 3 (Link)"]} />
+            <Field label="Material Test Link 4" value={jobData["Material Test Link 4 (Link)"]} />
           </div>
         </section>
 
@@ -379,22 +376,26 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
         <section>
           <h2 className="text-2xl font-bold text-white mb-6">Measurements</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Field label="Measurement Upload 1" value={jobData["Measurement Upload 1"]} />
-            <Field label="Measurement Upload 2" value={jobData["Measurement Upload 2"]} />
-            <Field label="Measurement Upload 3" value={jobData["Measurement Upload 3"]} />
-            <Field label="Measurement Upload 4" value={jobData["Measurement Upload 4"]} />
+            <Field label="Measurement Upload 1" value={jobData["Measurement Upload 1 (Link)"]} />
+            <Field label="Measurement Upload 2" value={jobData["Measurement Upload 2 (Link)"]} />
+            <Field label="Measurement Upload 3" value={jobData["Measurement Upload 3 (Link)"]} />
+            <Field label="Measurement Upload 4" value={jobData["Measurement Upload 4 (Link)"]} />
           </div>
         </section>
 
-        {/* Documents */}
+        {/* Estimates & Contracts */}
         <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Documents</h2>
+          <h2 className="text-2xl font-bold text-white mb-6">Estimates & Contracts</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Field label="Estimate" value={jobData["Estimate"]} />
-            <Field label="Contract" value={jobData["Contract"]} />
-            <Field label="Certificate of Completion" value={jobData["Coc"]} />
-            <Field label="Receipt" value={jobData["Receipt"]} />
-            <Field label="Warranty" value={jobData["Warranty"]} />
+            <Field label="Insurance Estimate Packet" value={jobData["Insurance Estimate Packet (Link)"]} />
+            <Field label="Total Client Budget" value={jobData["Total Client Budget ($)"]} />
+            <Field label="Contractor Estimate 1" value={jobData["Contractor Estimate 1 (Link)"]} />
+            <Field label="Contractor Estimate 2" value={jobData["Contractor Estimate 2 (Link)"]} />
+            <Field label="Contractor Estimate 3" value={jobData["Contractor Estimate 3 (Link)"]} />
+            <Field label="Contractor Estimate 4" value={jobData["Contractor Estimate 4 (Link)"]} />
+            <Field label="Contractor Estimate 5" value={jobData["Contractor Estimate 5 (Link)"]} />
+            <Field label="Total Estimate(s) Amount" value={jobData["Total Estimate(s) Amount ($)"]} />
+            <Field label="Total Amount Leftover" value={jobData["Total Amount Leftover ($)"]} />
           </div>
         </section>
 
@@ -402,62 +403,12 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
         <section>
           <h2 className="text-2xl font-bold text-white mb-6">Financial Information</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Field label="Total Amount Customer Paying" value={jobData["Total Amount Customer is Paying ($)"]} />
-            <Field label="Exterior Total" value={jobData["Exterior Total ($)"]} />
-            <Field label="Interior Total" value={jobData["Interior Total ($)"]} />
-          </div>
-        </section>
-
-        {/* Supplement Photo Packets */}
-        <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Supplement Photo Packets</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Field label="Supplement Photo Packet 1" value={jobData["Supplement Photo Packet 1"]} />
-            <Field label="Supplement Photo Packet 2" value={jobData["Supplement Photo Packet 2"]} />
-            <Field label="Supplement Photo Packet 3" value={jobData["Supplement Photo Packet 3"]} />
-            <Field label="Supplement Photo Packet 4" value={jobData["Supplement Photo Packet 4"]} />
-          </div>
-        </section>
-
-        {/* Supplement Information */}
-        <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Supplement Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Field label="Supplement Cost" value={jobData["Supplement Cost ($)"]} />
-            <Field label="Supplement Charge" value={jobData["Supplement Charge ($)"]} />
-            <Field label="Supplement Items" value={jobData["Supplement Items"]} />
-            <Field label="Client Extra Cost Cost ($)" value={jobData["Client Extra Cost Cost ($)"]} />
-            <Field label="Client Extra Cost Charge ($)" value={jobData["Client Extra Cost Charge ($)"]} />
-            <Field label="Extra Cost Items" value={jobData["Extra Cost Items"]} />
-          </div>
-        </section>
-
-        {/* Payments */}
-        <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Payments</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Field label="1st Payment" value={jobData["1st Payment"]} />
-            <Field label="2nd Payment" value={jobData["2nd Payment"]} />
-            <Field label="3rd Payment" value={jobData["3rd Payment"]} />
-            <Field label="4th Payment" value={jobData["4th Payment"]} />
-            <Field label="Payment Proof 1" value={jobData["Payment Proof 1"]} />
-            <Field label="Payment Proof 2" value={jobData["Payment Proof 2"]} />
-            <Field label="Payment Proof 3" value={jobData["Payment Proof 3"]} />
-            <Field label="Payment Proof 4" value={jobData["Payment Proof 4"]} />
-          </div>
-        </section>
-
-        {/* Profit & Loss */}
-        <section>
-          <h2 className="text-2xl font-bold text-white mb-6">Profit & Loss</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <Field label="Company Loss" value={jobData["Company Loss ($)"]} />
-            <Field label="Loss Explanation" value={jobData["Loss Explanation"]} />
-            <Field label="Customer Balance" value={jobData["Customer Balance"]} />
+            <Field label="Payment Amount" value={jobData["Payment Amount ($)"]} />
+            <Field label="Payment Proof 1" value={jobData["Payment Proof 1 (Link)"]} />
+            <Field label="Customer Balance" value={jobData["Customer Balance ($)"]} />
             <Field label="Profit" value={jobData["Profit ($)"]} />
             <Field label="Company Profit" value={jobData["Company Profit"]} />
-            <Field label="Leo Profit" value={jobData["Leo Profit"]} />
-            <Field label="Zach Profit" value={jobData["Zach Profit"]} />
+            <Field label="Zach Profit" value={jobData["Zach Profit ($)"]} />
           </div>
         </section>
       </div>
