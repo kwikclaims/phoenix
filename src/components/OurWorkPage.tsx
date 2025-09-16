@@ -42,7 +42,6 @@ export const OurWorkPage: React.FC = () => {
             <Wrench className="w-10 h-10 text-[#FF0000]" />
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">Our Work</h1>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">My Work</h1>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto mb-8">
             Showcasing some of my recently completed restoration projects across Maryland. Each project represents my commitment to quality craftsmanship and customer satisfaction.
           </p>
