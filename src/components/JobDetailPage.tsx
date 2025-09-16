@@ -308,7 +308,6 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Field label="Representative Name" value={jobData["Representative Name"]} />
           </div>
-          </div>
         </section>
 
         {/* Loss Information */}
@@ -366,7 +365,6 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <Field label="ITEL Test File Name" value={jobData["ITEL Test File Name"]} />
             <Field label="ITEL Test File URL" value={jobData["ITEL Test File URL"]} />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <Field label="Material Test Link 1" value={jobData["Material Test Link 1 (Link)"]} />
             <Field label="Material Test Link 2" value={jobData["Material Test Link 2 (Link)"]} />
             <Field label="Material Test Link 3" value={jobData["Material Test Link 3 (Link)"]} />
@@ -417,5 +415,3 @@ export const JobDetailPage: React.FC<JobDetailPageProps> = ({ jobId }) => {
     </div>
   );
 };
-  )
-}
