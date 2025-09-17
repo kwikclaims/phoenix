@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ClipboardList, RefreshCw, ChevronDown, ChevronRight, CheckCircle, Clock, ArrowLeft } from 'lucide-react';
-import { toast } from 'sonner';
-import { loadRowsBySheetName, type Row } from '../lib/sheetLoader';
-import { GOOGLE_SHEET } from '../config/sheets';
+import React, { useState } from 'react';
+import { ClipboardList, ChevronDown, ChevronRight, CheckCircle, Clock, ArrowLeft } from 'lucide-react';
 
 interface ProcessStage {
   id: number;
@@ -16,143 +13,91 @@ interface ProcessPageProps {
 }
 
 export const ProcessPage: React.FC<ProcessPageProps> = ({ onNavigate }) => {
-  const [stages, setStages] = useState<ProcessStage[]>([]);
   const [expandedStages, setExpandedStages] = useState<Set<number>>(new Set([1])); // Stage 1 expanded by default
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string>("");
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
-  const parseProcessStages = (rows: Row[]): ProcessStage[] => {
-    console.log("[ProcessPage] ===== PARSING PROCESS STAGES =====");
-    console.log("[ProcessPage] Input rows for parsing:", rows);
-    
-    const stages: ProcessStage[] = [];
-    let currentStage: ProcessStage | null = null;
-    
-    rows.forEach((row, rowIndex) => {
-      console.log(`[ProcessPage] Processing row ${rowIndex + 1}:`, row);
-      
-      // Get the first non-empty value from the row as the step content
-      const allValues = Object.values(row);
-      const stepContent = allValues.find(value => value && String(value).trim()) || '';
-      
-      console.log(`[ProcessPage] Row ${rowIndex + 1} step content: "${stepContent}"`);
-      
-      if (!stepContent) return;
-      
-      // Check if this is a stage header (contains "Stage" and a number)
-      const stageMatch = String(stepContent).match(/^🟩?\s*Stage (\d+)\s*[-–]\s*(.+)$/i);
-      
-      console.log(`[ProcessPage] Stage match result for "${stepContent}":`, stageMatch);
-      
-      if (stageMatch) {
-        // Save previous stage if it exists
-        if (currentStage) {
-          console.log(`[ProcessPage] Saving previous stage: Stage ${currentStage.id} with ${currentStage.steps.length} steps`);
-          stages.push(currentStage);
-        }
-        
-        // Create new stage
-        const stageNumber = parseInt(stageMatch[1]);
-        const stageTitle = stageMatch[2].trim();
-        
-        console.log(`[ProcessPage] Creating new stage: ${stageNumber} - ${stageTitle}`);
-        
-        // Assign emojis based on stage
-        const getStageEmoji = (num: number): string => {
-          switch (num) {
-            case 1: return '🟩';
-            case 2: return '📋';
-            case 3: return '⏳';
-            case 4: return '🔨';
-            case 5: return '📄';
-            case 6: return '💰';
-            case 7: return '✅';
-            default: return '📌';
-          }
-        };
-        
-        currentStage = {
-          id: stageNumber,
-          title: stageTitle,
-          emoji: getStageEmoji(stageNumber),
-          steps: []
-        };
-      } else if (currentStage) {
-        // This is a step under the current stage
-        console.log(`[ProcessPage] Adding step to Stage ${currentStage.id}: "${stepContent}"`);
-        currentStage.steps.push(stepContent);
-      } else {
-        // No current stage but we have content - this might be Stage 1 content
-        console.log(`[ProcessPage] Found content without stage context: "${stepContent}"`);
-        
-        // If this looks like it could be Stage 1 content and we don't have any stages yet
-        if (stages.length === 0 && !stepContent.toLowerCase().includes('stage')) {
-          console.log(`[ProcessPage] Creating implicit Stage 1 for orphaned content`);
-          currentStage = {
-            id: 1,
-            title: 'Claim Setup',
-            emoji: '🟩',
-            steps: [stepContent]
-          };
-        }
-      }
-    });
-    
-    // Don't forget to add the last stage
-    if (currentStage) {
-      console.log(`[ProcessPage] Saving final stage: Stage ${currentStage.id} with ${currentStage.steps.length} steps`);
-      stages.push(currentStage);
+  // Hard-coded process data from the PROCESS sheet
+  const stages: ProcessStage[] = [
+    {
+      id: 1,
+      title: 'Claim Setup',
+      emoji: '🟩',
+      steps: [
+        'Overview Inspection',
+        'Homeowner Questions',
+        'Representative Questions',
+        'Storm Date & Time',
+        'Claim Call',
+        'Consultation Agreement Completion',
+        'Photo Packet',
+        'Repairability Test',
+        'Cover Letter Completion',
+        'Material Test',
+        'Measurement Upload',
+        'Estimate',
+        'Report Generation'
+      ]
+    },
+    {
+      id: 2,
+      title: 'Report Submission',
+      emoji: '📋',
+      steps: [
+        'Report Submission'
+      ]
+    },
+    {
+      id: 3,
+      title: 'Approval Pending',
+      emoji: '⏳',
+      steps: [
+        'Insurance Review',
+        'Initial Payment Release'
+      ]
+    },
+    {
+      id: 4,
+      title: 'Project Completion',
+      emoji: '🔨',
+      steps: [
+        'Contractor Contract Creation',
+        'Choose Materials',
+        'Sign Contractor Construction Contract',
+        'Pay Contractor',
+        'Order Materials',
+        'Contractor Completes Work',
+        'Completion Photos',
+        'Supplement Photo Packet'
+      ]
+    },
+    {
+      id: 5,
+      title: 'Supplement',
+      emoji: '📄',
+      steps: [
+        'Submit CoC & Supplement'
+      ]
+    },
+    {
+      id: 6,
+      title: 'Final Payment',
+      emoji: '💰',
+      steps: [
+        'Final Payment Release',
+        'Pays Contractor(s) Final Balances',
+        'Pay Consultant Fee & Issue Receipts',
+        'Supplemental Work is Completed',
+        'Contractor sends receipt and warranty'
+      ]
+    },
+    {
+      id: 7,
+      title: 'Job Complete',
+      emoji: '✅',
+      steps: [
+        'Job Complete'
+      ]
     }
-    
-    console.log(`[ProcessPage] ===== FINAL PARSED STAGES =====`);
-    stages.forEach(stage => {
-      console.log(`[ProcessPage] Stage ${stage.id}: ${stage.title} (${stage.steps.length} steps)`);
-      stage.steps.forEach((step, index) => {
-        console.log(`[ProcessPage]   Step ${index + 1}: ${step}`);
-      });
-    });
-    console.log("[ProcessPage] ===== END PARSED STAGES =====");
-    
-    return stages;
-  };
-
-  const fetchProcessData = async () => {
-    setLoading(true);
-    setError("");
-    try {
-      const rows = await loadRowsBySheetName(GOOGLE_SHEET.SHEET_NAMES.PROCESS);
-      console.log("[ProcessPage] Raw rows:", rows);
-      
-      if (!rows.length) {
-        throw new Error("No process data found in sheet");
-      }
-
-      const parsedStages = parseProcessStages(rows);
-      setStages(parsedStages);
-      setLastUpdated(new Date());
-      
-    } catch (err: any) {
-      console.error("[ProcessPage] Failed to load process data:", err);
-      setError(err.message || "Failed to load process data");
-      toast.error("Failed to load process data from Google Sheets");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchProcessData();
-  }, []);
-
-  const handleRefresh = async () => {
-    try {
-      await fetchProcessData();
-      toast.success("Process data refreshed successfully");
-    } catch (err) {
-      toast.error("Failed to refresh process data");
-    }
-  };
+  ];
 
   const toggleStage = (stageId: number) => {
     setExpandedStages(prev => {
@@ -178,37 +123,6 @@ export const ProcessPage: React.FC<ProcessPageProps> = ({ onNavigate }) => {
     return <Clock className="w-5 h-5 text-gray-400" />;
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-[#FF0000] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-white text-lg">Loading process information...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="max-w-md w-full bg-red-50 border border-red-200 rounded-xl p-6 text-center">
-          <div className="text-red-600 mb-4">
-            <ClipboardList className="w-12 h-12 mx-auto" />
-          </div>
-          <h2 className="text-xl font-bold text-red-800 mb-2">Failed to Load Process Data</h2>
-          <p className="text-red-700 mb-4">{error}</p>
-          <button
-            onClick={handleRefresh}
-            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-          >
-            Try Again
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-8">
       <div className="max-w-4xl mx-auto">
@@ -227,21 +141,7 @@ export const ProcessPage: React.FC<ProcessPageProps> = ({ onNavigate }) => {
             <ClipboardList className="w-10 h-10 text-[#FF0000]" />
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">The Official Process</h1>
-          <p className="text-gray-400 mb-4">Step-by-step guide from Google Sheets</p>
-          <div className="flex items-center justify-center space-x-4">
-            {lastUpdated && (
-              <p className="text-sm text-gray-500">
-                Last updated: {lastUpdated.toLocaleString()}
-              </p>
-            )}
-            <button
-              onClick={handleRefresh}
-              className="flex items-center space-x-2 px-3 py-1 text-[#FF0000] hover:bg-[#FF0000]/10 rounded-lg transition-colors text-sm"
-            >
-              <RefreshCw className="w-4 h-4" />
-              <span>Refresh</span>
-            </button>
-          </div>
+          <p className="text-gray-400 mb-4">Complete 7-stage insurance claim process</p>
         </div>
 
         {/* Process Steps */}
@@ -328,14 +228,8 @@ export const ProcessPage: React.FC<ProcessPageProps> = ({ onNavigate }) => {
               </div>
               <div className="bg-gray-900/50 rounded-xl p-4">
                 <p className="text-gray-400 text-sm">Data Source</p>
-                <p className="text-xl font-bold text-white">Google Sheets</p>
+                <p className="text-xl font-bold text-white">PROCESS Sheet</p>
               </div>
-            </div>
-            <div className="mt-4 bg-gray-900/50 rounded-xl p-4">
-              <p className="text-gray-400 text-sm">Last Refresh</p>
-              <p className="text-sm text-[#FF0000] font-medium">
-                {lastUpdated ? lastUpdated.toLocaleTimeString() : 'Never'}
-              </p>
             </div>
           </div>
         </div>
