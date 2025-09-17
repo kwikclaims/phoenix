@@ -48,11 +48,26 @@ export default function Home() {
               Document Generation
             </h2>
             <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-8">
-              All document generation forms have been removed from this system.
+              Access external document generation tools for Phoenix projects.
             </p>
-            <p className="text-gray-400 text-base max-w-2xl mx-auto">
-              This page previously contained various certificate and document generation tools, 
-              but they are no longer available in this version of Phoenix Forms.
+            
+            <div className="flex justify-center">
+              <a
+                href="https://phxrcs.com/PDFmaker.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl hover:shadow-lg hover:shadow-red-500/25 transition-all duration-300 font-semibold text-lg transform hover:scale-105"
+              >
+                <FileText className="w-6 h-6" />
+                <span>Contract Generator</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+            
+            <p className="text-gray-400 text-sm max-w-2xl mx-auto mt-6">
+              Opens the external Phoenix contract generation tool in a new tab.
             </p>
           </motion.div>
         </div>
