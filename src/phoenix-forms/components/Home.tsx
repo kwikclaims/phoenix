@@ -3,7 +3,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../..
 import { Button } from '../../components/ui/button';
 import { Flame, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { CERT_TYPES, LABELS, SUBS } from '../lib/constants';
 
 export default function Home() {
   return (
@@ -32,64 +31,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Certificate Forms Section */}
-      <section className="py-8 bg-black">
+      {/* Empty State - No Forms Available */}
+      <section className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-8"
+            className="text-center"
           >
+            <div className="w-24 h-24 bg-gradient-to-br from-red-500/20 to-red-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <FileText className="w-12 h-12 text-red-500" />
+            </div>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Document Generation
             </h2>
-            <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-              Choose the appropriate form type for your certification needs
+            <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-8">
+              All document generation forms have been removed from this system.
+            </p>
+            <p className="text-gray-400 text-base max-w-2xl mx-auto">
+              This page previously contained various certificate and document generation tools, 
+              but they are no longer available in this version of Phoenix Forms.
             </p>
           </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {CERT_TYPES.map((type, index) => (
-              <motion.div
-                key={type}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="bg-white border-red-500 border-2 h-full hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 group">
-                  <CardHeader>
-                    <div className="flex items-center gap-3 mb-2">
-                      <FileText className="text-red-600 w-8 h-8" />
-                      <CardTitle className="text-black text-xl">
-                        {LABELS[type]}
-                      </CardTitle>
-                    </div>
-                    <CardDescription className="text-gray-600 text-base">
-                      {SUBS[type]}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex flex-col justify-between flex-1">
-                    <div className="mb-6">
-                      <div className="h-24 bg-gray-100 rounded-lg flex items-center justify-center mb-4">
-                        <FileText className="text-gray-400 w-12 h-12" />
-                      </div>
-                      <p className="text-gray-500 text-sm">
-                        Professional certificate form with validation and PDF generation
-                      </p>
-                    </div>
-                    <Link to={`/form/${type}`} className="w-full">
-                      <Button className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 transition-colors duration-200">
-                        Create Form
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
     </div>
