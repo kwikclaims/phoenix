@@ -93,24 +93,6 @@ export const KwikClaimsDocumentGenerator: React.FC<KwikClaimsDocumentGeneratorPr
               </p>
             </button>
           </div>
-          
-          <div className="bg-black/60 backdrop-blur-xl rounded-2xl border border-[#FF0000]/20 p-6 max-w-2xl mx-auto">
-            <h3 className="text-lg font-semibold text-white mb-4">Additional Document Types (Coming Soon)</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-              <div className="space-y-2">
-                <p className="text-gray-300">• Warranty Certificates</p>
-                <p className="text-gray-300">• Payment Receipts</p>
-                <p className="text-gray-300">• Insurance Forms</p>
-                <p className="text-gray-300">• Damage Reports</p>
-              </div>
-              <div className="space-y-2">
-                <p className="text-gray-300">• Authorization Forms</p>
-                <p className="text-gray-300">• Certificates of Completion</p>
-                <p className="text-gray-300">• Supplement Packets</p>
-                <p className="text-gray-300">• Professional Reports</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
