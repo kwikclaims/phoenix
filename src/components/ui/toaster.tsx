@@ -7,7 +7,7 @@ import {
   ToastTitle,
   ToastViewport,
 } from "./toast";
-import { useToast } from "../../phoenix-forms/hooks/use-toast";
+import { useToast } from "./use-toast";
 
 export function Toaster() {
   const { toasts } = useToast();
