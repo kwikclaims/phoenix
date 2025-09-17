@@ -105,20 +105,21 @@ function App() {
 
             {currentPage === 'home' && <HomePage onNavigate={setCurrentPage} />}
             {currentPage === 'projects' && <ProjectsPage />}
-            {currentPage === 'prcs-projects' && <PRCSProjectsPage />}
+            {currentPage === 'projects' && <ProjectsPage onNavigate={setCurrentPage} />}
+            {currentPage === 'prcs-projects' && <PRCSProjectsPage onNavigate={setCurrentPage} />}
             {currentPage === 'how-it-works' && <HowItWorksPage />}
-            {currentPage === 'updates' && <UpdatesPage />}
+            {currentPage === 'updates' && <UpdatesPage onNavigate={setCurrentPage} />}
             {currentPage === 'my-work' && <OurWorkPage />}
             {currentPage === 'documents' && <PhoenixFormsApp onNavigateToMainAppPage={setCurrentPage} />}
-            {currentPage === 'financial' && <FinancialPage />}
-            {currentPage === 'my-process' && <ProcessPage />}
-            {currentPage === 'todos' && <TodoPage />}
-            {currentPage === 'inspection' && <InspectionReportPage />}
-            {currentPage === 'follow-ups' && <FollowUpsPage />}
+            {currentPage === 'financial' && <FinancialPage onNavigate={setCurrentPage} />}
+            {currentPage === 'my-process' && <ProcessPage onNavigate={setCurrentPage} />}
+            {currentPage === 'todos' && <TodoPage onNavigate={setCurrentPage} />}
+            {currentPage === 'inspection' && <InspectionReportPage onNavigate={setCurrentPage} />}
+            {currentPage === 'follow-ups' && <FollowUpsPage onNavigate={setCurrentPage} />}
             {currentPage === 'recent-storms' && <LossDatePage />}
             {currentPage === 'portal' && <PortalPage onNavigate={setCurrentPage} />}
-            {currentPage === 'kwik-financial' && <KwikClaimsFinancialPage />}
-            {currentPage === 'kwik-documents' && <KwikClaimsDocumentGenerator />}
+            {currentPage === 'kwik-financial' && <KwikClaimsFinancialPage onNavigate={setCurrentPage} />}
+            {currentPage === 'kwik-documents' && <KwikClaimsDocumentGenerator onNavigate={setCurrentPage} />}
           </>
         } />
       </Routes>

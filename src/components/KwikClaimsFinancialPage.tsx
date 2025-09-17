@@ -14,7 +14,11 @@ interface KwikFinancialMetrics {
   totalDue: string;
 }
 
-export const KwikClaimsFinancialPage: React.FC = () => {
+interface KwikClaimsFinancialPageProps {
+  onNavigate?: (page: string) => void;
+}
+
+export const KwikClaimsFinancialPage: React.FC<KwikClaimsFinancialPageProps> = ({ onNavigate }) => {
   const [metrics, setMetrics] = useState<KwikFinancialMetrics | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
@@ -253,7 +257,7 @@ export const KwikClaimsFinancialPage: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         {/* Back Button */}
         <button
-          onClick={() => window.history.back()}
+          onClick={() => onNavigate?.('portal')}
           className="flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white transition-colors mb-6"
         >
           <ArrowLeft className="w-5 h-5" />

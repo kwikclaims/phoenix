@@ -9,11 +9,17 @@ interface AppProps {
 }
 
 function App({ onNavigateToMainAppPage }: AppProps) {
+  const handleBackToPortal = () => {
+    if (onNavigateToMainAppPage) {
+      onNavigateToMainAppPage('portal');
+    }
+  };
+
   return (
     <div>
       {/* Back Button */}
       <button
-        onClick={() => window.history.back()}
+        onClick={handleBackToPortal}
         className="flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white transition-colors m-6"
       >
         <ArrowLeft className="w-5 h-5" />

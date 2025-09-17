@@ -12,7 +12,11 @@ interface ChecklistItem {
   result?: 'yes' | 'no';
 }
 
-export const InspectionReportPage: React.FC = () => {
+interface InspectionReportPageProps {
+  onNavigate?: (page: string) => void;
+}
+
+export const InspectionReportPage: React.FC<InspectionReportPageProps> = ({ onNavigate }) => {
   const [propertyAddress, setPropertyAddress] = useState('');
   const [checklistItems, setChecklistItems] = useState<ChecklistItem[]>([
     // 1. Exterior – Ground Level (before mounting roof)
@@ -397,7 +401,7 @@ export const InspectionReportPage: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <button
-          onClick={() => window.history.back()}
+          onClick={() => onNavigate?.('portal')}
           className="flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white transition-colors mb-6"
         >
           <ArrowLeft className="w-5 h-5" />

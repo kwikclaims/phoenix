@@ -15,7 +15,11 @@ interface FinancialMetrics {
   totalDue: string;
 }
 
-export const FinancialPage: React.FC = () => {
+interface FinancialPageProps {
+  onNavigate?: (page: string) => void;
+}
+
+export const FinancialPage: React.FC<FinancialPageProps> = ({ onNavigate }) => {
   const [metrics, setMetrics] = useState<FinancialMetrics | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
@@ -266,7 +270,7 @@ export const FinancialPage: React.FC = () => {
       <div className="max-w-6xl mx-auto">
         {/* Back Button */}
         <button
-          onClick={() => window.history.back()}
+          onClick={() => onNavigate?.('portal')}
           className="flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white transition-colors mb-6"
         >
           <ArrowLeft className="w-5 h-5" />

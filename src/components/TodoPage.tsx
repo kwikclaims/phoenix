@@ -19,7 +19,11 @@ interface AdjusterMeeting {
   date: string;
 }
 
-export const TodoPage: React.FC = () => {
+interface TodoPageProps {
+  onNavigate?: (page: string) => void;
+}
+
+export const TodoPage: React.FC<TodoPageProps> = ({ onNavigate }) => {
   const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
   const [adjusterMeetings, setAdjusterMeetings] = useState<AdjusterMeeting[]>([]);
   const [loading, setLoading] = useState(true);
@@ -264,7 +268,7 @@ export const TodoPage: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <button
-          onClick={() => window.history.back()}
+          onClick={() => onNavigate?.('portal')}
           className="flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white transition-colors mb-6"
         >
           <ArrowLeft className="w-5 h-5" />

@@ -11,7 +11,11 @@ interface ProcessStage {
   steps: string[];
 }
 
-export const ProcessPage: React.FC = () => {
+interface ProcessPageProps {
+  onNavigate?: (page: string) => void;
+}
+
+export const ProcessPage: React.FC<ProcessPageProps> = ({ onNavigate }) => {
   const [rows, setRows] = useState<Row[]>([]);
   const [stages, setStages] = useState<ProcessStage[]>([]);
   const [expandedStages, setExpandedStages] = useState<Set<number>>(new Set([1])); // Stage 1 expanded by default
@@ -212,7 +216,7 @@ export const ProcessPage: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <button
-          onClick={() => window.history.back()}
+          onClick={() => onNavigate?.('portal')}
           className="flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white transition-colors mb-6"
         >
           <ArrowLeft className="w-5 h-5" />

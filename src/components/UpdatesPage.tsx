@@ -6,7 +6,11 @@ function uid() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
 
-export const UpdatesPage: React.FC = () => {
+interface UpdatesPageProps {
+  onNavigate?: (page: string) => void;
+}
+
+export const UpdatesPage: React.FC<UpdatesPageProps> = ({ onNavigate }) => {
   const [items, setItems] = useState<UpdateItem[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [description, setDescription] = useState("");
@@ -45,7 +49,7 @@ export const UpdatesPage: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
         <button
-          onClick={() => window.history.back()}
+          onClick={() => onNavigate?.('portal')}
           className="flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white transition-colors mb-6"
         >
           <ArrowLeft className="w-5 h-5" />
