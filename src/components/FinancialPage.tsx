@@ -26,11 +26,6 @@ export const FinancialPage: React.FC<FinancialPageProps> = ({ onNavigate }) => {
   });
   const [password, setPassword] = useState('');
   const [authError, setAuthError] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    return localStorage.getItem('prcs_auth') === 'true';
-  });
-  const [password, setPassword] = useState('');
-  const [authError, setAuthError] = useState('');
   const [metrics, setMetrics] = useState<FinancialMetrics | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
