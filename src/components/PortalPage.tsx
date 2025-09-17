@@ -152,46 +152,6 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
       color: 'from-indigo-500 to-indigo-600',
       hoverColor: 'hover:shadow-indigo-500/25',
     },
-    {
-      id: 'follow-ups',
-      title: 'Follow-Ups',
-      description: 'Client communication reminders and follow-up tasks',
-      icon: Phone,
-      color: 'from-purple-500 to-purple-600',
-      hoverColor: 'hover:shadow-purple-500/25',
-    },
-    {
-      id: 'updates',
-      title: 'Updates',
-      description: 'Update reminders and notifications management',
-      icon: Bell,
-      color: 'from-orange-500 to-orange-600',
-      hoverColor: 'hover:shadow-orange-500/25',
-    },
-    {
-      id: 'documents',
-      title: 'Contracts',
-      description: 'Document generation and form management',
-      icon: FileText,
-      color: 'from-indigo-500 to-indigo-600',
-      hoverColor: 'hover:shadow-indigo-500/25',
-    },
-    {
-      id: 'financial',
-      title: 'PRCS Finances',
-      description: 'Real-time PRCS financial metrics and dashboard',
-      icon: DollarSign,
-      color: 'from-emerald-500 to-emerald-600',
-      hoverColor: 'hover:shadow-emerald-500/25',
-    },
-    {
-      id: 'kwik-financial',
-      title: 'Kwik Claims Finances',
-      description: 'Real-time Kwik Claims financial metrics and dashboard',
-      icon: Zap,
-      color: 'from-[#FF0000] to-[#C20F1F]',
-      hoverColor: 'hover:shadow-[#FF0000]/25',
-    },
   ];
 
   return (
