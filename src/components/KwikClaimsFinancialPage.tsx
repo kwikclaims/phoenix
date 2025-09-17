@@ -25,11 +25,6 @@ export const KwikClaimsFinancialPage: React.FC<KwikClaimsFinancialPageProps> = (
   });
   const [password, setPassword] = useState('');
   const [authError, setAuthError] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    return localStorage.getItem('kwik_auth') === 'true';
-  });
-  const [password, setPassword] = useState('');
-  const [authError, setAuthError] = useState('');
   const [metrics, setMetrics] = useState<KwikFinancialMetrics | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
