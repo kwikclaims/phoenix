@@ -74,11 +74,6 @@ export const PRCSProjectsPage: React.FC<PRCSProjectsPageProps> = ({ onNavigate }
   });
   const [password, setPassword] = useState('');
   const [authError, setAuthError] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    return localStorage.getItem('prcs_auth') === 'true';
-  });
-  const [password, setPassword] = useState('');
-  const [authError, setAuthError] = useState('');
   const [projects, setProjects] = useState<ProjectData[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<ProjectData[]>([]);
   const [loading, setLoading] = useState(true);
