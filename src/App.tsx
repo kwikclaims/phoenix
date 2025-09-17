@@ -20,6 +20,7 @@ import { UpdatesPage } from './components/UpdatesPage';
 import { InspectionReportPage } from './components/InspectionReportPage';
 import { FollowUpsPage } from './components/FollowUpsPage';
 import { KwikClaimsFinancialPage } from './components/KwikClaimsFinancialPage';
+import { KwikClaimsDocumentGenerator } from './components/KwikClaimsDocumentGenerator';
 
 import { PRCSProjectsPage } from './components/PRCSProjectsPage';
 import { PRCSJobDetailPage } from './components/PRCSJobDetailPage';
@@ -75,6 +76,10 @@ function App() {
         return 'Recent Storms';
       case 'portal':
         return 'Portal';
+      case 'kwik-documents':
+        return 'Kwik Claims Document Generator';
+      case 'documents':
+        return 'Phoenix Document Generators';
       default:
         return 'Kwik Claims';
     }
@@ -113,6 +118,7 @@ function App() {
             {currentPage === 'recent-storms' && <LossDatePage />}
             {currentPage === 'portal' && <PortalPage onNavigate={setCurrentPage} />}
             {currentPage === 'kwik-financial' && <KwikClaimsFinancialPage />}
+            {currentPage === 'kwik-documents' && <KwikClaimsDocumentGenerator />}
           </>
         } />
       </Routes>

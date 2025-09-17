@@ -145,9 +145,17 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
       hoverColor: 'hover:shadow-orange-500/25',
     },
     {
+      id: 'kwik-documents',
+      title: 'Kwik Claims Document Generator',
+      description: 'Generate documents and forms for Kwik Claims projects',
+      icon: FileText,
+      color: 'from-[#FF0000] to-[#C20F1F]',
+      hoverColor: 'hover:shadow-[#FF0000]/25',
+    },
+    {
       id: 'documents',
-      title: 'Contracts',
-      description: 'Document generation and form management',
+      title: 'Phoenix Document Generators',
+      description: 'Generate documents and forms for Phoenix projects',
       icon: FileText,
       color: 'from-indigo-500 to-indigo-600',
       hoverColor: 'hover:shadow-indigo-500/25',
@@ -207,7 +215,7 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
             <h3 className="text-2xl font-bold text-white mb-6 animate-fade-in-up animate-delay-300">Portal Overview</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-gray-900/50 rounded-xl p-6 animate-fade-in-up animate-delay-400 hover-lift">
-                <div className="text-3xl font-bold text-[#FF0000] mb-2">6</div>
+                <div className="text-3xl font-bold text-[#FF0000] mb-2">11</div>
                 <div className="text-gray-400">Available Tools</div>
               </div>
               <div className="bg-gray-900/50 rounded-xl p-6 animate-fade-in-up animate-delay-500 hover-lift">
