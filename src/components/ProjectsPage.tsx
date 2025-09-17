@@ -110,6 +110,79 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
         </button>
 
         <div className="flex items-center justify-center min-h-[calc(100vh-120px)]">
+          <div className="bg-black/80 backdrop-blur-xl rounded-3xl shadow-2xl max-w-md w-full p-8 border border-[#FF0000]/20">
+            <div className="text-center mb-8">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Lock className="w-8 h-8 text-[#FF0000]" />
+              </div>
+              <h1 className="text-2xl font-bold text-white mb-2">Kwik Claims Access</h1>
+              <p className="text-gray-400">Enter password to access Kwik Claims projects</p>
+            </div>
+
+            <form onSubmit={handleLogin} className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-[#FF0000] mb-2">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setAuthError('');
+                  }}
+                  className={`w-full px-4 py-3 bg-gray-900/50 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF0000] transition-all duration-300 text-white placeholder-gray-500 ${
+                    authError ? 'border-red-500' : 'border-gray-700 hover:border-[#FF0000]/50'
+                  }`}
+                  placeholder="Enter Kwik Claims password"
+                  autoFocus
+                />
+                {authError && (
+                  <p className="text-red-400 text-sm mt-2 animate-pulse">
+                    {authError}
+                  </p>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-[#FF0000] to-[#C20F1F] text-white py-3 rounded-xl hover:shadow-lg hover:shadow-[#FF0000]/25 transition-all duration-300 font-semibold transform hover:scale-105 active:scale-95"
+              >
+                Access Kwik Claims
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (password === 'Ihave2Ms') {
+      localStorage.setItem('kwik_auth', 'true');
+      setIsAuthenticated(true);
+      setAuthError('');
+    } else {
+      setAuthError('Incorrect password');
+      setPassword('');
+    }
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen p-4">
+        {/* Back Button */}
+        <button
+          onClick={() => onNavigate?.('portal')}
+          className="flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white transition-colors mb-6"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span>Back to Portal</span>
+        </button>
+
+        <div className="flex items-center justify-center min-h-[calc(100vh-120px)]">
         <div className="bg-black/80 backdrop-blur-xl rounded-3xl shadow-2xl max-w-md w-full p-8 border border-[#FF0000]/20">
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
@@ -207,8 +280,10 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
   };
 
   useEffect(() => {
-    fetchProjects();
-  }, []);
+    if (isAuthenticated) {
+      fetchProjects();
+    }
+  }, [isAuthenticated]);
 
   // Filter projects based on search term
   useEffect(() => {
@@ -330,13 +405,6 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
     <div className="min-h-screen bg-[#0B0B0B] text-white animate-fade-in">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
-        <button
-          onClick={() => onNavigate('portal')}
-          className="flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white transition-colors mb-6"
-        >
-          <ArrowLeft className="w-5 h-5" />
-          <span>Back to Portal</span>
-        </button>
 
         <div className="flex items-center justify-between mb-6 animate-fade-in-up animate-delay-200">
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight animate-fade-in-left">Kwik Claims Projects</h1>
