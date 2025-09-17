@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Lock } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import {
@@ -68,6 +69,11 @@ interface PRCSProjectsPageProps {
 }
 
 export const PRCSProjectsPage: React.FC<PRCSProjectsPageProps> = ({ onNavigate }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('prcs_auth') === 'true';
+  });
+  const [password, setPassword] = useState('');
+  const [authError, setAuthError] = useState('');
   const [projects, setProjects] = useState<ProjectData[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<ProjectData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -77,6 +83,68 @@ export const PRCSProjectsPage: React.FC<PRCSProjectsPageProps> = ({ onNavigate }
   const [showJobCreation, setShowJobCreation] = useState(false);
   const navigate = useNavigate();
   const { createJobProgress, updateJobProgress } = useJobs('default-user');
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (password === 'phxrcs7') {
+      localStorage.setItem('prcs_auth', 'true');
+      setIsAuthenticated(true);
+      setAuthError('');
+    } else {
+      setAuthError('Incorrect password');
+      setPassword('');
+    }
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="bg-black/80 backdrop-blur-xl rounded-3xl shadow-2xl max-w-md w-full p-8 border border-[#FF0000]/20">
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-blue-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <Lock className="w-8 h-8 text-blue-500" />
+            </div>
+            <h1 className="text-2xl font-bold text-white mb-2">PRCS Access</h1>
+            <p className="text-gray-400">Enter password to access PRCS projects</p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-blue-400 mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setAuthError('');
+                }}
+                className={`w-full px-4 py-3 bg-gray-900/50 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 text-white placeholder-gray-500 ${
+                  authError ? 'border-red-500' : 'border-gray-700 hover:border-blue-500/50'
+                }`}
+                placeholder="Enter PRCS password"
+                autoFocus
+              />
+              {authError && (
+                <p className="text-red-400 text-sm mt-2 animate-pulse">
+                  {authError}
+                </p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 font-semibold transform hover:scale-105 active:scale-95"
+            >
+              Access PRCS
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   const fetchProjects = async () => {
     setLoading(true);

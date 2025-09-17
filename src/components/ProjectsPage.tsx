@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Lock } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import {
@@ -68,6 +69,11 @@ interface ProjectsPageProps {
 }
 
 export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('kwik_auth') === 'true';
+  });
+  const [password, setPassword] = useState('');
+  const [authError, setAuthError] = useState('');
   const [projects, setProjects] = useState<ProjectData[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<ProjectData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -77,6 +83,68 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
   const [showJobCreation, setShowJobCreation] = useState(false);
   const navigate = useNavigate();
   const { createJobProgress, updateJobProgress } = useJobs('default-user');
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (password === 'Ihave2Ms') {
+      localStorage.setItem('kwik_auth', 'true');
+      setIsAuthenticated(true);
+      setAuthError('');
+    } else {
+      setAuthError('Incorrect password');
+      setPassword('');
+    }
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="bg-black/80 backdrop-blur-xl rounded-3xl shadow-2xl max-w-md w-full p-8 border border-[#FF0000]/20">
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <Lock className="w-8 h-8 text-[#FF0000]" />
+            </div>
+            <h1 className="text-2xl font-bold text-white mb-2">Kwik Claims Access</h1>
+            <p className="text-gray-400">Enter password to access Kwik Claims projects</p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-[#FF0000] mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setAuthError('');
+                }}
+                className={`w-full px-4 py-3 bg-gray-900/50 border-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF0000] transition-all duration-300 text-white placeholder-gray-500 ${
+                  authError ? 'border-red-500' : 'border-gray-700 hover:border-[#FF0000]/50'
+                }`}
+                placeholder="Enter Kwik Claims password"
+                autoFocus
+              />
+              {authError && (
+                <p className="text-red-400 text-sm mt-2 animate-pulse">
+                  {authError}
+                </p>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-r from-[#FF0000] to-[#C20F1F] text-white py-3 rounded-xl hover:shadow-lg hover:shadow-[#FF0000]/25 transition-all duration-300 font-semibold transform hover:scale-105 active:scale-95"
+            >
+              Access Kwik Claims
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   const fetchProjects = async () => {
     setLoading(true);

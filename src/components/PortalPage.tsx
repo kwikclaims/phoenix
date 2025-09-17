@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { Grid3X3, ClipboardCheck, ClipboardList, CheckSquare, Phone, Bell, FileText, DollarSign, FolderOpen, Lock, Zap } from 'lucide-react';
 
 interface PortalPageProps {
@@ -6,7 +7,9 @@ interface PortalPageProps {
 }
 
 export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('portal_auth') === 'true';
+  });
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
@@ -14,6 +17,7 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
     e.preventDefault();
     
     if (password === '1209') {
+      localStorage.setItem('portal_auth', 'true');
       setIsAuthenticated(true);
       setError('');
     } else {
