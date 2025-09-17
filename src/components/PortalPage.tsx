@@ -28,7 +28,17 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-screen p-4">
+        {/* Back Button */}
+        <button
+          onClick={() => onNavigate('home')}
+          className="flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white transition-colors mb-6"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span>Back to Home</span>
+        </button>
+
+        <div className="flex items-center justify-center min-h-[calc(100vh-120px)]">
         <div className="bg-black/80 backdrop-blur-xl rounded-3xl shadow-2xl max-w-md w-full p-8 border border-[#FF0000]/20">
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
@@ -72,6 +82,7 @@ export const PortalPage: React.FC<PortalPageProps> = ({ onNavigate }) => {
           </form>
         </div>
       </div>
+        </div>
     );
   }
 
