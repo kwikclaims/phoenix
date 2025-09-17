@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Phone, Plus, Trash2, Calendar } from 'lucide-react';
+import { Phone, Plus, Trash2, Calendar, ArrowLeft } from 'lucide-react';
 import { loadFollowUps, saveFollowUps, type FollowUpItem } from "../lib/storage";
 
 function uid() {
@@ -43,6 +43,15 @@ export const FollowUpsPage: React.FC = () => {
   return (
     <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-8">
       <div className="max-w-4xl mx-auto">
+        {/* Back Button */}
+        <button
+          onClick={() => window.history.back()}
+          className="flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white transition-colors mb-6"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span>Back to Portal</span>
+        </button>
+
         {/* Header */}
         <div className="text-center mb-8">
           <div className="w-20 h-20 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">

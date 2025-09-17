@@ -16,6 +16,7 @@ import { loadRowsBySheetName, type Row } from "../lib/sheetLoader";
 import { GOOGLE_SHEET } from "../config/sheets";
 import { JobCreationQuest } from "./job-creation/JobCreationQuest";
 import { useJobs } from "../hooks/useJobs";
+import { ArrowLeft } from "lucide-react";
 
 // Stage progress mapping based on your data
 const STAGE_PROGRESS = {
@@ -245,6 +246,15 @@ export const ProjectsPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0B0B0B] text-white animate-fade-in">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Back Button */}
+        <button
+          onClick={() => window.history.back()}
+          className="flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white transition-colors mb-6"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span>Back to Portal</span>
+        </button>
+
         <div className="flex items-center justify-between mb-6 animate-fade-in-up animate-delay-200">
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight animate-fade-in-left">Kwik Claims Projects</h1>
           <div className="flex items-center gap-3 animate-fade-in-right">
