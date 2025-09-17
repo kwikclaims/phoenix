@@ -19,11 +19,11 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
 
   // Redirect if no form data
   useEffect(() => {
-    if (!formData || (type !== 'estimate' && type !== 'invoice' && type !== 'contracts' && type !== 'insurancePaymentAuth' && !signatureDataURL)) {
+    if (!formData || (type !== 'estimate' && type !== 'invoice' && type !== 'insurancePaymentAuth' && !signatureDataURL)) {
       toast.error('No form data found. Please fill out the form first.');
       window.history.back();
     }
-  }, [formData, signatureDataURL, navigate]);
+  }, [formData, signatureDataURL, type]);
 
   if (!type || !(type in LABELS)) {
     return (
@@ -38,7 +38,7 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
     );
   }
 
-  if (!formData || (type !== 'estimate' && type !== 'invoice' && type !== 'contracts' && type !== 'insurancePaymentAuth' && !signatureDataURL)) {
+  if (!formData || (type !== 'estimate' && type !== 'invoice' && type !== 'insurancePaymentAuth' && !signatureDataURL)) {
     return null; // Will redirect via useEffect
   }
 
@@ -640,9 +640,9 @@ export default function PreviewPage({ onNavigateToMainAppPage }: PreviewPageProp
       );
     }
 
-    if (type === 'estimate' || type === 'invoice' || type === 'contracts') {
+    if (type === 'estimate' || type === 'invoice') {
       const docData = formData as any;
-      const docType = type === 'estimate' ? 'Estimate' : type === 'invoice' ? 'Invoice' : 'Contract';
+      const docType = type === 'estimate' ? 'Estimate' : 'Invoice';
       
       return (
         <div className="page">

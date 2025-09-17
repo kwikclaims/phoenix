@@ -79,7 +79,7 @@ export function useCertForm(type: string) {
   };
 
   const renderFormInputs = () => {
-    if (type === 'estimate' || type === 'invoice' || type === 'contracts') {
+    if (type === 'estimate' || type === 'invoice') {
       return (
         <div className="space-y-6">
           <div>
@@ -132,7 +132,7 @@ export function useCertForm(type: string) {
               {...methods.register('context')}
               className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               rows={4}
-              placeholder={type === 'estimate' ? "Enter context about the type of estimate being generated" : type === 'invoice' ? "Enter context about the type of invoice being generated" : type === 'contracts' ? "Enter context about the type of contract being generated" : "Enter context about the document being generated"}
+              placeholder={type === 'estimate' ? "Enter context about the type of estimate being generated" : type === 'invoice' ? "Enter context about the type of invoice being generated" : "Enter context about the document being generated"}
             />
             {methods.formState.errors.context && (
               <p className="text-red-500 text-sm mt-1">
@@ -1003,7 +1003,7 @@ export function useCertForm(type: string) {
         )}
 
         {/* Signature Section - only for non-estimate forms */}
-        {type !== 'estimate' && type !== 'invoice' && type !== 'contracts' && (
+        {type !== 'estimate' && type !== 'invoice' && (
           <div>
             <Label>Signature *</Label>
             <div className="mt-2 border-2 border-gray-300 rounded-lg p-4">

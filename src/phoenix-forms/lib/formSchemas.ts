@@ -51,14 +51,6 @@ export const invoiceSchema = z.object({
   context: z.string().min(1, 'Context is required'),
 });
 
-// Contracts schema - identical to estimate schema
-export const contractsSchema = z.object({
-  repName: z.string().min(1, 'Rep name is required'),
-  repPhone: z.string().min(1, 'Rep phone is required'),
-  repEmail: z.string().email('Valid email is required'),
-  context: z.string().min(1, 'Context is required'),
-});
-
 // Warranty schema - warranty-specific fields plus signature
 export const warrantySchema = z.object({
   customerName: z.string().min(1, 'Customer name is required'),
@@ -116,11 +108,10 @@ export type StandardFormData = z.infer<typeof standardSchema>;
 export type JobTotalOnlyFormData = z.infer<typeof jobTotalOnlySchema>;
 export type EstimateFormData = z.infer<typeof estimateSchema>;
 export type InvoiceFormData = z.infer<typeof invoiceSchema>;
-export type ContractsFormData = z.infer<typeof contractsSchema>;
 export type WarrantyFormData = z.infer<typeof warrantySchema>;
 export type ReceiptFormData = z.infer<typeof receiptSchema>;
 
-export type FormData = DepreciationFormData | JobCostDepFormData | StandardFormData | JobTotalOnlyFormData | EstimateFormData | InvoiceFormData | WarrantyFormData | ReceiptFormData | ContractsFormData | InsurancePaymentAuthFormData;
+export type FormData = DepreciationFormData | JobCostDepFormData | StandardFormData | JobTotalOnlyFormData | EstimateFormData | InvoiceFormData | WarrantyFormData | ReceiptFormData | InsurancePaymentAuthFormData;
 
 // Schema mapping
 export const getSchemaForType = (type: string) => {
@@ -137,8 +128,6 @@ export const getSchemaForType = (type: string) => {
       return estimateSchema;
     case 'invoice':
       return invoiceSchema;
-    case 'contracts':
-      return contractsSchema;
     case 'warranty':
       return warrantySchema;
     case 'receipt':

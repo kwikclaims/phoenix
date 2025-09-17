@@ -1,4 +1,4 @@
-export const CERT_TYPES = ['estimate','invoice','warranty','receipt','contracts','insurancePaymentAuth','depreciation','job-cost-dep','standard','job-total-only'] as const;
+export const CERT_TYPES = ['estimate','invoice','warranty','receipt','insurancePaymentAuth','depreciation','job-cost-dep','standard','job-total-only'] as const;
 
 export const LABELS = {
   depreciation: 'CoC – Depreciation',
@@ -9,7 +9,6 @@ export const LABELS = {
   invoice: 'Invoice',
   warranty: 'Warranty Certificate',
   receipt: 'Receipt',
-  contracts: 'Contracts',
   insurancePaymentAuth: 'Insurance Claim Payment & Representation Authorization',
 } as const;
 
@@ -22,7 +21,6 @@ export const SUBS = {
   invoice: 'Construction invoice with Xactimate pricing',
   warranty: 'Professional roofing warranty certificate',
   receipt: 'Payment receipt document',
-  contracts: 'Construction contract with Xactimate pricing',
   insurancePaymentAuth: 'Direction of Pay, Assignment, Representation & Trust Fund declaration',
 } as const;
 
