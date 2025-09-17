@@ -84,6 +84,80 @@ export const PRCSProjectsPage: React.FC<PRCSProjectsPageProps> = ({ onNavigate }
   const navigate = useNavigate();
   const { createJobProgress, updateJobProgress } = useJobs('default-user');
 
+  const fetchProjects = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const rows = await loadRowsBySheetName(GOOGLE_SHEET.SHEET_NAMES.PRCS_PROJECTS);
+      console.log("[PRCSProjectsPage] Raw rows:", rows);
+      
+      if (!rows.length) {
+        throw new Error("No data found in PHOENIX DEALS sheet");
+      }
+
+      // Parse the sheet data into project objects
+      const parsedProjects: ProjectData[] = rows
+        .filter(row => {
+          // Only include rows with at least a first or last name
+          const firstName = (row["First Name"] || "").trim();
+          const lastName = (row["Last Name"] || "").trim();
+          return firstName || lastName;
+        })
+        .map((row, index) => ({
+          id: `prcs-project-${index + 1}`,
+          stage: (row["Stage"] || "").trim(),
+          subStage: (row["Sub-Stage"] || "").trim(),
+          firstName: (row["First Name"] || "").trim(),
+          lastName: (row["Last Name"] || "").trim(),
+          email: (row["Email"] || "").trim(),
+          phone: (row["Phone"] || "").trim(),
+          address: (row["Address"] || "").trim(),
+          city: (row["City"] || "").trim(),
+          state: (row["State"] || "").trim(),
+          zipCode: (row["ZIP Code"] || "").trim(),
+          insuranceCompany: (row["Insurance Company"] || "").trim(),
+          progress: calculateProgress(row["Stage"] || ""),
+          rawData: row, // Keep original row data for detail view
+        }));
+
+      console.log("[PRCSProjectsPage] Parsed projects:", parsedProjects);
+      setProjects(parsedProjects);
+      setFilteredProjects(parsedProjects.sort((a, b) => a.progress - b.progress));
+      
+    } catch (err: any) {
+      console.error("[PRCSProjectsPage] Failed to load projects:", err);
+      setError(err.message || "Failed to load projects");
+      toast.error("Failed to load PRCS projects from PHOENIX DEALS sheet");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchProjects();
+    }
+  }, [isAuthenticated]);
+
+  // Filter projects based on search term
+  useEffect(() => {
+    if (!searchTerm) {
+      setFilteredProjects(projects);
+      return;
+    }
+
+    const term = searchTerm.toLowerCase();
+    const filtered = projects.filter(project =>
+      `${project.firstName} ${project.lastName}`.toLowerCase().includes(term) ||
+      project.address.toLowerCase().includes(term) ||
+      project.city.toLowerCase().includes(term) ||
+      project.insuranceCompany.toLowerCase().includes(term) ||
+      project.stage.toLowerCase().includes(term)
+    );
+    
+    setFilteredProjects(filtered.sort((a, b) => a.progress - b.progress));
+  }, [projects, searchTerm]);
+
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -156,78 +230,6 @@ export const PRCSProjectsPage: React.FC<PRCSProjectsPageProps> = ({ onNavigate }
         </div>
     );
   }
-
-  const fetchProjects = async () => {
-    setLoading(true);
-    setError("");
-    try {
-      const rows = await loadRowsBySheetName(GOOGLE_SHEET.SHEET_NAMES.PRCS_PROJECTS);
-      console.log("[PRCSProjectsPage] Raw rows:", rows);
-      
-      if (!rows.length) {
-        throw new Error("No data found in PHOENIX DEALS sheet");
-      }
-
-      // Parse the sheet data into project objects
-      const parsedProjects: ProjectData[] = rows
-        .filter(row => {
-          // Only include rows with at least a first or last name
-          const firstName = (row["First Name"] || "").trim();
-          const lastName = (row["Last Name"] || "").trim();
-          return firstName || lastName;
-        })
-        .map((row, index) => ({
-          id: `prcs-project-${index + 1}`,
-          stage: (row["Stage"] || "").trim(),
-          subStage: (row["Sub-Stage"] || "").trim(),
-          firstName: (row["First Name"] || "").trim(),
-          lastName: (row["Last Name"] || "").trim(),
-          email: (row["Email"] || "").trim(),
-          phone: (row["Phone"] || "").trim(),
-          address: (row["Address"] || "").trim(),
-          city: (row["City"] || "").trim(),
-          state: (row["State"] || "").trim(),
-          zipCode: (row["ZIP Code"] || "").trim(),
-          insuranceCompany: (row["Insurance Company"] || "").trim(),
-          progress: calculateProgress(row["Stage"] || ""),
-          rawData: row, // Keep original row data for detail view
-        }));
-
-      console.log("[PRCSProjectsPage] Parsed projects:", parsedProjects);
-      setProjects(parsedProjects);
-      setFilteredProjects(parsedProjects.sort((a, b) => a.progress - b.progress));
-      
-    } catch (err: any) {
-      console.error("[PRCSProjectsPage] Failed to load projects:", err);
-      setError(err.message || "Failed to load projects");
-      toast.error("Failed to load PRCS projects from PHOENIX DEALS sheet");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchProjects();
-  }, []);
-
-  // Filter projects based on search term
-  useEffect(() => {
-    if (!searchTerm) {
-      setFilteredProjects(projects);
-      return;
-    }
-
-    const term = searchTerm.toLowerCase();
-    const filtered = projects.filter(project =>
-      `${project.firstName} ${project.lastName}`.toLowerCase().includes(term) ||
-      project.address.toLowerCase().includes(term) ||
-      project.city.toLowerCase().includes(term) ||
-      project.insuranceCompany.toLowerCase().includes(term) ||
-      project.stage.toLowerCase().includes(term)
-    );
-    
-    setFilteredProjects(filtered.sort((a, b) => a.progress - b.progress));
-  }, [projects, searchTerm]);
 
   const handleRefresh = async () => {
     setIsRefreshing(true);
