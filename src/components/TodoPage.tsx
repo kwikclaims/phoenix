@@ -27,17 +27,32 @@ export const TodoPage: React.FC = () => {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   const parseTodoFromRow = (row: Row, index: number): TodoItem | null => {
-    // Search specifically in column A (first column) for todo items
-    // Get all column keys and find the first one (column A)
-    const columnKeys = Object.keys(row);
-    const firstColumnKey = columnKeys[0];
-    const todoText = firstColumnKey ? (row[firstColumnKey] || '').toString().trim() : '';
+    // Get all values from the row to find todo items
+    const allValues = Object.values(row);
+    const allKeys = Object.keys(row);
     
-    if (!todoText) return null;
+    console.log(`[TodoPage] Row ${index + 1} keys:`, allKeys);
+    console.log(`[TodoPage] Row ${index + 1} values:`, allValues);
+    
+    // Look for any cell that contains "To-Do" or "TODO"
+    let todoText = '';
+    let todoColumnKey = '';
+    
+    for (const [key, value] of Object.entries(row)) {
+      const cellValue = (value || '').toString().trim();
+      if (cellValue.toLowerCase().includes('to-do') || cellValue.toLowerCase().includes('todo')) {
+        todoText = cellValue;
+        todoColumnKey = key;
+        console.log(`[TodoPage] Found todo in column "${key}": "${cellValue}"`);
+        break;
+      }
+    }
+    
+    if (!todoText) {
+      console.log(`[TodoPage] No todo found in row ${index + 1}`);
+      return null;
+    }
 
-    // Check if this cell contains a todo item (starts with "To-Do:")
-    if (!todoText.toLowerCase().startsWith('to-do')) return null;
-    
     console.log(`[TodoPage] Found todo item in row ${index + 1}:`, todoText);
     
     // Parse the format: "To-Do: [Action] for [Customer] at [Address]"
@@ -68,13 +83,22 @@ export const TodoPage: React.FC = () => {
   };
 
   const parseAdjusterMeetingFromRow = (row: Row, index: number): AdjusterMeeting | null => {
-    // Search specifically in column C (third column) for adjuster meetings
-    const columnKeys = Object.keys(row);
-    const thirdColumnKey = columnKeys[2]; // Column C is the third column (index 2)
-    const meetingText = thirdColumnKey ? (row[thirdColumnKey] || '').toString().trim() : '';
+    // Look for any cell that contains "meeting" or "adjuster"
+    let meetingText = '';
+    let meetingColumnKey = '';
+    
+    for (const [key, value] of Object.entries(row)) {
+      const cellValue = (value || '').toString().trim();
+      if (cellValue.toLowerCase().includes('meeting') || cellValue.toLowerCase().includes('adjuster')) {
+        meetingText = cellValue;
+        meetingColumnKey = key;
+        console.log(`[TodoPage] Found meeting in column "${key}": "${cellValue}"`);
+        break;
+      }
+    }
     
     if (!meetingText) {
-      console.log(`[TodoPage] Row ${index + 1} Column C is empty, skipping`);
+      console.log(`[TodoPage] No meeting found in row ${index + 1}`);
       return null;
     }
 
@@ -109,11 +133,27 @@ export const TodoPage: React.FC = () => {
     setLoading(true);
     setError("");
     try {
+      console.log("[TodoPage] Fetching from TODO sheet...");
       const rows = await loadRowsBySheetName(GOOGLE_SHEET.SHEET_NAMES.TODO);
       console.log("[TodoPage] Raw rows:", rows);
       
       if (!rows.length) {
-        throw new Error("No todo data found in sheet");
+        throw new Error("No data found in TODO sheet");
+      }
+      
+      // Debug: Show the structure of the first few rows
+      console.log("[TodoPage] ===== SHEET STRUCTURE DEBUG =====");
+      rows.slice(0, 3).forEach((row, index) => {
+        console.log(`[TodoPage] Row ${index + 1} structure:`, row);
+        console.log(`[TodoPage] Row ${index + 1} keys:`, Object.keys(row));
+        console.log(`[TodoPage] Row ${index + 1} values:`, Object.values(row));
+      });
+      console.log("[TodoPage] ===== END STRUCTURE DEBUG =====");
+      
+      // If no data found, show what we got
+      if (rows.length === 0) {
+        console.error("[TodoPage] No rows returned from TODO sheet");
+        throw new Error("TODO sheet appears to be empty");
       }
 
       // Parse rows into todo items
