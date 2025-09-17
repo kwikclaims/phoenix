@@ -16,7 +16,6 @@ interface ProcessPageProps {
 }
 
 export const ProcessPage: React.FC<ProcessPageProps> = ({ onNavigate }) => {
-  const [rows, setRows] = useState<Row[]>([]);
   const [stages, setStages] = useState<ProcessStage[]>([]);
   const [expandedStages, setExpandedStages] = useState<Set<number>>(new Set([1])); // Stage 1 expanded by default
   const [loading, setLoading] = useState(true);
@@ -42,7 +41,7 @@ export const ProcessPage: React.FC<ProcessPageProps> = ({ onNavigate }) => {
       if (!stepContent) return;
       
       // Check if this is a stage header (contains "Stage" and a number)
-      const stageMatch = String(stepContent).match(/^Stage (\d+)\s*[-–]\s*(.+)$/i);
+      const stageMatch = String(stepContent).match(/^🟩?\s*Stage (\d+)\s*[-–]\s*(.+)$/i);
       
       console.log(`[ProcessPage] Stage match result for "${stepContent}":`, stageMatch);
       
@@ -129,7 +128,6 @@ export const ProcessPage: React.FC<ProcessPageProps> = ({ onNavigate }) => {
         throw new Error("No process data found in sheet");
       }
 
-      setRows(rows);
       const parsedStages = parseProcessStages(rows);
       setStages(parsedStages);
       setLastUpdated(new Date());
@@ -228,7 +226,6 @@ export const ProcessPage: React.FC<ProcessPageProps> = ({ onNavigate }) => {
           <div className="w-20 h-20 bg-gradient-to-br from-[#FF0000]/20 to-[#C20F1F]/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
             <ClipboardList className="w-10 h-10 text-[#FF0000]" />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">Our Process</h1>
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">The Official Process</h1>
           <p className="text-gray-400 mb-4">Step-by-step guide from Google Sheets</p>
           <div className="flex items-center justify-center space-x-4">
